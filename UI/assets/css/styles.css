@@ -108,12 +108,11 @@ body{
     /*max-width: 1000px;*/
     position: relative;
     margin: auto;
-    /*width: 100%;*/
     transition: 0.7s ease;
 }
 
 .mySlides {
-    display: none;
+
     transition: 0.7s ease;
 }
 
@@ -483,4 +482,17 @@ input[type=text], input[type=password],input[type=email] {
 }
 .success{
     background-color: green;
+}
+.db-btn{
+  border: none;
+  outline: 0;
+  display: inline-block;
+  padding: 8px;
+  color: white;
+  text-align: center;
+  margin:5px 0 0 18px;
+  border-radius: 10px;
+  cursor: pointer;
+  text-decoration: none;
+  background-color: black;
 }
