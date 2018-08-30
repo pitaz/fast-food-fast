@@ -87,6 +87,15 @@ body, html {
     /*padding: 28px 25px;*/
 }
 
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+
 /*wrapper for form*/
 
 .wrapper {
