@@ -36,7 +36,7 @@ body{
     display: inline-block;
     color: red;
     text-align: center;
-    padding: 5px 10px;
+    padding: 5px 15px;
     text-decoration: none;
     transition: 0.5s;
     /*margin:0 15px auto;*/
@@ -242,7 +242,16 @@ body{
     padding: 50px;
     color: #fff;
 }
+.menu-icon{
 
+    visibility: hidden;
+
+
+}
+.menu-wrapper{
+  display: inline-block;
+    cursor: pointer;
+}
 .menu img {
     width: 90%;
     height: 250px;
@@ -322,45 +331,15 @@ button:hover, a:hover {
     }
 }
 
-@media only screen and (max-width: 970px) {
-
-    .nav .nav-items a{
-        visibility: hidden;
-        display: none;
-    }
-
-    .text{
-        top:100px;
-    }
-
-
-}
-@media only screen and (max-width: 525px) {
-
-   .slideshow-container .mySlides .text{
-       font-size: medium;
-   }
-
-    .dot-wrapper{
-        visibility: hidden;
-    }
-    /*.text{*/
-        /*top:80px;*/
-    /*}*/
-
-}
-
 .sidebar{
     width: 250px;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.71);
     position: fixed;
-    left: 0;
-    /*z-index: 1000;*/
+    left: -250px;
+    z-index: 1001;
     top: 65px;
-    /*margin-bottom: 50px;*/
     padding-top: 20px;
-
     box-shadow: 0 4px 4px 0 rgba(0,0,0,0.8), 0 6px 6px 0 rgba(0, 0, 0, 0.79);
 }
 
@@ -373,9 +352,11 @@ button:hover, a:hover {
     font-size: 18px;
     font-family: "Caviar Dreams", sans-serif;
 }
-
+.sidebar.active {
+    left: -250px;
+}
 .contentarea {
-    margin: 80px 0 10px 250px;
+    margin: 80px 0 10px 50px;
     padding: 20px;
     /*height: 600px;*/
     transition: 0.5s;
@@ -393,6 +374,58 @@ button:hover, a:hover {
     /*font-size: 25px;*/
 
 }
+@media only screen and (max-width: 970px) {
+  .menu-icon{
+      font-size: 48px;
+      padding: 10px;
+      visibility: visible;
+      color: white;
+
+  }
+    .nav .nav-items a{
+        visibility: hidden;
+        display: none;
+    }
+
+    .text{
+        top:100px;
+    }
+    .sidebar {
+     left: -250px;
+     transition: 0.5s;
+ }
+
+ .sidebar.active {
+     left: 0;
+     transition: 0.5s;
+ }
+ .contentarea {
+      width: 100%;
+      margin-left: 10px;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      margin-top: 40px;
+      padding: 0px;
+      height: 600px;
+      transition: 0.5s;
+  }
+
+
+}
+@media only screen and (max-width: 525px) {
+
+   .slideshow-container .mySlides .text{
+       font-size: medium;
+   }
+
+    .dot-wrapper{
+        visibility: hidden;
+    }
+
+
+}
+
+
 .pg-t {
     font-family: "CaviarDreams", sans-serif;
     text-align: center;
@@ -477,12 +510,7 @@ input[type=text], input[type=password],input[type=email] {
     font-family: "Caviar Dreams", sans-serif;
 }
 
-.danger{
-    background-color: red;
-}
-.success{
-    background-color: green;
-}
+
 .db-btn{
   border: none;
   outline: 0;
@@ -495,4 +523,13 @@ input[type=text], input[type=password],input[type=email] {
   cursor: pointer;
   text-decoration: none;
   background-color: black;
+}
+.danger{
+    background-color: red;
+}
+.success{
+    background-color: green;
+}
+.default{
+    background-color: green;
 }
