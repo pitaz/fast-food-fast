@@ -394,9 +394,12 @@ button:hover, a:hover {
     /*font-size: 25px;*/
 
 }
-
-.contentarea h3 {
+.pg-t {
     font-family: "CaviarDreams", sans-serif;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 55px;
+    font-size: 25px;
 }
 .table-w {
     overflow-x:auto;
@@ -422,7 +425,9 @@ th {
     color: white;
 }
 
-
+.pagination{
+    margin-left: 50px;
+}
 
 .pagination a {
     color: black;
@@ -471,4 +476,11 @@ input[type=text], input[type=password],input[type=email] {
     border: 1px solid #ccc;
     box-sizing: border-box;
     font-family: "Caviar Dreams", sans-serif;
+}
+
+.danger{
+    background-color: red;
+}
+.success{
+    background-color: green;
 }

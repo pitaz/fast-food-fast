@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast food fast</title>
+    <link rel="stylesheet" href="../assets/css/styles.css">
+</head>
+<body>
+
+<!-- top navigation -->
+<div class="nav card" id="myTopnav">
+
+    <div class="nav-items menu">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="brand">
+        <a href="../index.html" class="brand">Fast Food</a>
+    </div>
+
+    <div class="nav-items right">
+        <a href="../meal-menu.html">Menu</a>
+        <a href="../signin.html">Sign In</a>
+        <a href="../sign-up.html">Sign Up</a>
+    </div>
+
+
+</div>
+<!--navigation ends-->
+
+
+<!--sidebar -->
+<div id="mySidebar" class="sidebar ">
+
+
+    <a href="../index.html"><i class=""> </i>Menu</a>
+    <a href="./admin-all-orders.html">Orders</a>
+    <a href="./admin-pending-orders.html">Pending Orders</a>
+    <a href="./admin-add-meal.html">Add Food</a>
+    <a href="../signin.html"> Logout</a>
+
+
+</div>
+<!--sidebar ends-->
+
+<!--Content area-->
+<div class="contentarea">
+
+    <p class="pg-t">Pending Orders</p>
+    <div class="table-w">
+        <table>
+            <tr>
+                <th>S/N</th>
+                <th>Order name</th>
+                <th>Order number</th>
+                <th>Customer</th>
+                <th>Amount</th>
+                <th>Actions</th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>Jollof rice + Fried chicken</td>
+                <td>14587220</td>
+                <td>Peter</td>
+                <td>NGN2,000</td>
+                <td><a class="meal-menu-btn success" href="admin-edit-meal.html">Complete</a> <a
+                        class="meal-menu-btn danger" href="#">Cancel</a></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Fried Rice & Assorted meat</td>
+                <td>12546822</td>
+                <td>Lois</td>
+                <td>NGN1,500</td>
+                <td><a class="meal-menu-btn success" href="admin-edit-meal.html">Complete</a> <a
+                        class="meal-menu-btn danger" href="#">Cancel</a></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Egusi & Semovita</td>
+                <td>1542245</td>
+                <td>Joe</td>
+                <td>NGN1,000</td>
+                <td><a class="meal-menu-btn success" href="admin-edit-meal.html">Complete</a> <a
+                        class="meal-menu-btn danger" href="#">Cancel</a></td>
+            </tr>
+
+
+        </table>
+
+    </div>
+
+    <!--pagination-->
+    <div class="pagination">
+        <a href="#">&laquo;</a>
+        <a href="#">1</a>
+        <a class="active" href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#">&raquo;</a>
+    </div>
+
+</div>
+
+<script src="../assets/js/main.js" type="text/javascript"></script>
+<script src="../assets/js/carousel.js" type="text/javascript"></script>
+</body>
+</html>
