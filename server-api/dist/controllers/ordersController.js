@@ -39,6 +39,11 @@ var OrdersControllers = function () {
       _ordersStorage2.default.push(order);
       return res.status(201).send(order);
     }
+  }, {
+    key: 'getOrders',
+    value: function getOrders(req, res) {
+      return res.send(_ordersStorage2.default);
+    }
   }]);
 
   return OrdersControllers;

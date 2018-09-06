@@ -23,12 +23,6 @@ router.use(_express2.default.json());
 
 router.get('/orders', _ordersController2.default.getOrders);
 
-router.get('/orders/:id', _validateRequests2.default.validateId, _ordersController2.default.getOrder);
-
 router.post('/orders', _validateRequests2.default.validateOrders, _ordersController2.default.placeOrder);
-
-router.put('/orders/:id', _validateRequests2.default.validateId, _validateRequests2.default.validateModifyOrders, _ordersController2.default.updateOrderStatus);
-
-router.delete('/orders/:id', _validateRequests2.default.validateId, _ordersController2.default.deleteOrder);
 
 exports.default = router;

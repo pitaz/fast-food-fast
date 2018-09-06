@@ -16,6 +16,10 @@ class OrdersControllers {
     orders.push(order);
     return res.status(201).send(order);
   }
+
+  getOrders(req, res) {
+    return res.send(orders);
+  }
 }
 
 const ordersControllers = new OrdersControllers();
