@@ -44,6 +44,15 @@ var OrdersControllers = function () {
     value: function getOrders(req, res) {
       return res.send(_ordersStorage2.default);
     }
+  }, {
+    key: 'getOrder',
+    value: function getOrder(req, res) {
+      var order = _ordersStorage2.default.find(function (f) {
+        return f.id === parseInt(req.params.id, 10);
+      });
+      if (!order) return res.status(404).send('order not found');
+      return res.send(order);
+    }
   }]);
 
   return OrdersControllers;
