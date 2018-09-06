@@ -13,4 +13,6 @@ router.post(
   validateReq.validateOrders, ordersController.placeOrder
 );
 
+router.get('/orders/:id', validateReq.validateId, ordersController.getOrder);
+
 export default router;

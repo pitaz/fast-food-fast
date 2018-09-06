@@ -20,6 +20,12 @@ class OrdersControllers {
   getOrders(req, res) {
     return res.send(orders);
   }
+
+  getOrder(req, res) {
+    const order = orders.find(f => f.id === parseInt(req.params.id, 10));
+    if (!order) return res.status(404).send('order not found');
+    return res.send(order);
+  }
 }
 
 const ordersControllers = new OrdersControllers();

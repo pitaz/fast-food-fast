@@ -25,4 +25,6 @@ router.get('/orders', _ordersController2.default.getOrders);
 
 router.post('/orders', _validateRequests2.default.validateOrders, _ordersController2.default.placeOrder);
 
+router.get('/orders/:id', _validateRequests2.default.validateId, _ordersController2.default.getOrder);
+
 exports.default = router;
