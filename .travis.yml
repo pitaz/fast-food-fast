@@ -8,10 +8,7 @@ dist: trusty
 script:
   - npm install
   - npm test
-
-after_success: 
-  - npm run coveralls
-
+  
 cache:
   directories:
     - "node_modules"
