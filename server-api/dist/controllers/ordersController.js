@@ -64,6 +64,18 @@ var OrdersControllers = function () {
       order.status = req.body.status;
       return res.status(200).json(order);
     }
+  }, {
+    key: 'deleteOrder',
+    value: function deleteOrder(req, res) {
+      var order = _ordersStorage2.default.find(function (f) {
+        return f.id === parseInt(req.params.id, 10);
+      });
+      if (!order) return res.status(404).json({ message: 'order not found' });
+
+      var index = _ordersStorage2.default.indexOf();
+      _ordersStorage2.default.splice(index, 1);
+      return res.status(201).json({ message: 'order deleted successfully!' });
+    }
   }]);
 
   return OrdersControllers;

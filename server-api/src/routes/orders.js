@@ -20,4 +20,9 @@ router.put(
   validateReq.validateModifyOrders, ordersController.updateOrderStatus
 );
 
+router.delete(
+  '/orders/:id',
+  validateReq.validateId, ordersController.deleteOrder
+);
+
 export default router;
