@@ -29,4 +29,6 @@ router.get('/orders/:id', _validateRequests2.default.validateId, _ordersControll
 
 router.put('/orders/:id', _validateRequests2.default.validateId, _validateRequests2.default.validateModifyOrders, _ordersController2.default.updateOrderStatus);
 
+router.delete('/orders/:id', _validateRequests2.default.validateId, _ordersController2.default.deleteOrder);
+
 exports.default = router;

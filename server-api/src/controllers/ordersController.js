@@ -34,6 +34,15 @@ class OrdersControllers {
     order.status = req.body.status;
     return res.status(200).json(order);
   }
+
+  deleteOrder(req, res) {
+    const order = orders.find(f => f.id === parseInt(req.params.id, 10));
+    if (!order) return res.status(404).json({ message: 'order not found' });
+
+    const index = orders.indexOf();
+    orders.splice(index, 1);
+    return res.status(201).json({ message: 'order deleted successfully!' });
+  }
 }
 
 const ordersControllers = new OrdersControllers();
