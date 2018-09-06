@@ -7,7 +7,7 @@
   "license": "ISC",
   "scripts": {
     "babel-node": "babel-node ./server-api/src/app.js",
-    "test": "mocha ./server-api/dist/tests",
+    "test": "mocha --require babel-core/register ./server-api/dist/tests --exit --timeout 5000 --colors",
     "build": "babel ./server-api/src -d ./server-api/dist",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "start": "node ./server-api/dist/app.js",
