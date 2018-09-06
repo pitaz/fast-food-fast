@@ -65,6 +65,38 @@ class ValidateRequest {
 
     return next();
   }
+
+  validateMeal(req, res, next) {
+    const errors = {};
+
+    if (!req.body.name || validator.isEmpty(req.body.name.trim())) {
+      errors.name = 'name field is required';
+    }
+
+    if (!req.body.desc || validator.isEmpty(req.body.desc.trim())) {
+      errors.desc = 'description field is required';
+    }
+
+    if (!req.body.price.trim()) {
+      errors.price = 'price field is required';
+    }
+
+    if (req.body.price && !isNumber(req.body.price.trim())) {
+      errors.price = 'price must be a number';
+    }
+
+    if (!req.body.image || validator.isEmpty(req.body.image)) {
+      errors.image = 'image is required';
+    }
+
+    const isValid = isEmpty(errors);
+
+    if (!isValid) {
+      return res.status(400).json({ error: errors });
+    }
+
+    return next();
+  }
 }
 
 const validateReq = new ValidateRequest();
