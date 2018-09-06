@@ -27,4 +27,6 @@ router.post('/orders', _validateRequests2.default.validateOrders, _ordersControl
 
 router.get('/orders/:id', _validateRequests2.default.validateId, _ordersController2.default.getOrder);
 
+router.put('/orders/:id', _validateRequests2.default.validateId, _validateRequests2.default.validateModifyOrders, _ordersController2.default.updateOrderStatus);
+
 exports.default = router;

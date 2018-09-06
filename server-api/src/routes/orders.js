@@ -15,4 +15,9 @@ router.post(
 
 router.get('/orders/:id', validateReq.validateId, ordersController.getOrder);
 
+router.put(
+  '/orders/:id', validateReq.validateId,
+  validateReq.validateModifyOrders, ordersController.updateOrderStatus
+);
+
 export default router;
