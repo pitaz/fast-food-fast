@@ -44,4 +44,12 @@ var orderId = void 0;
       done();
     });
   });
+
+  (0, _mocha.it)('should get all orders', function (done) {
+    _chai2.default.request(_app2.default).get('/api/v1/orders').set('Content-Type', 'application/json').end(function (err, res) {
+      (0, _chai.expect)(res).to.have.status(200);
+      (0, _chai.expect)(res.body[0].meal).to.equal('Jollof Rice with grilled chicken');
+      done();
+    });
+  });
 });

@@ -39,4 +39,15 @@ describe('Tests for Orders API endpoints', () => {
         done();
       });
   });
+
+  it('should get all orders', (done) => {
+    chai.request(app)
+      .get('/api/v1/orders')
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body[0].meal).to.equal('Jollof Rice with grilled chicken');
+        done();
+      });
+  });
 });
