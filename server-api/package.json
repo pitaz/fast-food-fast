@@ -1,0 +1,35 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "Fast Food fast app api",
+  "main": "./src/app.js",
+  "author": "Peter Odekwo",
+  "license": "ISC",
+  "scripts": {
+    "babel-node": "babel-node ./src/app.js",
+    "test": "mocha",
+    "build": "babel src -d dist",
+    "start": "node ./src/app.js",
+    "dev": "nodemon ./src/app.js"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-react": "^7.11.1",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.4"
+  },
+  "dependencies": {
+    "chai": "^4.1.2",
+    "chai-http": "^4.0.0",
+    "express": "^4.16.3",
+    "is-number": "^7.0.0",
+    "lodash": "^4.17.10",
+    "validator": "^10.7.1"
+  }
+}
