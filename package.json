@@ -2,15 +2,16 @@
   "name": "api",
   "version": "1.0.0",
   "description": "Fast Food fast app api",
-  "main": "./src/app.js",
+  "main": "./server-api/src/app.js",
   "author": "Peter Odekwo",
   "license": "ISC",
   "scripts": {
-    "babel-node": "babel-node ./src/app.js",
-    "test": "mocha ./dist/tests",
-    "build": "babel src -d dist",
-    "start": "node ./dist/app.js",
-    "dev": "nodemon ./dist/app.js"
+    "babel-node": "babel-node ./server-api/src/app.js",
+    "test": "mocha ./server-api/dist/tests",
+    "build": "babel ./server-api/src -d ./server-api/dist",
+    "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "start": "node ./server-api/dist/app.js",
+    "dev": "nodemon ./server-api/dist/app.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
