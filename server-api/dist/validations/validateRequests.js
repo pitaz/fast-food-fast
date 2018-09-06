@@ -93,6 +93,39 @@ var ValidateRequest = function () {
 
       return next();
     }
+  }, {
+    key: 'validateMeal',
+    value: function validateMeal(req, res, next) {
+      var errors = {};
+
+      if (!req.body.name || _validator2.default.isEmpty(req.body.name.trim())) {
+        errors.name = 'name field is required';
+      }
+
+      if (!req.body.desc || _validator2.default.isEmpty(req.body.desc.trim())) {
+        errors.desc = 'description field is required';
+      }
+
+      if (!req.body.price.trim()) {
+        errors.price = 'price field is required';
+      }
+
+      if (req.body.price && !(0, _isNumber2.default)(req.body.price.trim())) {
+        errors.price = 'price must be a number';
+      }
+
+      if (!req.body.image || _validator2.default.isEmpty(req.body.image)) {
+        errors.image = 'image is required';
+      }
+
+      var isValid = (0, _isEmpty2.default)(errors);
+
+      if (!isValid) {
+        return res.status(400).json({ error: errors });
+      }
+
+      return next();
+    }
   }]);
 
   return ValidateRequest;

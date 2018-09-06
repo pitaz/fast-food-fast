@@ -7,10 +7,10 @@
   "license": "ISC",
   "scripts": {
     "babel-node": "babel-node ./src/app.js",
-    "test": "mocha",
+    "test": "mocha ./dist/tests",
     "build": "babel src -d dist",
-    "start": "node ./src/app.js",
-    "dev": "nodemon ./src/app.js"
+    "start": "node ./dist/app.js",
+    "dev": "nodemon ./dist/app.js"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -27,6 +27,7 @@
   "dependencies": {
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
+    "coveralls": "^3.0.2",
     "express": "^4.16.3",
     "is-number": "^7.0.0",
     "lodash": "^4.17.10",
