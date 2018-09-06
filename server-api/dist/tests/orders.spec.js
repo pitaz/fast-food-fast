@@ -52,4 +52,65 @@ var orderId = void 0;
       done();
     });
   });
+
+  (0, _mocha.it)('should update an order', function (done) {
+    _chai2.default.request(_app2.default).put('/api/v1/orders/' + orderId).set('Content-Type', 'application/json').send({
+      id: '1',
+      meal: 'Jollof Rice with chicken',
+      quantity: '3',
+      status: 'completed'
+    }).end(function (err, res) {
+      (0, _chai.expect)(res).to.have.status(200);
+      (0, _chai.expect)(res.body.status).to.equal('completed');
+      done();
+    });
+  });
+
+  (0, _mocha.it)('should return error if no field to be updated is provided', function (done) {
+    _chai2.default.request(_app2.default).put('/api/v1/orders/' + orderId).set('Content-Type', 'application/json').send({}).end(function (err, res) {
+      (0, _chai.expect)(res).to.have.status(400);
+      (0, _chai.expect)(res.body.error.message).to.equal('Enter a field to update');
+      done();
+    });
+  });
+
+  (0, _mocha.it)('should get an order', function (done) {
+    _chai2.default.request(_app2.default).get('/api/v1/orders/1').set('Content-Type', 'application/json').end(function (err, res) {
+      (0, _chai.expect)(res).to.have.status(200);
+      (0, _chai.expect)(res.body.meal).to.equal('Jollof Rice with grilled chicken');
+      done();
+    });
+  });
+
+  (0, _mocha.it)('should return errors if fields to place an order are not filled', function (done) {
+    _chai2.default.request(_app2.default).post('/api/v1/orders/').set('Content-Type', 'application/json').send({
+      meal: '',
+      quantity: ''
+    }).end(function (err, res) {
+      (0, _chai.expect)(res).to.have.status(400);
+      (0, _chai.expect)(res.body.error.meal).to.equal('Enter a meal');
+      done();
+    });
+  });
+
+  (0, _mocha.it)('should return errors if fields to be updated are not filled ', function (done) {
+    _chai2.default.request(_app2.default).put('/api/v1/orders/1').set('Content-Type', 'application/json').send({
+      meal: '',
+      quantity: ''
+    }).end(function (err, res) {
+      (0, _chai.expect)(res).to.have.status(400);
+      done();
+    });
+  });
+
+  (0, _mocha.it)('should return error if orders to be updated is not found', function (done) {
+    _chai2.default.request(_app2.default).put('/api/v1/orders/50').set('Content-Type', 'application/json').send({
+      meal: 'Oha',
+      price: '2000'
+    }).end(function (err, res) {
+      (0, _chai.expect)(res).to.have.status(404);
+      (0, _chai.expect)(res.body.message).to.equal('order not found');
+      done();
+    });
+  });
 });

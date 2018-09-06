@@ -64,6 +64,35 @@ var ValidateRequest = function () {
 
       return next();
     }
+  }, {
+    key: 'validateModifyOrders',
+    value: function validateModifyOrders(req, res, next) {
+      var errors = {};
+
+      if (!req.body.meal && !req.body.quantity) {
+        errors.message = 'Enter a field to update';
+      }
+
+      if (req.body.meal && _validator2.default.isEmpty(req.body.meal.trim())) {
+        errors.meal = 'Meal is required';
+      }
+
+      if (req.body.quantity && _validator2.default.isEmpty(req.body.quantity.trim())) {
+        errors.quantity = 'quantity is required';
+      }
+
+      if (req.body.quantity && !(0, _isNumber2.default)(req.body.quantity.trim())) {
+        errors.quantity = 'quantity must be a number';
+      }
+
+      var isValid = (0, _isEmpty2.default)(errors);
+
+      if (!isValid) {
+        return res.status(400).json({ error: errors });
+      }
+
+      return next();
+    }
   }]);
 
   return ValidateRequest;

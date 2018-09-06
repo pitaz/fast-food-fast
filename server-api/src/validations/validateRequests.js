@@ -37,6 +37,34 @@ class ValidateRequest {
 
     return next();
   }
+
+  validateModifyOrders(req, res, next) {
+    const errors = {};
+
+    if (!req.body.meal && !req.body.quantity) {
+      errors.message = 'Enter a field to update';
+    }
+
+    if (req.body.meal && validator.isEmpty(req.body.meal.trim())) {
+      errors.meal = 'Meal is required';
+    }
+
+    if (req.body.quantity && validator.isEmpty(req.body.quantity.trim())) {
+      errors.quantity = 'quantity is required';
+    }
+
+    if (req.body.quantity && !isNumber(req.body.quantity.trim())) {
+      errors.quantity = 'quantity must be a number';
+    }
+
+    const isValid = isEmpty(errors);
+
+    if (!isValid) {
+      return res.status(400).json({ error: errors });
+    }
+
+    return next();
+  }
 }
 
 const validateReq = new ValidateRequest();
