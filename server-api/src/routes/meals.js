@@ -18,4 +18,9 @@ router.put(
   validateReq.validateUpdateMeal, mealsController.updateMeal
 );
 
+router.delete(
+  '/meals/:id',
+  validateReq.validateId, mealsController.deleteMeal
+);
+
 export default router;
