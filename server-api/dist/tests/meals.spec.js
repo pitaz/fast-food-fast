@@ -41,4 +41,12 @@ var mealId = void 0;
       done();
     });
   });
+
+  (0, _mocha.it)('should get all meals', function (done) {
+    _chai2.default.request(_app2.default).get('/api/v1/meals').set('Content-Type', 'application/json').end(function (err, res) {
+      (0, _chai.expect)(res).to.have.status(200);
+      (0, _chai.expect)(res.body[0].name).to.equal('Jollof rice and chicken');
+      done();
+    });
+  });
 });

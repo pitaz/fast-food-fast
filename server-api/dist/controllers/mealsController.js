@@ -44,6 +44,11 @@ var MealsControllers = function () {
       _mealsStorage2.default.push(meal);
       return res.status(201).send(meal);
     }
+  }, {
+    key: 'getMeals',
+    value: function getMeals(req, res) {
+      return res.send(_mealsStorage2.default);
+    }
   }]);
 
   return MealsControllers;

@@ -34,4 +34,15 @@ describe('Tests for meals API endpoints', () => {
         done();
       });
   });
+
+  it('should get all meals', (done) => {
+    chai.request(app)
+      .get('/api/v1/meals')
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body[0].name).to.equal('Jollof rice and chicken');
+        done();
+      });
+  });
 });

@@ -11,4 +11,6 @@ router.post(
   validateReq.validateMeal, mealsController.createMeal
 );
 
+router.get('/meals', mealsController.getMeals);
+
 export default router;
