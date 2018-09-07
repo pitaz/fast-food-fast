@@ -16,20 +16,6 @@ Fast-Food-Fast is a food delivery service app that provide users with the abilit
     * Mark orders as completed
 * A user who is signed in is able to see a history of ordered food.
 
-
-## How it works
-* User can view the meal menu for the day
-* User can order meal from the meals option on the menu, but first the user need to be signed in
-* Caterer can do the following
-    * Add a meal option
-    * Modify a meal option
-    * Delete a meal option
-    * Set menu for a specific day
-    * See the summary of all the orders for a specific day
-    * See the details of all the orders
-    * See the amount of money made by the end of day
-
-
 ## Technologies used
 
 * Front-end: HTML, CSS and Javascript
