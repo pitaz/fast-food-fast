@@ -23,6 +23,10 @@ class UsersControllers {
     users.push(user);
     return res.status(201).json({ message: 'Account created' });
   }
+
+  login(req, res) {
+    return res.status(200).json({ message: 'user login successful!' });
+  }
 }
 
 const usersControllers = new UsersControllers();

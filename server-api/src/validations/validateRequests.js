@@ -4,6 +4,7 @@ import isNumber from 'is-number';
 import isEmpty from 'lodash/isEmpty';
 import orders from '../sampleData/ordersStorage';
 import meals from '../sampleData/mealsStorage';
+import users from '../sampleData/usersStorage';
 
 class ValidateRequest {
   validateId(req, res, next) {
@@ -17,6 +18,13 @@ class ValidateRequest {
   checkMealId(req, res, next) {
     const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
     if (!meal) return res.status(404).json({ message: 'Meal not found' });
+
+    return next();
+  }
+
+  checkLogin(req, res, next) {
+    const user = users.find(f => f.email === req.body.email);
+    if (!user) return res.status(404).json({ error: 'user not found' });
 
     return next();
   }
@@ -138,6 +146,24 @@ class ValidateRequest {
     if (!req.body.password) errors.password = 'Password is required';
 
     if (req.body.password && req.body.password.length < 6) errors.password = 'Password must be greater than 6 characters';
+
+    const isValid = isEmpty(errors);
+
+    if (!isValid) {
+      return res.status(400).json({ error: errors });
+    }
+
+    return next();
+  }
+
+  validateLoginUser(req, res, next) {
+    const errors = {};
+
+    if (!req.body.email) errors.email = 'Email is required';
+
+    if (req.body.email && !validator.isEmail(req.body.email)) errors.email = 'Email is invalid';
+
+    if (!req.body.password || validator.isEmpty(req.body.password)) errors.password = 'Password is required';
 
     const isValid = isEmpty(errors);
 
