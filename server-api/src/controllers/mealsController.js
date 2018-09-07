@@ -35,6 +35,14 @@ class MealsControllers {
     meal.image = req.body.image;
     return res.status(200).json(meal);
   }
+
+  deleteMeal(req, res) {
+    const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
+    if (!meal) return res.status(404).json({ message: 'Meal not found' });
+    const index = meals.indexOf();
+    meals.splice(index, 1);
+    return res.status(201).json({ message: 'meal deleted successfully!' });
+  }
 }
 
 const mealsControllers = new MealsControllers();
