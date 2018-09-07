@@ -14,12 +14,12 @@ router.post(
 router.get('/meals', mealsController.getMeals);
 
 router.put(
-  '/meals/:id', validateReq.validateId,
+  '/meals/:id', validateReq.validateId, validateReq.checkMealId,
   validateReq.validateUpdateMeal, mealsController.updateMeal
 );
 
 router.delete(
-  '/meals/:id',
+  '/meals/:id', validateReq.checkMealId,
   validateReq.validateId, mealsController.deleteMeal
 );
 

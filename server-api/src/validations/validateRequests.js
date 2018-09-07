@@ -14,6 +14,20 @@ class ValidateRequest {
     return next();
   }
 
+  checkMealId(req, res, next) {
+    const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
+    if (!meal) return res.status(404).json({ message: 'Meal not found' });
+
+    return next();
+  }
+
+  checkOrderId(req, res, next) {
+    const order = orders.find(f => f.id === parseInt(req.params.id, 10));
+    if (!order) return res.status(404).json({ message: 'order not found' });
+
+    return next();
+  }
+
   validateOrders(req, res, next) {
     const errors = {};
 
@@ -22,7 +36,7 @@ class ValidateRequest {
     if (!req.body.quantity) errors.quantity = 'Enter quantity';
 
     if (req.body.quantity) {
-      if (!isNumber(req.body.quantity.trim())) {
+      if (!isNumber(req.body.quantity)) {
         errors.quantity = 'quantity must be a number';
       }
     }
@@ -39,9 +53,6 @@ class ValidateRequest {
   validateModifyOrders(req, res, next) {
     const errors = {};
 
-    const order = orders.find(f => f.id === parseInt(req.params.id, 10));
-    if (!order) return res.status(404).json({ message: 'order not found' });
-
     if (!req.body.meal && !req.body.quantity) errors.message = 'Enter a field to update';
 
     if (!req.body.meal) errors.meal = 'Meal is required';
@@ -49,7 +60,7 @@ class ValidateRequest {
     if (!req.body.quantity) errors.quantity = 'quantity is required';
 
     if (req.body.quantity) {
-      if (!isNumber(req.body.quantity.trim())) {
+      if (!isNumber(req.body.quantity)) {
         errors.quantity = 'quantity must be a number';
       }
     }
@@ -70,11 +81,11 @@ class ValidateRequest {
 
     if (!req.body.desc) errors.desc = 'description field is required';
 
-    if (!req.body.price.trim()) errors.price = 'price field is required';
+    if (!req.body.price) errors.price = 'price field is required';
 
-    if (!isNumber(req.body.price.trim())) errors.price = 'price must be a number';
+    if (!isNumber(req.body.price)) errors.price = 'price must be a number';
 
-    if (!req.body.image || validator.isEmpty(req.body.image)) errors.image = 'image is required';
+    if (!req.body.image) errors.image = 'image is required';
 
     const isValid = isEmpty(errors);
 
@@ -88,13 +99,6 @@ class ValidateRequest {
   validateUpdateMeal(req, res, next) {
     const errors = {};
 
-    const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
-    if (!meal) return res.status(404).json({ message: 'Meal not found' });
-
-    if (!req.body.name && !req.body.desc && !req.body.price) {
-      errors.message = 'Enter a field to update';
-    }
-
     if (!req.body.name) errors.name = 'name is required';
 
     if (!req.body.desc) errors.desc = 'description field is required';
@@ -104,6 +108,36 @@ class ValidateRequest {
     if (!req.body.price) errors.price = 'price must be a number';
 
     if (!req.body.image) errors.image = 'image is required';
+
+    const isValid = isEmpty(errors);
+
+    if (!isValid) {
+      return res.status(400).json({ error: errors });
+    }
+
+    return next();
+  }
+
+  validateNewUser(req, res, next) {
+    const errors = {};
+
+    if (!req.body.firstname) errors.firstname = 'firstname is required';
+
+    if (!req.body.lastname) errors.lastname = 'lastname is required';
+
+    if (!req.body.username) errors.username = 'username is required';
+
+    if (!req.body.address) errors.address = 'address is required';
+
+    if (!req.body.email) errors.email = 'Email is required';
+
+    if (req.body.email && !validator.isEmail(req.body.email)) {
+      errors.email = 'Email is invalid';
+    }
+
+    if (!req.body.password) errors.password = 'Password is required';
+
+    if (req.body.password && req.body.password.length < 6) errors.password = 'Password must be greater than 6 characters';
 
     const isValid = isEmpty(errors);
 
