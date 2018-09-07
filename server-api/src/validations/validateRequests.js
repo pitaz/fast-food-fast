@@ -97,6 +97,42 @@ class ValidateRequest {
 
     return next();
   }
+
+  validateUpdateMeal(req, res, next) {
+    const errors = {};
+
+    if (!req.body.name && !req.body.extras && !req.body.price && !req.body.type) {
+      errors.message = 'Enter a field to update';
+    }
+
+    if (req.body.name && validator.isEmpty(req.body.name.trim())) {
+      errors.name = 'name is required';
+    }
+
+    if (req.body.desc && validator.isEmpty(req.body.desc.trim())) {
+      errors.desc = 'description field is required';
+    }
+
+    if (req.body.price && validator.isEmpty(req.body.price.trim())) {
+      errors.price = 'price field is required';
+    }
+
+    if (req.body.price && !isNumber(req.body.price.trim())) {
+      errors.price = 'price must be a number';
+    }
+
+    if (req.body.image && validator.isEmpty(req.body.image)) {
+      errors.image = 'image is required';
+    }
+
+    const isValid = isEmpty(errors);
+
+    if (!isValid) {
+      return res.status(400).json({ error: errors });
+    }
+
+    return next();
+  }
 }
 
 const validateReq = new ValidateRequest();
