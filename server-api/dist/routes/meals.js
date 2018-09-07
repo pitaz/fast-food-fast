@@ -23,4 +23,6 @@ router.use(_express2.default.json());
 
 router.post('/meals', _validateRequests2.default.validateMeal, _mealsController2.default.createMeal);
 
+router.get('/meals', _mealsController2.default.getMeals);
+
 exports.default = router;

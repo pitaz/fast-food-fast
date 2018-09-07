@@ -21,6 +21,10 @@ class MealsControllers {
     meals.push(meal);
     return res.status(201).send(meal);
   }
+
+  getMeals(req, res) {
+    return res.send(meals);
+  }
 }
 
 const mealsControllers = new MealsControllers();
