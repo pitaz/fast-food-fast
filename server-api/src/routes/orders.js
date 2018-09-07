@@ -16,12 +16,12 @@ router.post(
 router.get('/orders/:id', validateReq.validateId, ordersController.getOrder);
 
 router.put(
-  '/orders/:id', validateReq.validateId,
+  '/orders/:id', validateReq.validateId, validateReq.checkOrderId,
   validateReq.validateModifyOrders, ordersController.updateOrderStatus
 );
 
 router.delete(
-  '/orders/:id',
+  '/orders/:id', validateReq.checkOrderId,
   validateReq.validateId, ordersController.deleteOrder
 );
 
