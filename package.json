@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "fast-food-fast",
   "version": "1.0.0",
   "description": "Fast Food fast app api",
   "main": "./server-api/src/app.js",
