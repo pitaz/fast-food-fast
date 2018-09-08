@@ -5,6 +5,9 @@
   "main": "./server-api/src/app.js",
   "author": "Peter Odekwo",
   "license": "ISC",
+  "engines": {
+    "node": "8.11.3"
+  },
   "scripts": {
     "babel-node": "babel-node ./server-api/src/app.js",
     "test": "mocha --require babel-core/register ./server-api/src/tests --exit --timeout 5000 --colors",
