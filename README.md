@@ -40,7 +40,7 @@ Fast-Food-Fast is a food delivery service app that provide users with the abilit
   <tr>
     <td>PUT</td>
     <td>/api/v1/meals/:id</td>
-    <td>Update meal option</td>
+    <td>Update meal</td>
   </tr>
   <tr>
     <td>DELETE</td>
@@ -62,6 +62,11 @@ Fast-Food-Fast is a food delivery service app that provide users with the abilit
     <td>GET</td>
     <td>/api/v1/orders</td>
     <td>List of all orders</td>
+  </tr>
+  <tr>
+    <td>DELETE</td>
+    <td>/api/v1/orders/:id</td>
+    <td>Cancel order</td>
   </tr>
   <tr>
     <td>POST</td>
