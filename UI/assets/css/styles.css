@@ -479,10 +479,20 @@ input[type=text], input[type=password],input[type=email] {
         color: white;
   
     }
+    
   .nav .nav-items a {
       visibility: hidden;
       display: none;
       }
+
+    .nav .dropdown a {
+       visibility: hidden;
+       display: none;
+    }
+    .pg-t {
+        margin-top: 155px;
+        
+    }
   
   .text {
       top:100px;
