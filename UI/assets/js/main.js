@@ -1,13 +1,20 @@
-let contentarea = document.getElementsByClassName('contentarea')[0];
-let sidebar = document.getElementsByClassName('sidebar')[0];
-let toggle = document.getElementsByClassName('menu-icon')[0];
+const contentarea = document.getElementsByClassName('contentarea')[0];
+const sidebar = document.getElementsByClassName('sidebar')[0];
+const toggle = document.getElementsByClassName('menu-icon')[0];
+const adminToggle = document.getElementsByClassName('menu-icon-admin')[0];
 
+const toggleSideNav = () => {
+  sidebar.classList.toggle('active');
+  contentarea.classList.toggle('active');
+};
 
-window.onload=function(){
+const toggleAdminNav = () => {
+  sidebar.classList.toggle('active');
+  contentarea.classList.toggle('active');
+};
 
-    toggle.onclick=function(){
-        sidebar.classList.toggle('active');
-        contentarea.classList.toggle('active');
-    }
-
+if (toggle) {
+  toggle.addEventListener('click', toggleSideNav);
+} else {
+  adminToggle.addEventListener('click', toggleAdminNav);
 }
