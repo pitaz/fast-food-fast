@@ -10,18 +10,26 @@
 <body>
 
 <!-- top navigation -->
-<div class="nav card" id="myTopnav">
+<div class="nav card">
 <i class="fa fa-bars left menu-icon" ></i>
     <div class="brand">
         <a href="../index.html" class="brand">Fast Food</a>
     </div>
 
     <div class="nav-items right">
-        <a href="../meal-menu.html">Menu</a>
-        <a href="../signin.html">Sign In</a>
-        <a href="../sign-up.html">Sign Up</a>
+        <a href="../index.html" >Home</a>
     </div>
 
+    <div class="right dropdown">
+        <a href="#" class="dropdown-btn"><i class="fa fa-user" > </i> Admin  <i class="fa fa-caret-down" > </i></a>
+        <div class="dropdown-content">
+            <a href="./admin-fast-food-items.html">Food Items</a>
+            <a href="./admin-all-orders.html">Orders</a>
+            <a href="./admin-pending-orders.html">Pending Orders</a>
+            <a href="./admin-add-meal.html">Add Food Item</a>
+            <a href="../signin.html"> Logout</a>
+        </div>
+    </div>
 
 </div>
 <!--navigation ends-->
@@ -104,6 +112,5 @@
 </div>
 
 <script src="../assets/js/main.js" type="text/javascript"></script>
-<script src="../assets/js/carousel.js" type="text/javascript"></script>
 </body>
 </html>

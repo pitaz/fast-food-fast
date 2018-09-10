@@ -18,9 +18,17 @@
     </div>
 
     <div class="nav-items right">
-        <a href="./meal-menu.html">Menu</a>
-        <a href="./signin.html">Sign In</a>
-        <a href="./sign-up.html">Sign Up</a>
+        <a href="./admin/admin-all-orders.html" >Admin</a>
+
+    </div>
+
+    <div class="right dropdown">
+        <a href="#" class="dropdown-btn"><i class="fa fa-user" > </i> User <i class="fa fa-caret-down" > </i></a>
+        <div class="dropdown-content">
+            <a href="./meal-menu.html">Menu</a>
+            <a href="./user-ordered-meals.html" >Ordered meals</a>
+            <a href="./signin.html"> Logout</a>
+        </div>
     </div>
 
 
@@ -31,16 +39,16 @@
 <!--sidebar -->
 <div id="mySidebar" class="sidebar ">
   <a href="admin/admin-all-orders.html" >Admin</a>
-  <a href="meal-menu.html">Menu</a>
-  <a href="./signin.html" >Sign in</a>
-  <a href="./sign-up.html" >Sign up</a>
+  <a href="./meal-menu.html">Menu</a>
+  <a href="./user-ordered-meals.html" >Ordered meals</a>
+  <a href="./signin.html"> Logout</a>
 </div>
 <!--sidebar ends-->
 
 <!--Content area-->
 <div class="wrapper">
 
-    <p class="pg-t">Ordered meals</p>
+    <p class="pg-t">History of ordered meals</p>
     <div class="table-w">
         <table>
             <tr>
@@ -48,31 +56,25 @@
                 <th>Order name</th>
                 <th>Order number</th>
                 <th>Amount</th>
-
             </tr>
             <tr>
                 <td>1</td>
                 <td>Jollof rice + Fried chicken</td>
                 <td>14587220</td>
                 <td>NGN2,000</td>
-
             </tr>
             <tr>
                 <td>2</td>
                 <td>Fried Rice & Assorted meat</td>
                 <td>12546822</td>
                 <td>NGN1,500</td>
-
             </tr>
             <tr>
                 <td>3</td>
                 <td>Egusi & Semovita</td>
                 <td>1542245</td>
                 <td>NGN1,000</td>
-
             </tr>
-
-
         </table>
 
     </div>
@@ -92,6 +94,5 @@
 </div>
 
 <script src="../assets/js/main.js" type="text/javascript"></script>
-<script src="../assets/js/carousel.js" type="text/javascript"></script>
 </body>
 </html>
