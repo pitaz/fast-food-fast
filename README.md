@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/pitaz/fast-food-fast.svg?branch=develop)](https://travis-ci.org/pitaz/fast-food-fast)
 [![Maintainability](https://api.codeclimate.com/v1/badges/c69084a3494d3e2a376b/maintainability)](https://codeclimate.com/github/pitaz/fast-food-fast/maintainability)
-[![Coverage Status](https://coveralls.io/repos/github/pitaz/fast-food-fast/badge.svg)](https://coveralls.io/github/pitaz/fast-food-fast)
+[![Coverage Status](https://coveralls.io/repos/github/pitaz/fast-food-fast/badge.svg?branch=develop)](https://coveralls.io/github/pitaz/fast-food-fast)
 
 ## Fast-food-fast
 Fast-Food-Fast is a food delivery service app that provide users with the ability to place orders for food online.
