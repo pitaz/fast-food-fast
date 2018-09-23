@@ -3,92 +3,85 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fast food fast</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../assets/css/styles.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/main.css">
+
 </head>
 <body>
-
-<!-- top navigation -->
-<div class="nav card">
-<i class="fa fa-bars left menu-icon" ></i>
-    <div class="brand">
-        <a href="../index.html" class="brand">Fast Food</a>
-    </div>
-    <div class="nav-items right">
-        <a href="../index.html" >Home</a>
-    </div>
-
-    <div class="right dropdown">
-        <a href="#" class="dropdown-btn"><i class="fa fa-user" > </i> Admin  <i class="fa fa-caret-down" > </i></a>
-        <div class="dropdown-content">
-            <a href="./admin-fast-food-items.html">Food Items</a>
-            <a href="./admin-all-orders.html">Orders</a>
-            <a href="./admin-pending-orders.html">Pending Orders</a>
-            <a href="./admin-add-meal.html">Add Food Item</a>
-            <a href="../signin.html"> Logout</a>
+<div class="container">
+    <div class="nav">
+        <div class="nav-brand">
+            <i class="fa fa-bars menu-icon" ></i>
+            <a href="../index.html">Fast food fast</a>
         </div>
+        <div class="right">
+            <div class="nav-items dropdown">
+                <a href="#" class="dropdown-btn"><i class="fa fa-user" > </i> Admin  <i class="fa fa-caret-down" > </i></a>
+                <div class="dropdown-content">
+                    <a href="../food-menu.html">Menu</a>
+                    <a href="./admin-all-orders.html">Orders</a>
+                    <a href="./admin-fast-food-items.html">Food Items</a>
+                    <a href="./admin-add-food.html">Add Food Item</a>
+                    <a href="../signin.html"> Logout</a>
+                </div>
+            </div>
+        </div> 
     </div>
-
-
-</div>
-<!--navigation ends-->
-
-
 <!--sidebar -->
 <div id="mySidebar" class="sidebar ">
-  <a href="../meal-menu.html">Menu</a>
-  <a href="./admin-all-orders.html">Orders</a>
-  <a href="./admin-pending-orders.html">Pending Orders</a>
-  <a href="./admin-fast-food-items.html">Food Items</a>
-  <a href="./admin-add-meal.html">Add Food Item</a>
-  <a href="../signin.html"> Logout</a>
+    <a href="../food-menu.html">Menu</a>
+    <a href="./admin-all-orders.html">Orders</a>
+    <a href="./admin-fast-food-items.html">Food Items</a>
+    <a href="./admin-add-food.html">Add Food Item</a>
+    <a href="../signin.html"> Logout</a>
 </div>
 <!--sidebar ends-->
-
-<!--Content area-->
-<div class="contentarea">
-
-    <p class="pg-t">Orders</p>
-    <div class="table-w">
+<!--Main content-->
+ <p class="menu-text">Orders</p>
+<select name="filter" id="filter">
+    <option value="0">All</option>
+    <option value="1">Pending</option>
+    <option value="2">Complete</option>
+    <option value="3">Accepted</option>
+    <option value="4">Rejected</option>
+</select>
+ <div class="table-w">
         <table>
-            <tr>
-                <th>S/N</th>
-                <th>Order name</th>
-                <th>Order number</th>
-                <th>Purchased by</th>
-                <th>Amount</th>
-                <th>Actions</th>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Jollof rice + Fried chicken</td>
-                <td>14587220</td>
-                <td>Peter</td>
-                <td>NGN2,000</td>
-                <td><a class="meal-menu-btn success" href="admin-all-orders.html">Complete</a> </td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Fried Rice & Assorted meat</td>
-                <td>12546822</td>
-                <td>Lois</td>
-                <td>NGN1,500</td>
-                <td>Completed</td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Egusi & Semovita</td>
-                <td>1542245</td>
-                <td>Joe</td>
-                <td>NGN1,000</td>
-          <td><a class="meal-menu-btn success" href="admin-all-orders.html">Complete</a> </td>
-            </tr>
-
-
-        </table>
+                <tr>
+                    <th>S/N</th>
+                    <th>Order name</th>
+                    <th>Order number</th>
+                    <th>Purchased by</th>
+                    <th>Amount</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>Jollof rice + Fried chicken</td>
+                    <td>14587220</td>
+                    <td>Peter</td>
+                    <td>NGN2,000</td>
+                    <td>Pending</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Fried Rice & Assorted meat</td>
+                    <td>12546822</td>
+                    <td>Lois</td>
+                    <td>NGN1,500</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Egusi & Semovita</td>
+                    <td>1542245</td>
+                    <td>Joe</td>
+                    <td>NGN1,000</td>
+              <td>Pending</td>
+                </tr>
+            </table>
 
     </div>
-
     <!--pagination-->
     <div class="pagination">
         <a href="#">&laquo;</a>
@@ -100,9 +93,7 @@
         <a href="#">6</a>
         <a href="#">&raquo;</a>
     </div>
-
-</div>
-
-<script src="../assets/js/main.js" type="text/javascript"></script>
+    <footer><p>Designed by Peter Odekwo</p></footer>
+    <script src="../js/main.js"></script>
 </body>
 </html>
