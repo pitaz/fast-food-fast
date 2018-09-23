@@ -119,6 +119,10 @@ button:hover, a:hover {
     opacity: 0.7;
 }
 @media screen and (max-width: 600px) {
+    .nav .nav-items a{
+        visibility: hidden;
+        display: none;
+    }
     .nav .brand a {
 
         padding: 2px 5px;
