@@ -1,53 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>User login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="assets/css/login-reg.css">
-
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fast food</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/login.css" />
 </head>
-<body>
-
-<!-- top navigation -->
-<div class="nav " id="myTopnav">
-  <!-- <i class="fa fa-bars left menu-icon" ></i> -->
-    <div class="brand">
-        <a href="./index.html"  >Fast Food</a>
+<body> 
+<div class="container">
+    <div class="nav">
+        <div class="nav-brand">
+            <a href="./index.html">Fast food fast</a>
+        </div>
+        <div class="right">
+            <div class="nav-items">
+                <a href="./signin.html">Signin</a>
+                <a href="./signup.html">Signup</a>
+            </div>
+        </div> 
     </div>
-
-    <div class="nav-items right">
-        <a href="./admin/admin-all-orders.html">Admin</a>
-        <a href="./signin.html">Sign In</a>
-        <a href="./sign-up.html">Sign Up</a>
-    </div>
-</div>
-<!--navigation ends-->
-
-
-<!--Content wrapper-->
+    <!--Content wrapper-->
     <div class="wrapper card">
-        <form>
-            <div class="card-header">
-                <p>User Login</p>
-            </div>
-
-            <div class="card-content">
-                <label><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="uname" required>
-
-                <label><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
-
-                <button type="submit">Login</button>
-
-                <h5>Not yet Registered? <a href="sign-up.html">Register</a> </h5>
-            </div>
-
-
-        </form>
-    </div>
-
-
+            <form>
+                <div class="card-header">
+                    <p>User Login<
+                </div>
+                <div class="card-content">
+                    <label><b>Email</b></label>
+                    <input type="email" placeholder="Enter Email" name="email" required>
+    
+                    <label><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+    
+                    <button type="submit">Login</button>
+    
+                    <h5>Not yet Registered? <a href="signup.html">Register</a> </h5>
+                </div>
+    
+    
+            </form>
+        </div>
+</div>
+<script src="js/main.js"></script>
 </body>
 </html>

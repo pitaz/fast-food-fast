@@ -10,75 +10,53 @@ body, html {
     font-family: Calligraffiti;
     src: url(../fonts/Calligraffiti.ttf);
 }
-
-* {
+*{
     box-sizing: border-box;
+    margin: 0;
 }
 
-.nav {
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     background-color: #333;
-    overflow: hidden;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000;
-
+    z-index: 100;
 }
-
-.nav a {
-    float: left;
-    color: red;
+.nav-items{
+    flex-grow: 0;
+}
+.nav > .nav-brand{
     text-align: center;
-    text-decoration: none;
+    padding: 5px 15px;
     transition: 0.5s;
-    font-size: 16px;
-
+    font-size: 35px;
+    font-family: "Caviar Dreams", serif;
 }
-
-.nav .brand a {
-    float: left;
+.nav > .nav-brand a{
     color: red;
-    text-align: center;
-    padding: 5px 10px;
     text-decoration: none;
     transition: 0.5s;
     font-size: 35px;
-    font-family: Calligraffiti, serif;
-
+    font-family: "Caviar Dreams", serif;
 }
 
-.nav .nav-items a {
-    float: left;
+.nav > .right{
+    display: flex;
+    flex-direction: row;
+    padding: 15px 10px;
+}
+
+.nav > .right a{
     color: #fff;
     text-align: center;
-    padding: 15px 10px;
     text-decoration: none;
+    margin-right: 15px;
     transition: 0.5s;
     font-size: 16px;
     font-family: "Caviar Dreams", serif;
-
-}
-
-.nav .nav-items .right a {
-    float: right;
-}
-
-.nav a:hover {
-    color: #fff;
-    transition: 0.9s;
-}
-
-.nav a.active {
-    background-color: #4CAF50;
-    color: white;
-}
-
-.right {
-    float: right;
-}
-
-.left {
-    float: left;
 }
 
 .wrapper {
@@ -97,11 +75,6 @@ input[type=text], input[type=password],input[type=email] {
     box-sizing: border-box;
     font-family: "Caviar Dreams", sans-serif;
 }
-
-button:hover {
-    opacity: 0.8;
-}
-
 
 .card {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -145,8 +118,6 @@ button {
 button:hover, a:hover {
     opacity: 0.7;
 }
-
-
 @media screen and (max-width: 600px) {
     .nav .brand a {
 
@@ -165,4 +136,3 @@ button:hover, a:hover {
     }
 
 }
-
