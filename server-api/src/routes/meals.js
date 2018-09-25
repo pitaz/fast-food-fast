@@ -7,13 +7,13 @@ const router = express.Router();
 router.use(express.json());
 
 router.route('/')
-.post(validateReq.validateMeal, mealsController.createMeal)
-.get(mealsController.getMeals);
+  .post(validateReq.validateMeal, mealsController.createMeal)
+  .get(mealsController.getMeals);
 
 router.route('/:id')
-.put(validateReq.validateId, validateReq.checkMealId,
-  validateReq.validateUpdateMeal, mealsController.updateMeal)
-.delete( validateReq.checkMealId,
-  validateReq.validateId, mealsController.deleteMeal);
+  .get(validateReq.validateId, mealsController.getMealById)
+  .put(validateReq.validateId, validateReq.checkMealId,
+    validateReq.validateUpdateMeal, mealsController.updateMeal)
+  .delete(validateReq.checkMealId, validateReq.validateId, mealsController.deleteMeal);
 
 export default router;

@@ -6,7 +6,7 @@ import obj from '../helpers/isEmpty';
 
 class ValidateRequest {
   validateId(req, res, next) {
-    if (isNaN(parseInt(req.params.id, 10))) {
+    if (isNaN(req.params.id)) {
       return res.status(400).send('Id is invalid');
     }
 
@@ -42,7 +42,7 @@ class ValidateRequest {
     if (!req.body.quantity) errors.quantity = 'Enter quantity';
 
     if (req.body.quantity) {
-      if (isNaN(parseInt(req.body.quantity, 10))) {
+      if (isNaN(req.body.quantity)) {
         errors.quantity = 'quantity must be a number';
       }
     }
@@ -66,7 +66,7 @@ class ValidateRequest {
     if (!req.body.quantity) errors.quantity = 'quantity is required';
 
     if (req.body.quantity) {
-      if (isNaN(parseInt(req.body.quantity, 10))) {
+      if (isNaN(req.body.quantity)) {
         errors.quantity = 'quantity must be a number';
       }
     }
@@ -89,7 +89,7 @@ class ValidateRequest {
 
     if (!req.body.price) errors.price = 'price field is required';
 
-    if (isNaN(parseInt(req.body.price, 10))) errors.price = 'price must be a number';
+    if (isNaN(req.body.price)) errors.price = 'price must be a number';
 
     if (!req.body.image) errors.image = 'image is required';
 
