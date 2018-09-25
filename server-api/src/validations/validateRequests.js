@@ -1,4 +1,4 @@
-/* eslint-disable class-methods-use-this eslint-disable-line no-use-before-define*/
+/* eslint-disable class-methods-use-this */
 import orders from '../sampleData/ordersStorage';
 import meals from '../sampleData/mealsStorage';
 import users from '../sampleData/usersStorage';
@@ -156,6 +156,7 @@ class ValidateRequest {
     if (!req.body.email) errors.email = 'Email is required';
 
     if (!req.body.password) errors.password = 'Password is required';
+    if (req.body.password && req.body.password.length < 6) errors.password = 'Password must be greater than 6 characters';
 
     const isValid = obj.isEmpty(errors);
 

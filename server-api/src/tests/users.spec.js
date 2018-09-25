@@ -29,6 +29,7 @@ describe('Tests for User Authentication', () => {
       .set('Content-Type', 'application/json')
       .send(mock.invalidUser)
       .end((err, res) => {
+        expect(res.body.error.email).to.equal('Email is required');
         expect(res.body.error.password).to.equal('Password must be greater than 6 characters');
         expect(res).to.have.status(400);
         done();
@@ -91,6 +92,18 @@ describe('Tests for User Authentication', () => {
       .end((err, res) => {
         expect(res.body.error).to.equal('user not found');
         expect(res).to.have.status(404);
+        done();
+      });
+  });
+
+  it('should return error if invalidpassword length is entered', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .set('Content-Type', 'application/json')
+      .send(mock.invalidUserLogin)
+      .end((err, res) => {
+        expect(res.body.error.password).to.equal('Password must be greater than 6 characters');
+        expect(res).to.have.status(400);
         done();
       });
   });
