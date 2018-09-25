@@ -1,14 +1,12 @@
-/* eslint-disable class-methods-use-this */
-import validator from 'validator';
-import isNumber from 'is-number';
-import isEmpty from 'lodash/isEmpty';
+/* eslint-disable class-methods-use-this eslint-disable-line no-use-before-define*/
 import orders from '../sampleData/ordersStorage';
 import meals from '../sampleData/mealsStorage';
 import users from '../sampleData/usersStorage';
+import obj from '../helpers/isEmpty';
 
 class ValidateRequest {
   validateId(req, res, next) {
-    if (!isNumber(req.params.id)) {
+    if (isNaN(parseInt(req.params.id, 10))) {
       return res.status(400).send('Id is invalid');
     }
 
@@ -44,12 +42,12 @@ class ValidateRequest {
     if (!req.body.quantity) errors.quantity = 'Enter quantity';
 
     if (req.body.quantity) {
-      if (!isNumber(req.body.quantity)) {
+      if (isNaN(parseInt(req.body.quantity, 10))) {
         errors.quantity = 'quantity must be a number';
       }
     }
 
-    const isValid = isEmpty(errors);
+    const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
       return res.status(400).json({ error: errors });
@@ -68,12 +66,12 @@ class ValidateRequest {
     if (!req.body.quantity) errors.quantity = 'quantity is required';
 
     if (req.body.quantity) {
-      if (!isNumber(req.body.quantity)) {
+      if (isNaN(parseInt(req.body.quantity, 10))) {
         errors.quantity = 'quantity must be a number';
       }
     }
 
-    const isValid = isEmpty(errors);
+    const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
       return res.status(400).json({ error: errors });
@@ -91,11 +89,11 @@ class ValidateRequest {
 
     if (!req.body.price) errors.price = 'price field is required';
 
-    if (!isNumber(req.body.price)) errors.price = 'price must be a number';
+    if (isNaN(parseInt(req.body.price, 10))) errors.price = 'price must be a number';
 
     if (!req.body.image) errors.image = 'image is required';
 
-    const isValid = isEmpty(errors);
+    const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
       return res.status(400).json({ error: errors });
@@ -117,7 +115,7 @@ class ValidateRequest {
 
     if (!req.body.image) errors.image = 'image is required';
 
-    const isValid = isEmpty(errors);
+    const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
       return res.status(400).json({ error: errors });
@@ -139,15 +137,11 @@ class ValidateRequest {
 
     if (!req.body.email) errors.email = 'Email is required';
 
-    if (req.body.email && !validator.isEmail(req.body.email)) {
-      errors.email = 'Email is invalid';
-    }
-
     if (!req.body.password) errors.password = 'Password is required';
 
     if (req.body.password && req.body.password.length < 6) errors.password = 'Password must be greater than 6 characters';
 
-    const isValid = isEmpty(errors);
+    const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
       return res.status(400).json({ error: errors });
@@ -161,11 +155,9 @@ class ValidateRequest {
 
     if (!req.body.email) errors.email = 'Email is required';
 
-    if (req.body.email && !validator.isEmail(req.body.email)) errors.email = 'Email is invalid';
+    if (!req.body.password) errors.password = 'Password is required';
 
-    if (!req.body.password || validator.isEmpty(req.body.password)) errors.password = 'Password is required';
-
-    const isValid = isEmpty(errors);
+    const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
       return res.status(400).json({ error: errors });

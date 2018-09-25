@@ -1,6 +1,6 @@
 {
   "root": true,
-  "extends": "airbnb",
+  "extends": "airbnb eslint:recommended",
   "plugins": ["import"],
   "parserOptions": { 
     "ecmaVersion": 6,

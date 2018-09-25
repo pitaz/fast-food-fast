@@ -23,7 +23,7 @@ class MealsControllers {
   }
 
   getMeals(req, res) {
-    return res.send(meals);
+    return res.status(200).send(meals);
   }
 
   updateMeal(req, res) {

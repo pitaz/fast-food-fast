@@ -7,9 +7,9 @@ import notFound from './routeNotFound';
 
 const router = express.Router();
 
-router.use('/api/v1', orders);
-router.use('/api/v1', meals);
-router.use('/api/v1', users);
+router.use('/api/v1/orders', orders);
+router.use('/api/v1/meals', meals);
+router.use('/api/v1/', users);
 router.use('/', notFound);
 
 

@@ -18,7 +18,7 @@ class OrdersControllers {
   }
 
   getOrders(req, res) {
-    return res.send(orders);
+    return res.status(200).send(orders);
   }
 
   getOrder(req, res) {

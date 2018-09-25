@@ -6,21 +6,14 @@ import validateReq from '../validations/validateRequests';
 const router = express.Router();
 router.use(express.json());
 
-router.post(
-  '/meals',
-  validateReq.validateMeal, mealsController.createMeal
-);
+router.route('/')
+.post(validateReq.validateMeal, mealsController.createMeal)
+.get(mealsController.getMeals);
 
-router.get('/meals', mealsController.getMeals);
-
-router.put(
-  '/meals/:id', validateReq.validateId, validateReq.checkMealId,
-  validateReq.validateUpdateMeal, mealsController.updateMeal
-);
-
-router.delete(
-  '/meals/:id', validateReq.checkMealId,
-  validateReq.validateId, mealsController.deleteMeal
-);
+router.route('/:id')
+.put(validateReq.validateId, validateReq.checkMealId,
+  validateReq.validateUpdateMeal, mealsController.updateMeal)
+.delete( validateReq.checkMealId,
+  validateReq.validateId, mealsController.deleteMeal);
 
 export default router;

@@ -5,24 +5,15 @@ import validateReq from '../validations/validateRequests';
 
 const router = express.Router();
 router.use(express.json());
+router.route('/')
+.get(ordersController.getOrders)
+.post(validateReq.validateOrders, ordersController.placeOrder);
 
-router.get('/orders', ordersController.getOrders);
-
-router.post(
-  '/orders',
-  validateReq.validateOrders, ordersController.placeOrder
-);
-
-router.get('/orders/:id', validateReq.validateId, ordersController.getOrder);
-
-router.put(
-  '/orders/:id', validateReq.validateId, validateReq.checkOrderId,
-  validateReq.validateModifyOrders, ordersController.updateOrderStatus
-);
-
-router.delete(
-  '/orders/:id', validateReq.checkOrderId,
-  validateReq.validateId, ordersController.deleteOrder
-);
+router.route('/:id')
+.get(validateReq.validateId, ordersController.getOrder)
+.put(validateReq.validateId, validateReq.checkOrderId,
+  validateReq.validateModifyOrders, ordersController.updateOrderStatus)
+.delete(validateReq.checkOrderId,
+  validateReq.validateId, ordersController.deleteOrder);
 
 export default router;
