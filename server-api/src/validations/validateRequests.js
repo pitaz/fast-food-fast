@@ -3,6 +3,7 @@ import orders from '../sampleData/ordersStorage';
 import meals from '../sampleData/mealsStorage';
 import users from '../sampleData/usersStorage';
 import obj from '../helpers/isEmpty';
+import checkEmail from '../helpers/isEmail';
 
 class ValidateRequest {
   validateId(req, res, next) {
@@ -137,6 +138,10 @@ class ValidateRequest {
 
     if (!req.body.email) errors.email = 'Email is required';
 
+    if (req.body.email && !checkEmail.validateEmail(req.body.email)) {
+      errors.email = 'Email is invalid';
+    }
+
     if (!req.body.password) errors.password = 'Password is required';
 
     if (req.body.password && req.body.password.length < 6) errors.password = 'Password must be greater than 6 characters';
@@ -154,6 +159,8 @@ class ValidateRequest {
     const errors = {};
 
     if (!req.body.email) errors.email = 'Email is required';
+
+    if (req.body.email && !checkEmail.validateEmail(req.body.email)) errors.email = 'Email is invalid';
 
     if (!req.body.password) errors.password = 'Password is required';
     if (req.body.password && req.body.password.length < 6) errors.password = 'Password must be greater than 6 characters';

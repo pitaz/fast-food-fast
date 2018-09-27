@@ -27,7 +27,7 @@ const mock = {
     firstname: 'John',
     lastname: 'Doe',
     username: 'Jon',
-    email: '',
+    email: 'pyro.mail.com',
     address: 's2 east/west road choba, PH',
     password: 'pass1'
   },
