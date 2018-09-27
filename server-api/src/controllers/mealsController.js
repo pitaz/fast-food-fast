@@ -23,7 +23,13 @@ class MealsControllers {
   }
 
   getMeals(req, res) {
-    return res.send(meals);
+    return res.status(200).send(meals);
+  }
+
+  getMealById(req, res) {
+    const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
+    if (!meal) return res.status(404).json({ message: 'Meal not found' });
+    return res.status(200).send(meal);
   }
 
   updateMeal(req, res) {
