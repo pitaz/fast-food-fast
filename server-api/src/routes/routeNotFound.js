@@ -1,9 +1,11 @@
-import express from 'express';
+/* eslint-disable class-methods-use-this */
+class RouteNotFound {
+  notFound(router) {
+    router.use('/*', (req, res) => res.status(404).json({
+      message: 'page not found'
+    }));
+  }
+}
 
-const router = express.Router();
-
-router.use('/*', (req, res) => res.status(404).json({
-  message: 'page not found'
-}));
-
-export default router;
+const notFound = new RouteNotFound();
+export default notFound;

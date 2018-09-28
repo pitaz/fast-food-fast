@@ -1,16 +1,19 @@
 import express from 'express';
-import orders from './orders';
-import meals from './meals';
-import users from './users';
-import notFound from './routeNotFound';
+import od from './orders';
+import ml from './meals';
+import usr from './users';
+import nf from './routeNotFound';
 
 
 const router = express.Router();
+router.use(express.json());
 
-router.use('/api/v1/orders', orders);
-router.use('/api/v1/meals', meals);
-router.use('/api/v1/', users);
-router.use('/', notFound);
+ml.meals(router);
+od.Orders(router);
+usr.users(router);
+nf.notFound(router);
+
+// router.use('/api/v1/', users);
 
 
 export default router;
