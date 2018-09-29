@@ -8,31 +8,31 @@ import checkEmail from '../helpers/isEmail';
 class ValidateRequest {
   validateId(req, res, next) {
     if (isNaN(req.params.id)) {
-      return res.status(400).send('Id is invalid');
+       res.status(400).send('Id is invalid');
     }
 
-    return next();
+     next();
   }
 
   checkMealId(req, res, next) {
     const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
-    if (!meal) return res.status(404).json({ message: 'Meal not found' });
+    if (!meal)  res.status(404).json({ message: 'Meal not found' });
 
-    return next();
+     next();
   }
 
   checkLogin(req, res, next) {
     const user = users.find(f => f.email === req.body.email);
-    if (!user) return res.status(404).json({ error: 'user not found' });
+    if (!user)  res.status(404).json({ error: 'user not found' });
 
-    return next();
+     next();
   }
 
   checkOrderId(req, res, next) {
     const order = orders.find(f => f.id === parseInt(req.params.id, 10));
-    if (!order) return res.status(404).json({ message: 'order not found' });
+    if (!order) res.status(404).json({ message: 'order not found' });
 
-    return next();
+    next();
   }
 
   validateOrders(req, res, next) {
@@ -51,10 +51,10 @@ class ValidateRequest {
     const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
-      return res.status(400).json({ error: errors });
+      res.status(400).json({ error: errors });
     }
 
-    return next();
+     next();
   }
 
   validateModifyOrders(req, res, next) {
@@ -75,10 +75,10 @@ class ValidateRequest {
     const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
-      return res.status(400).json({ error: errors });
+      res.status(400).json({ error: errors });
     }
 
-    return next();
+    next();
   }
 
   validateMeal(req, res, next) {
@@ -97,10 +97,10 @@ class ValidateRequest {
     const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
-      return res.status(400).json({ error: errors });
+      res.status(400).json({ error: errors });
     }
 
-    return next();
+    next();
   }
 
   validateUpdateMeal(req, res, next) {
@@ -119,10 +119,10 @@ class ValidateRequest {
     const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
-      return res.status(400).json({ error: errors });
+      res.status(400).json({ error: errors });
     }
 
-    return next();
+    next();
   }
 
   validateNewUser(req, res, next) {
@@ -152,7 +152,7 @@ class ValidateRequest {
       return res.status(400).json({ error: errors });
     }
 
-    return next();
+    next();
   }
 
   validateLoginUser(req, res, next) {
@@ -171,7 +171,7 @@ class ValidateRequest {
       return res.status(400).json({ error: errors });
     }
 
-    return next();
+    next();
   }
 }
 

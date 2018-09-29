@@ -1,9 +1,6 @@
 /* eslint-disable class-methods-use-this */
-import express from 'express';
 import orders from '../sampleData/ordersStorage';
 
-const router = express.Router();
-router.use(express.json());
 
 class OrdersControllers {
   placeOrder(req, res) {
@@ -23,13 +20,13 @@ class OrdersControllers {
 
   getOrder(req, res) {
     const order = orders.find(f => f.id === parseInt(req.params.id, 10));
-    if (!order) return res.status(404).send('order not found');
+    if (!order) res.status(404).send('order not found');
     return res.send(order);
   }
 
   updateOrderStatus(req, res) {
     const order = orders.find(f => f.id === parseInt(req.params.id, 10));
-    if (!order) return res.status(404).json({ message: 'order not found' });
+    if (!order) res.status(404).json({ message: 'order not found' });
 
     order.status = req.body.status;
     return res.status(200).json(order);
