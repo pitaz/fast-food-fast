@@ -15,7 +15,8 @@
     "test": "cross-env NODE_ENV=test mocha --require babel-core/register ./server-api/src/tests --exit --timeout 5000 --colors",
     "build": "babel server-api/ --out-dir build --copy-files --source-maps",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "start-dev": "nodemon --exec npm run babel-node"
+    "start-dev": "nodemon --exec npm run babel-node",
+    "migrate-db": "babel-node ./server/db/models/users.js && babel-node ./server/db/models/orders.js && babel-node ./server/db/models/menu.js"
   },
   "devDependencies": {
     "eslint": "^5.5.0",
@@ -30,14 +31,14 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
+    "bcryptjs": "^2.4.3",
     "chai": "^4.1.2",
     "chai-http": "^4.0.0",
     "coveralls": "^3.0.2",
     "cross-env": "^5.2.0",
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
-    "is-number": "^7.0.0",
-    "lodash": "^4.17.10",
     "nyc": "^11.8.0",
-    "validator": "^10.7.1"
+    "pg": "^7.4.3"
   }
 }
