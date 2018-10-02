@@ -16,25 +16,41 @@ class UsersControllers {
     const registerUser = 'INSERT INTO users(name, email, role, password) VALUES($1, $2, $3, $4) RETURNING *';
     const values = [name, email, role, password];
 
-    db.query(checkEmailQuery, emailValue)
-      .then((response) => {
-        if (response.rows[0]) {
-          return res.status(409).json({
-            message: 'Email already exist!'
-          });
-        }
-        db.query(registerUser, values)
-          .then(user => res.status(201).json({
-            message: 'User created successfully!',
-            data: {
-              name: user.rows[0].name,
-              email: user.rows[0].email,
-              role: user.rows[0].role
+    db.connect()
+      .then((client) => {
+        client.query(checkEmailQuery, emailValue)
+          .then((response) => {
+            if (response.rows[0]) {
+              client.release();
+              return res.status(409).json({
+                message: 'Email already exist!'
+              });
             }
-          }))
-          .catch(err => res.status(500).json({
-            message: err
-          }));
+            client.query(registerUser, values)
+              .then((user) => {
+                client.release();
+                return res.status(201).json({
+                  message: 'User created successfully!',
+                  data: {
+                    name: user.rows[0].name,
+                    email: user.rows[0].email,
+                    role: user.rows[0].role
+                  }
+                });
+              })
+              .catch(() => {
+                client.release();
+                return res.status(500).json({
+                  message: 'server error'
+                });
+              });
+          })
+          .catch(() => {
+            client.release();
+            return res.status(500).json({
+              message: 'Internal server error'
+            });
+          });
       })
       .catch(err => res.status(500).json({
         message: err

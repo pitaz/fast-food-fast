@@ -7,7 +7,7 @@ import app from '../app';
 chai.use(chaiHttp);
 
 
-describe('Tests for User Authentication', () => {
+describe('Tests for User Signin/signup', () => {
   it('should return validation errors if no value is provided', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
@@ -51,8 +51,11 @@ describe('Tests for User Authentication', () => {
         email: 'user8@mail.com',
         password: 'password'
       })
-      .end((err, res) => console.log(err, res));
-    done();
+      .end((err, res) => {
+        expect(res.body.message).to.equal('User created successfully!');
+        expect(res).to.have.status(201);
+        done();
+      });
   });
 
   it('should return error if email already exist', (done) => {
@@ -65,8 +68,10 @@ describe('Tests for User Authentication', () => {
         email: 'peter@mail.com',
         password: 'password'
       })
-      .end((err, res) => console.log(err, res));
-      done();
+      .end((err, res) => {
+        expect(res.body.message).to.equal('Email already exist!');
+        expect(res).to.have.status(409);
+        done();
       });
   });
 
