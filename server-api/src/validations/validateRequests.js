@@ -8,7 +8,7 @@ import checkEmail from '../helpers/isEmail';
 class ValidateRequest {
   validateId(req, res, next) {
     if (isNaN(req.params.id)) {
-      res.status(400).send('Id is invalid');
+      return res.status(400).send('Id is invalid');
     }
 
     next();
@@ -16,21 +16,21 @@ class ValidateRequest {
 
   checkMealId(req, res, next) {
     const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
-    if (!meal) res.status(404).json({ message: 'Meal not found' });
+    if (!meal) return res.status(404).json({ message: 'Meal not found' });
 
     next();
   }
 
   checkLogin(req, res, next) {
     const user = users.find(f => f.email === req.body.email);
-    if (!user) res.status(404).json({ error: 'user not found' });
+    if (!user) return res.status(404).json({ error: 'user not found' });
 
     next();
   }
 
   checkOrderId(req, res, next) {
     const order = orders.find(f => f.id === parseInt(req.params.id, 10));
-    if (!order) res.status(404).json({ message: 'order not found' });
+    if (!order) return res.status(404).json({ message: 'order not found' });
 
     next();
   }
@@ -51,7 +51,7 @@ class ValidateRequest {
     const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
-      res.status(400).json({ error: errors });
+      return res.status(400).json({ error: errors });
     }
 
     next();
@@ -75,7 +75,7 @@ class ValidateRequest {
     const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
-      res.status(400).json({ error: errors });
+      return res.status(400).json({ error: errors });
     }
 
     next();
@@ -97,7 +97,7 @@ class ValidateRequest {
     const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
-      res.status(400).json({ error: errors });
+      return res.status(400).json({ error: errors });
     }
 
     next();
@@ -119,7 +119,7 @@ class ValidateRequest {
     const isValid = obj.isEmpty(errors);
 
     if (!isValid) {
-      res.status(400).json({ error: errors });
+      return res.status(400).json({ error: errors });
     }
 
     next();
