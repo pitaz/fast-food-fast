@@ -1,25 +1,14 @@
-/* eslint-disable import/no-mutable-exports */
 import dotenv from 'dotenv';
 import { Pool } from 'pg';
-import config from '../config/config';
 
 dotenv.config();
 
-const env = process.env.NODE_ENV || 'development';
-const envVariables = config[env];
+const dbclient = new Pool({
+  user: process.env.DB_USER,
+  host: process.env.DB_HOST,
+  database: process.env.DB_DATABASE,
+  password: process.env.DB_PASSWORD,
+  port: process.env.DB_PORT
+});
 
-const connectionString = process.env.PG_DB_CONNECTION_URL;
-
-let db;
-if (process.env.NODE_ENV === 'production') {
-  db = new Pool({ connectionString });
-} else {
-  db = new Pool({
-    database: envVariables.database,
-    user: envVariables.username,
-    password: envVariables.password,
-    envVariables,
-  });
-}
-
-export default db;
+export default dbclient;

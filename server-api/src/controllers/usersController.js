@@ -37,7 +37,7 @@ class UsersControllers {
           }));
       })
       .catch(() => res.status(500).json({
-        message: 'server error'
+        message: 'server error out'
       }));
   }
 

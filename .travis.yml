@@ -12,9 +12,6 @@ env:
   global:
   - NODE_ENV=test
 
-before_script:
-  - psql -c 'create database fast_fast_test_db' -U postgres
-
 script:
   - npm install
   - npm test
