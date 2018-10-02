@@ -32,12 +32,10 @@ class UsersControllers {
               role: user.rows[0].role
             }
           }))
-          .catch(err => res.status(500).json({
-            message: err
-          }));
+          .catch(err => console.dir(err));
       })
       .catch(err => res.status(500).json({
-        message: err
+        message: err.name
       }));
   }
 
