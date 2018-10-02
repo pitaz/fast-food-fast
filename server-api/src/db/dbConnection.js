@@ -10,7 +10,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const dbclient = new Pool({
-  connectionString: process.env.PG_DB_CONNECTION_URL, ssl: sslValue,
+  connectionString: process.env.PG_DB_CONNECTION_URL
 });
 
 export default dbclient;
