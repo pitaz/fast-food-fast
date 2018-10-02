@@ -8,10 +8,6 @@ dist: trusty
 services:
   - postgresql
 
-env:
-  global:
-  - NODE_ENV=test
-
 script:
   - npm install
   - npm test
