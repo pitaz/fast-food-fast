@@ -9,7 +9,7 @@ if (process.env === 'production') {
   pg.defaults.ssl = false;
 }
 const dbclient = new Pool({
-  connectionString: process.env.PG_DB_CONNECTION_URL, ssl: pg.defaults.ssl,
+  connectionString: process.env.PG_DB_CONNECTION_URL, ssl: true,
 });
 
 export default dbclient;
