@@ -12,12 +12,13 @@
   "scripts": {
     "start": "cross-env NODE_ENV=production babel-node ./server-api/src/app.js",
     "babel-node": "babel-node ./server-api/src/app.js",
-    "test": "cross-env NODE_ENV=test mocha --require babel-core/register ./server-api/src/tests --exit --timeout 25000 --colors",
+    "test": "cross-env NODE_ENV=test mocha --require babel-core/register ./server-api/src/tests --exit --timeout 5000 --colors",
     "pretest": "cross-env NODE_ENV=test npm run migrate-db",
     "build": "babel server-api/ --out-dir build --copy-files --source-maps",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "start-dev": "nodemon --exec npm run babel-node",
-    "migrate-db": "babel-node ./server-api/src/db/users.js && babel-node ./server-api/src/db/orders.js && babel-node ./server-api/src/db/menu.js"
+    "migrate-db": "babel-node ./server-api/src/db/users.js && babel-node ./server-api/src/db/orders.js && babel-node ./server-api/src/db/menu.js",
+    "test-travis": "cross-env NODE_ENV=production mocha --require babel-core/register ./server-api/src/tests --exit --timeout 5000 --colors"
   },
   "devDependencies": {
     "eslint": "^5.5.0",
