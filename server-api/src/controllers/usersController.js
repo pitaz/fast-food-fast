@@ -32,12 +32,12 @@ class UsersControllers {
               role: user.rows[0].role
             }
           }))
-          .catch(() => res.status(500).json({
-            message: 'server error'
+          .catch(err => res.status(500).json({
+            message: err
           }));
       })
-      .catch(() => res.status(500).json({
-        message: 'server error out'
+      .catch(err => res.status(500).json({
+        message: err
       }));
   }
 
