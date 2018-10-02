@@ -1,15 +1,15 @@
 import dotenv from 'dotenv';
-import pg, { Pool } from 'pg';
+import { Pool } from 'pg';
 
 dotenv.config();
-// let sslValue;
+let sslValue;
 if (process.env === 'production') {
-  pg.defaults.ssl = true;
+  sslValue = true;
 } else {
-  pg.defaults.ssl = false;
+  sslValue = false;
 }
 const dbclient = new Pool({
-  connectionString: process.env.PG_DB_CONNECTION_URL, ssl: true,
+  connectionString: process.env.PG_DB_CONNECTION_URL, ssl: sslValue,
 });
 
 export default dbclient;
