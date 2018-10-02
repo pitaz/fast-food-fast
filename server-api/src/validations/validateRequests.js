@@ -8,24 +8,24 @@ import checkEmail from '../helpers/isEmail';
 class ValidateRequest {
   validateId(req, res, next) {
     if (isNaN(req.params.id)) {
-       res.status(400).send('Id is invalid');
+      res.status(400).send('Id is invalid');
     }
 
-     next();
+    next();
   }
 
   checkMealId(req, res, next) {
     const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
-    if (!meal)  res.status(404).json({ message: 'Meal not found' });
+    if (!meal) res.status(404).json({ message: 'Meal not found' });
 
-     next();
+    next();
   }
 
   checkLogin(req, res, next) {
     const user = users.find(f => f.email === req.body.email);
-    if (!user)  res.status(404).json({ error: 'user not found' });
+    if (!user) res.status(404).json({ error: 'user not found' });
 
-     next();
+    next();
   }
 
   checkOrderId(req, res, next) {
@@ -54,7 +54,7 @@ class ValidateRequest {
       res.status(400).json({ error: errors });
     }
 
-     next();
+    next();
   }
 
   validateModifyOrders(req, res, next) {
@@ -128,21 +128,21 @@ class ValidateRequest {
   validateNewUser(req, res, next) {
     const errors = {};
 
-    if (!req.body.firstname) errors.firstname = 'firstname is required';
+    if (!req.body.name) errors.name = 'name is required';
 
-    if (!req.body.lastname) errors.lastname = 'lastname is required';
+    if (!req.body.email) errors.email = 'email is required';
 
-    if (!req.body.username) errors.username = 'username is required';
+    if (!req.body.role) errors.role = 'role is required';
 
-    if (!req.body.address) errors.address = 'address is required';
+    if (!req.body.password) errors.password = 'password is required';
 
-    if (!req.body.email) errors.email = 'Email is required';
+    if (!req.body.email) errors.email = 'email is required';
 
     if (req.body.email && !checkEmail.validateEmail(req.body.email)) {
       errors.email = 'Email is invalid';
     }
 
-    if (!req.body.password) errors.password = 'Password is required';
+    // if (!req.body.password) errors.password = 'Password is required';
 
     if (req.body.password && req.body.password.length < 6) errors.password = 'Password must be greater than 6 characters';
 

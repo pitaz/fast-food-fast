@@ -1,4 +1,4 @@
-import pgclient from '../index';
+import pgclient from './dbConnection';
 
 const createMenuTB = (client) => {
   const query = `
@@ -6,9 +6,9 @@ const createMenuTB = (client) => {
     CREATE TABLE "menu" (
         "id" serial PRIMARY KEY,
         "name" VARCHAR(50) NOT NULL,
-        "desc" VARCHAR(100) UNIQUE NOT NULL,
+        "desc" VARCHAR(100)  NOT NULL,
         "image" VARCHAR(100) NOT NULL,
-        "price" VARCHAR(100) NOT NULL,
+        "price" VARCHAR(50) NOT NULL,
         "dateCreated" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     );`;
 

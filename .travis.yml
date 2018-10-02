@@ -5,10 +5,20 @@ node_js:
 
 dist: trusty
 
+services:
+  - postgresql
+
+env:
+  global:
+  - NODE_ENV=test
+
+before_script:
+  - psql -c 'create database fast-fast-test-db' -U postgres
+
 script:
   - npm install
   - npm test
-  
+
 after_success: 
   - npm run coveralls
 

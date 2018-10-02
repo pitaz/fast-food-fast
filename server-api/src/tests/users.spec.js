@@ -12,12 +12,12 @@ describe('Tests for User Authentication', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .set('Content-Type', 'application/json')
-      .send(mock.emptyUserRequest)
+      .send({})
       .end((err, res) => {
-        expect(res.body.error.firstname).to.equal('firstname is required');
-        expect(res.body.error.lastname).to.equal('lastname is required');
-        expect(res.body.error.username).to.equal('username is required');
-        expect(res.body.error.address).to.equal('address is required');
+        expect(res.body.error.name).to.equal('name is required');
+        expect(res.body.error.email).to.equal('email is required');
+        expect(res.body.error.role).to.equal('role is required');
+        expect(res.body.error.password).to.equal('password is required');
         expect(res).to.have.status(400);
         done();
       });
@@ -27,7 +27,12 @@ describe('Tests for User Authentication', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .set('Content-Type', 'application/json')
-      .send(mock.invalidUser)
+      .send({
+        role: 'user',
+        name: 'piro',
+        email: 'usermail.com',
+        password: 'pas'
+      })
       .end((err, res) => {
         expect(res.body.error.email).to.equal('Email is invalid');
         expect(res.body.error.password).to.equal('Password must be greater than 6 characters');
@@ -36,25 +41,35 @@ describe('Tests for User Authentication', () => {
       });
   });
 
-  it('should return message if user account is created successfully', (done) => {
+  it('should return success message if user was successfully created', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .set('Content-Type', 'application/json')
-      .send(mock.newUser)
+      .send({
+        role: 'user',
+        name: 'piro',
+        email: 'user8@mail.com',
+        password: 'password'
+      })
       .end((err, res) => {
-        expect(res.body.message).to.equal('Account created');
+        expect(res.body.message).to.equal('User created successfully!');
         expect(res).to.have.status(201);
         done();
       });
   });
 
-  it('should return error if username already exist', (done) => {
+  it('should return error if email already exist', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .set('Content-Type', 'application/json')
-      .send(mock.sameUsernameUser)
+      .send({
+        role: 'user',
+        name: 'piro',
+        email: 'peter@mail.com',
+        password: 'password'
+      })
       .end((err, res) => {
-        expect(res.body.error).to.equal('User already exist');
+        expect(res.body.message).to.equal('Email already exist!');
         expect(res).to.have.status(409);
         done();
       });
@@ -64,9 +79,14 @@ describe('Tests for User Authentication', () => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .set('Content-Type', 'application/json')
-      .send(mock.sameEmailUser)
+      .send({
+        role: 'user',
+        name: 'piro',
+        email: 'peter@mail.com',
+        password: 'password'
+      })
       .end((err, res) => {
-        expect(res.body.error).to.equal('User already exist');
+        expect(res.body.message).to.equal('Email already exist!');
         expect(res).to.have.status(409);
         done();
       });

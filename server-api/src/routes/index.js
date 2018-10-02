@@ -1,4 +1,5 @@
 import express from 'express';
+import bodyParser from 'body-parser';
 import od from './orders';
 import ml from './meals';
 import usr from './users';
@@ -6,7 +7,8 @@ import nf from './routeNotFound';
 
 
 const router = express.Router();
-router.use(express.json());
+router.use(bodyParser.urlencoded({ extended: true }));
+router.use(bodyParser.json());
 
 ml.meals(router);
 od.Orders(router);

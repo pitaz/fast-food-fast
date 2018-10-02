@@ -1,24 +1,44 @@
 /* eslint-disable class-methods-use-this */
-import users from '../sampleData/usersStorage';
+import bcrypt from 'bcryptjs';
+import db from '../db/dbConnection';
 
 
 class UsersControllers {
-  createUser(req, res) {
-    const userExist = users.find(f => f.username === req.body.username);
-    const emailExist = users.find(f => f.email === req.body.email);
-    if (userExist || emailExist) res.status(409).json({ error: 'User already exist' });
+  createNewUser(req, res) {
+    const { body } = req;
+    const name = body.name.trim();
+    const email = body.email.trim();
+    const role = body.role.trim();
+    const password = bcrypt.hashSync(body.password.trim(), 10);
 
-    const user = {
-      id: users.length + 1,
-      firstname: req.body.firstname,
-      lastname: req.body.lastname,
-      username: req.body.username,
-      address: req.body.address,
-      email: req.body.email,
-      password: req.body.password
-    };
-    users.push(user);
-    return res.status(201).json({ message: 'Account created' });
+    const checkEmailQuery = 'SELECT email FROM users WHERE email = $1';
+    const emailValue = [email];
+    const registerUser = 'INSERT INTO users(name, email, role, password) VALUES($1, $2, $3, $4) RETURNING *';
+    const values = [name, email, role, password];
+
+    db.query(checkEmailQuery, emailValue)
+      .then((response) => {
+        if (response.rows[0]) {
+          return res.status(409).json({
+            message: 'Email already exist!'
+          });
+        }
+        db.query(registerUser, values)
+          .then(user => res.status(201).json({
+            message: 'User created successfully!',
+            data: {
+              name: user.rows[0].name,
+              email: user.rows[0].email,
+              role: user.rows[0].role
+            }
+          }))
+          .catch(() => res.status(500).json({
+            message: 'server error'
+          }));
+      })
+      .catch(() => res.status(500).json({
+        message: 'server error'
+      }));
   }
 
   login(req, res) {
