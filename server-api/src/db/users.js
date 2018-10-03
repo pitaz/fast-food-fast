@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import pgclient from '../index';
+import pgclient from './dbConnection';
 
 
 const passwordHash = bcrypt.hash(process.env.ADMIN_PASS, 10);

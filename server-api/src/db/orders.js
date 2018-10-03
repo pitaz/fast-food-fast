@@ -1,4 +1,4 @@
-import pgclient from '..';
+import pgclient from './dbConnection';
 
 
 const createOrdersTB = (client) => {
