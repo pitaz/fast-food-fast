@@ -16,49 +16,68 @@ class UsersControllers {
     const registerUser = 'INSERT INTO users(name, email, role, password) VALUES($1, $2, $3, $4) RETURNING *';
     const values = [name, email, role, password];
 
-    db.connect()
-      .then((client) => {
-        client.query(checkEmailQuery, emailValue)
-          .then((response) => {
-            if (response.rows[0]) {
-              client.release();
-              return res.status(409).json({
-                message: 'Email already exist!'
-              });
-            }
-            client.query(registerUser, values)
-              .then((user) => {
-                client.release();
-                return res.status(201).json({
-                  message: 'User created successfully!',
-                  data: {
-                    name: user.rows[0].name,
-                    email: user.rows[0].email,
-                    role: user.rows[0].role
-                  }
-                });
-              })
-              .catch(() => {
-                client.release();
-                return res.status(500).json({
-                  message: 'server error'
-                });
-              });
-          })
-          .catch(() => {
-            client.release();
-            return res.status(500).json({
-              message: 'Internal server error'
-            });
+
+    db.query(checkEmailQuery, emailValue)
+      .then((response) => {
+        if (response.rows[0]) {
+          return res.status(409).json({
+            message: 'Email already exist!'
           });
+        }
+        db.query(registerUser, values)
+          .then(user => res.status(201).json({
+            message: 'User created successfully!',
+            data: {
+              name: user.rows[0].name,
+              email: user.rows[0].email,
+              role: user.rows[0].role
+            }
+          }))
+          .catch(() => res.status(500).json({
+            message: 'server error'
+          }));
       })
-      .catch(err => res.status(500).json({
-        message: err
+      .catch(() => res.status(500).json({
+        message: 'Internal server error'
       }));
   }
 
   login(req, res) {
-    return res.status(200).json({ message: 'user login successful!' });
+    const { body } = req;
+    const email = body.email.trim();
+
+    const checkUserQuery = 'SELECT * FROM users WHERE email = $1';
+    const emailValue = [email];
+
+
+    db.query(checkUserQuery, emailValue)
+      .then((response) => {
+        if (!response.rows[0]) {
+          return res.status(409).json({
+            message: 'User does not exist!'
+          });
+        }
+        const checkPassword = bcrypt
+          .compareSync(body.password.trim(), response.rows[0].password);
+        if (!checkPassword) {
+          return res.status(422).json({
+            status: 'fail',
+            message: 'Wrong password entered',
+          });
+        }
+        return res.status(200).json({
+          status: 'success',
+          message: 'Sign in successfully',
+          data: {
+            role: response.rows[0].role,
+            email: response.rows[0].email,
+            name: response.rows[0].name
+          },
+        });
+      })
+      .catch(() => res.status(500).json({
+        message: 'Internal server error'
+      }));
   }
 }
 

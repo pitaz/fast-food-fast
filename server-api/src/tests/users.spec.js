@@ -96,22 +96,32 @@ describe('Tests for User Signin/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/login')
       .set('Content-Type', 'application/json')
-      .send(mock.userLogin)
+      .send({
+        role: 'user',
+        name: 'piro',
+        email: 'user8@mail.com',
+        password: 'password'
+      })
       .end((err, res) => {
-        expect(res.body.message).to.equal('user login successful!');
+        expect(res.body.message).to.equal('Sign in successfully');
         expect(res).to.have.status(200);
         done();
       });
   });
 
-  it('should return error if user is not found when signing in', (done) => {
+  it('should return error if password is entered incorrectly', (done) => {
     chai.request(app)
       .post('/api/v1/auth/login')
       .set('Content-Type', 'application/json')
-      .send(mock.userNotFound)
+      .send({
+        role: 'user',
+        name: 'piro',
+        email: 'peter@mail.com',
+        password: 'password'
+      })
       .end((err, res) => {
-        expect(res.body.error).to.equal('user not found');
-        expect(res).to.have.status(404);
+        expect(res.body.message).to.equal('Wrong password entered');
+        expect(res).to.have.status(422);
         done();
       });
   });
@@ -132,7 +142,7 @@ describe('Tests for User Signin/signup', () => {
     chai.request(app)
       .post('/api/v1/auth/login')
       .set('Content-Type', 'application/json')
-      .send(mock.emptyLogin)
+      .send()
       .end((err, res) => {
         expect(res.body.error.email).to.equal('Email is required');
         expect(res.body.error.password).to.equal('Password is required');

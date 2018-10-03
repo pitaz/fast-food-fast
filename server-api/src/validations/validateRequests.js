@@ -21,12 +21,12 @@ class ValidateRequest {
     next();
   }
 
-  checkLogin(req, res, next) {
-    const user = users.find(f => f.email === req.body.email);
-    if (!user) return res.status(404).json({ error: 'user not found' });
+  // checkLogin(req, res, next) {
+  //   const user = users.find(f => f.email === req.body.email);
+  //   if (!user) return res.status(404).json({ error: 'user not found' });
 
-    next();
-  }
+  //   next();
+  // }
 
   checkOrderId(req, res, next) {
     const order = orders.find(f => f.id === parseInt(req.params.id, 10));
