@@ -41,15 +41,15 @@ describe('Tests for Orders API endpoints', () => {
       .put('/api/v1/orders/1')
       .set('Content-Type', 'application/json')
       .send({
-        id: '1',
-        meal: 'Jollof Rice with chicken',
-        quantity: '3',
+        meal: 'Jollof Rice',
+        status: 'new',
         userId: '1',
-        status: 'completed'
+        quantity: '3',
+        price: '2000'
       })
       .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body.status).to.equal('completed');
+        expect(res).to.have.status(201);
+        expect(res.body.message).to.equal('Order updated successfully!');
         done();
       });
   });
