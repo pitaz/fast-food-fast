@@ -4,19 +4,29 @@ import db from '../db/dbConnection';
 
 
 class MealsControllers {
-  createMeal(req, res) {
-    if (!req.body.name || req.body.name.length < 3) {
-      res.status(400).send('Name is required and should be minimum 3 characters');
-    }
-    const meal = {
-      id: meals.length + 1,
-      name: req.body.name,
-      desc: req.body.desc,
-      price: req.body.price,
-      image: req.body.image
-    };
-    meals.push(meal);
-    return res.status(201).send(meal);
+  createMenu(req, res) {
+    const { body } = req;
+    const menuName = body.name.trim();
+    const menuDesc = body.description.trim();
+    const menuImage = body.image.trim();
+    const menuPrice = body.price.trim();
+
+    const query = 'INSERT INTO menu(name, description, image, price) VALUES($1, $2, $3, $4) RETURNING *';
+    const values = [menuName, menuDesc, menuImage, menuPrice];
+
+    db.query(query, values)
+      .then(menu => res.status(201).json({
+        message: 'menu created successfully!',
+        data: {
+          name: menu.rows[0].name,
+          decription: menu.rows[0].description,
+          image: menu.rows[0].image,
+          price: menu.rows[0].price
+        }
+      }))
+      .catch(() => res.status(500).json({
+        message: 'server error'
+      }));
   }
 
   getMenu(req, res) {
