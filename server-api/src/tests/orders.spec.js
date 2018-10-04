@@ -82,7 +82,6 @@ describe('Tests for Orders API endpoints', () => {
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body.meal).to.equal('Jollof Rice with grilled chicken');
         done();
       });
   });
