@@ -21,12 +21,6 @@ class ValidateRequest {
     next();
   }
 
-  // checkLogin(req, res, next) {
-  //   const user = users.find(f => f.email === req.body.email);
-  //   if (!user) return res.status(404).json({ error: 'user not found' });
-
-  //   next();
-  // }
 
   checkOrderId(req, res, next) {
     const order = orders.find(f => f.id === parseInt(req.params.id, 10));
@@ -48,9 +42,9 @@ class ValidateRequest {
       }
     }
 
-    const isValid = obj.isEmpty(errors);
+    const error = obj.isEmpty(errors);
 
-    if (!isValid) {
+    if (error) {
       return res.status(400).json({ error: errors });
     }
 
@@ -72,9 +66,9 @@ class ValidateRequest {
       }
     }
 
-    const isValid = obj.isEmpty(errors);
+    const error = obj.isEmpty(errors);
 
-    if (!isValid) {
+    if (error) {
       return res.status(400).json({ error: errors });
     }
 
@@ -94,9 +88,9 @@ class ValidateRequest {
 
     if (!req.body.image) errors.image = 'image is required';
 
-    const isValid = obj.isEmpty(errors);
+    const error = obj.isEmpty(errors);
 
-    if (!isValid) {
+    if (error) {
       return res.status(400).json({ error: errors });
     }
 
@@ -116,9 +110,9 @@ class ValidateRequest {
 
     if (!req.body.image) errors.image = 'image is required';
 
-    const isValid = obj.isEmpty(errors);
+    const error = obj.isEmpty(errors);
 
-    if (!isValid) {
+    if (error) {
       return res.status(400).json({ error: errors });
     }
 
@@ -146,9 +140,9 @@ class ValidateRequest {
 
     if (req.body.password && req.body.password.length < 6) errors.password = 'Password must be greater than 6 characters';
 
-    const isValid = obj.isEmpty(errors);
+    const error = obj.isEmpty(errors);
 
-    if (!isValid) {
+    if (error) {
       return res.status(400).json({ error: errors });
     }
 
@@ -165,9 +159,9 @@ class ValidateRequest {
     if (!req.body.password) errors.password = 'Password is required';
     if (req.body.password && req.body.password.length < 6) errors.password = 'Password must be greater than 6 characters';
 
-    const isValid = obj.isEmpty(errors);
+    const error = obj.isEmpty(errors);
 
-    if (!isValid) {
+    if (error) {
       return res.status(400).json({ error: errors });
     }
 
