@@ -14,6 +14,9 @@ class Orders {
         validateReq.validateModifyOrders, ordersController.updateOrderStatus)
       .delete(validateReq.checkOrderId,
         validateReq.validateId, ordersController.deleteOrder);
+
+    router.route('/api/v1/users/:userId/orders')
+      .get(ordersController.getUserOrders);
   }
 }
 
