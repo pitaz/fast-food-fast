@@ -57,7 +57,7 @@ class OrdersControllers {
       });
   }
 
- getOrders(req, res) {
+  getOrders(req, res) {
     const query = 'SELECT * FROM orders';
     db.query(query)
       .then((order) => {
@@ -79,9 +79,27 @@ class OrdersControllers {
   }
 
   getOrder(req, res) {
-    const order = orders.find(f => f.id === parseInt(req.params.id, 10));
-    if (!order) res.status(404).send('order not found');
-    return res.send(order);
+    const { params } = req;
+    const orderId = params.id;
+    const query = 'SELECT * FROM orders WHERE id = $1';
+    const values = [orderId];
+    db.query(query, values)
+      .then((order) => {
+        if (!order.rows[0]) {
+          return res.status(404).json({
+            message: 'order not found'
+          });
+        }
+
+        return res.status(200).json({
+          data: {
+            name: order.rows[0].meal,
+            status: order.rows[0].status,
+            quantity: order.rows[0].quantity,
+            price: order.rows[0].price
+          }
+        });
+      });
   }
 
   updateOrderStatus(req, res) {
