@@ -103,11 +103,37 @@ class OrdersControllers {
   }
 
   updateOrderStatus(req, res) {
-    const order = orders.find(f => f.id === parseInt(req.params.id, 10));
-    if (!order) res.status(404).json({ message: 'order not found' });
+    const orderStatus = req.body.status;
+    const orderId = req.params.id;
+    const query = 'SELECT * FROM orders WHERE "userId" = $1';
+    const value = [orderId];
+    const queryUpdateRequest = `UPDATE orders
+     SET status = '${orderStatus}'
+     WHERE id = '${orderId}'
+     RETURNING *`;
 
-    order.status = req.body.status;
-    return res.status(200).json(order);
+
+    db.query(query, value)
+      .then((checkOrder) => {
+        if (!checkOrder.rows[0]) {
+          return res.status(404).json({
+            message: 'order not found'
+          });
+        }
+        db.query(queryUpdateRequest)
+          .then(order => res.status(201).json({
+            message: 'Order updated successfully!',
+            data: {
+              name: order.rows[0].meal,
+              status: order.rows[0].status,
+              quantity: order.rows[0].quantity,
+              price: order.rows[0].price
+            }
+          }))
+          .catch(() => res.status(500).json({
+            message: 'server error'
+          }));
+      });
   }
 
   deleteOrder(req, res) {
