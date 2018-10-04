@@ -30,6 +30,33 @@ class OrdersControllers {
       }));
   }
 
+  getUserOrders(req, res) {
+    const { params } = req;
+    const userId = params.id;
+
+    const query = 'SELECT * FROM orders WHERE "userId" = $1';
+    const value = [userId];
+
+    db.query(query, value)
+      .then((order) => {
+        if (!order.rows[0]) {
+          return res.status(404).json({
+            message: 'order not found'
+          });
+        }
+
+        return res.status(200).json({
+          message: `Order for user with id ${userId}`,
+          data: {
+            name: order.rows[0].meal,
+            status: order.rows[0].status,
+            quantity: order.rows[0].quantity,
+            price: order.rows[0].price
+          }
+        });
+      });
+  }
+
   getOrders(req, res) {
     return res.status(200).send(orders);
   }
