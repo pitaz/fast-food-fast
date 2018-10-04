@@ -80,7 +80,7 @@ class ValidateRequest {
 
     if (!req.body.name) errors.name = 'name field is required';
 
-    if (!req.body.desc) errors.desc = 'description field is required';
+    if (!req.body.description) errors.description = 'description field is required';
 
     if (!req.body.price) errors.price = 'price field is required';
 

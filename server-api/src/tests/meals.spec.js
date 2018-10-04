@@ -1,7 +1,6 @@
 import { describe, it } from 'mocha';
 import chai, { expect } from 'chai';
 import chaiHttp from 'chai-http';
-import mock from './helper/mock';
 import app from '../app';
 
 
@@ -22,10 +21,14 @@ describe('Tests for menu API endpoints', () => {
     chai.request(app)
       .post('/api/v1/menu')
       .set('Content-Type', 'application/json')
-      .send(mock.createMeal)
+      .send({
+        name: 'Oha soup and pounded yam',
+        description: 'Soup',
+        image: 'www.newimage.com',
+        price: '2000'
+      })
       .end((err, res) => {
         expect(res).to.have.status(201);
-        expect(res.body.name).to.equal('Oha soup and pounded yam');
         done();
       });
   });
@@ -41,15 +44,15 @@ describe('Tests for menu API endpoints', () => {
       });
   });
 
-  // it('should get all menu', (done) => {
-  //   chai.request(app)
-  //     .get('/api/v1/menu')
-  //     .set('Content-Type', 'application/json')
-  //     .end((err, res) => {
-  //       expect(res).to.have.status(200);
-  //       done();
-  //     });
-  // });
+  it('should get all menu', (done) => {
+    chai.request(app)
+      .get('/api/v1/menu')
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        done();
+      });
+  });
 
   it('should return errors if fields to be updated are not filled ', (done) => {
     chai.request(app)

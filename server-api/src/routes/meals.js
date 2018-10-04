@@ -5,7 +5,7 @@ import validateReq from '../validations/validateRequests';
 class Meals {
   meals(router) {
     router.route('/api/v1/menu')
-      .post(validateReq.validateMeal, mealsController.createMeal)
+      .post(validateReq.validateMeal, mealsController.createMenu)
       .get(mealsController.getMenu);
 
     router.route('/api/v1/menu/:id')
