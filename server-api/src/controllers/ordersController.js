@@ -1,17 +1,33 @@
 /* eslint-disable class-methods-use-this */
 import orders from '../sampleData/ordersStorage';
+import db from '../db/dbConnection';
 
 
 class OrdersControllers {
   placeOrder(req, res) {
-    const order = {
-      id: orders.length + 1,
-      meal: req.body.meal,
-      quantity: req.body.quantity,
-      status: 'processing'
-    };
-    orders.push(order);
-    return res.status(201).send(order);
+    const { body } = req;
+    const name = body.meal.trim();
+    const userId = body.userId.trim();
+    const status = body.status.trim();
+    const quantity = body.quantity.trim();
+    const price = body.price.trim();
+
+    const createOrder = 'INSERT INTO orders(meal, "userId", status, quantity, price) VALUES($1, $2, $3, $4, $5) RETURNING *';
+    const values = [name, userId, status, quantity, price];
+
+    db.query(createOrder, values)
+      .then(order => res.status(201).json({
+        message: 'Order created successfully!',
+        data: {
+          name: order.rows[0].meal,
+          status: order.rows[0].status,
+          quantity: order.rows[0].quantity,
+          price: order.rows[0].price
+        }
+      }))
+      .catch(() => res.status(500).json({
+        message: 'Internal server error'
+      }));
   }
 
   getOrders(req, res) {
