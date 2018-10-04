@@ -57,8 +57,25 @@ class OrdersControllers {
       });
   }
 
-  getOrders(req, res) {
-    return res.status(200).send(orders);
+ getOrders(req, res) {
+    const query = 'SELECT * FROM orders';
+    db.query(query)
+      .then((order) => {
+        if (!order.rows[0]) {
+          return res.status(404).json({
+            message: 'order not found'
+          });
+        }
+
+        return res.status(200).json({
+          data: {
+            name: order.rows[0].meal,
+            status: order.rows[0].status,
+            quantity: order.rows[0].quantity,
+            price: order.rows[0].price
+          }
+        });
+      });
   }
 
   getOrder(req, res) {

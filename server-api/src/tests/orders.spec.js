@@ -6,7 +6,6 @@ import app from '../app';
 
 chai.use(chaiHttp);
 
-let orderId;
 
 describe('Tests for Orders API endpoints', () => {
   it('should place an order', (done) => {
@@ -21,9 +20,18 @@ describe('Tests for Orders API endpoints', () => {
         price: '2000'
       })
       .end((err, res) => {
-        orderId = res.body.id;
         expect(res).to.have.status(201);
         expect(res.body.message).to.equal('Order created successfully!');
+        done();
+      });
+  });
+
+  it('should return message if order for a particular user is not found', (done) => {
+    chai.request(app)
+      .post('/api/v1/1/orders')
+      .set('Content-Type', 'application/json')
+      .end((err, res) => {
+        expect(res).to.have.status(404);
         done();
       });
   });
@@ -49,7 +57,7 @@ describe('Tests for Orders API endpoints', () => {
 
   it('should return error if no field to be updated is provided', (done) => {
     chai.request(app)
-      .put(`/api/v1/orders/${orderId}`)
+      .put('/api/v1/orders/1')
       .set('Content-Type', 'application/json')
       .send({})
       .end((err, res) => {
@@ -64,7 +72,6 @@ describe('Tests for Orders API endpoints', () => {
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.body[0].meal).to.equal('Jollof Rice with grilled chicken');
         done();
       });
   });
