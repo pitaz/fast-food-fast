@@ -1,5 +1,6 @@
 /* eslint-disable class-methods-use-this */
 import meals from '../sampleData/mealsStorage';
+import db from '../db/dbConnection';
 
 
 class MealsControllers {
@@ -18,8 +19,25 @@ class MealsControllers {
     return res.status(201).send(meal);
   }
 
-  getMeals(req, res) {
-    return res.status(200).send(meals);
+  getMenu(req, res) {
+    const query = 'SELECT * FROM menu';
+    db.query(query)
+      .then((menu) => {
+        if (!menu.rows[0]) {
+          return res.status(404).json({
+            message: 'menu unavailable'
+          });
+        }
+
+        return res.status(200).json({
+          data: {
+            name: menu.rows[0].name,
+            decription: menu.rows[0].desc,
+            image: menu.rows[0].image,
+            price: menu.rows[0].price
+          }
+        });
+      });
   }
 
   getMealById(req, res) {

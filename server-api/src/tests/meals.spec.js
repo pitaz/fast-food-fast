@@ -7,10 +7,10 @@ import app from '../app';
 
 chai.use(chaiHttp);
 
-describe('Tests for meals API endpoints', () => {
+describe('Tests for menu API endpoints', () => {
   it('should return error if api endpoint does not exist', (done) => {
     chai.request(app)
-      .post('/api/v1/meals/clo/abount')
+      .post('/api/v1/menu/any')
       .end((err, res) => {
         expect(res).to.have.status(404);
         expect(res.body.message).to.equal('page not found');
@@ -20,7 +20,7 @@ describe('Tests for meals API endpoints', () => {
 
   it('should add a meal', (done) => {
     chai.request(app)
-      .post('/api/v1/meals')
+      .post('/api/v1/menu')
       .set('Content-Type', 'application/json')
       .send(mock.createMeal)
       .end((err, res) => {
@@ -30,9 +30,9 @@ describe('Tests for meals API endpoints', () => {
       });
   });
 
-  it('should get a meal', (done) => {
+  it('should get a meal option', (done) => {
     chai.request(app)
-      .get('/api/v1/meals/1')
+      .get('/api/v1/menu/1')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res).to.have.status(200);
@@ -41,20 +41,19 @@ describe('Tests for meals API endpoints', () => {
       });
   });
 
-  it('should get all meals', (done) => {
-    chai.request(app)
-      .get('/api/v1/meals')
-      .set('Content-Type', 'application/json')
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body[0].name).to.equal('Jollof rice and chicken');
-        done();
-      });
-  });
+  // it('should get all menu', (done) => {
+  //   chai.request(app)
+  //     .get('/api/v1/menu')
+  //     .set('Content-Type', 'application/json')
+  //     .end((err, res) => {
+  //       expect(res).to.have.status(200);
+  //       done();
+  //     });
+  // });
 
   it('should return errors if fields to be updated are not filled ', (done) => {
     chai.request(app)
-      .put('/api/v1/meals/1')
+      .put('/api/v1/menu/1')
       .set('Content-Type', 'application/json')
       .send({
         name: '',
@@ -70,7 +69,7 @@ describe('Tests for meals API endpoints', () => {
 
   it('should return errors if price is not a number', (done) => {
     chai.request(app)
-      .post('/api/v1/meals')
+      .post('/api/v1/menu')
       .set('Content-Type', 'application/json')
       .send({
         name: 'Egusi',
@@ -84,9 +83,9 @@ describe('Tests for meals API endpoints', () => {
       });
   });
 
-  it('should return error if meals to be updated is not found', (done) => {
+  it('should return error if menu to be updated is not found', (done) => {
     chai.request(app)
-      .put('/api/v1/meals/50')
+      .put('/api/v1/menu/50')
       .set('Content-Type', 'application/json')
       .send({
         name: 'Oha',
@@ -103,7 +102,7 @@ describe('Tests for meals API endpoints', () => {
 
   it('should delete a meal option', (done) => {
     chai.request(app)
-      .delete('/api/v1/meals/1')
+      .delete('/api/v1/menu/1')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res).to.have.status(201);
@@ -114,7 +113,7 @@ describe('Tests for meals API endpoints', () => {
 
   it('should return error if meal to be deleted is not found', (done) => {
     chai.request(app)
-      .delete('/api/v1/meals/50')
+      .delete('/api/v1/menu/50')
       .set('Content-Type', 'application/json')
       .end((err, res) => {
         expect(res).to.have.status(404);

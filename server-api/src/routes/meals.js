@@ -4,11 +4,11 @@ import validateReq from '../validations/validateRequests';
 
 class Meals {
   meals(router) {
-    router.route('/api/v1/meals')
+    router.route('/api/v1/menu')
       .post(validateReq.validateMeal, mealsController.createMeal)
-      .get(mealsController.getMeals);
+      .get(mealsController.getMenu);
 
-    router.route('/api/v1/meals/:id')
+    router.route('/api/v1/menu/:id')
       .get(validateReq.validateId, mealsController.getMealById)
       .put(validateReq.validateId, validateReq.checkMealId,
         validateReq.validateUpdateMeal, mealsController.updateMeal)
