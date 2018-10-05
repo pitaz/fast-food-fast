@@ -1,6 +1,10 @@
 /* eslint-disable class-methods-use-this */
 import bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
 import db from '../db/dbConnection';
+import generateToken from '../authorization/generateToken';
+
+dotenv.config();
 
 
 class UsersControllers {
@@ -8,7 +12,7 @@ class UsersControllers {
     const { body } = req;
     const name = body.name.trim();
     const email = body.email.trim();
-    const role = body.role.trim();
+    const role = 'user';
     const password = bcrypt.hashSync(body.password.trim(), 10);
 
     const checkEmailQuery = 'SELECT email FROM users WHERE email = $1';
@@ -25,17 +29,20 @@ class UsersControllers {
           });
         }
         db.query(registerUser, values)
-          .then(user => res.status(201).json({
-            message: 'User created successfully!',
-            data: {
-              name: user.rows[0].name,
-              email: user.rows[0].email,
-              role: user.rows[0].role
-            }
-          }))
-          .catch(() => res.status(500).json({
-            message: 'server error'
-          }));
+          .then((user) => {
+            const authToken = generateToken.token(user.rows[0], process.env.JWT_SECRET);
+            return res.status(201).json({
+              message: 'User created successfully!',
+              data: {
+                id: user.rows[0].id,
+                name: user.rows[0].name,
+                email: user.rows[0].email,
+                role: user.rows[0].role,
+                token: authToken
+              }
+            });
+          })
+          .catch(err => console.log(err));
       })
       .catch(() => res.status(500).json({
         message: 'Internal server error'
@@ -44,10 +51,10 @@ class UsersControllers {
 
   login(req, res) {
     const { body } = req;
-    const email = body.email.trim();
+    const loginEmail = body.email.trim();
 
     const checkUserQuery = 'SELECT * FROM users WHERE email = $1';
-    const emailValue = [email];
+    const emailValue = [loginEmail];
 
 
     db.query(checkUserQuery, emailValue)
@@ -61,17 +68,25 @@ class UsersControllers {
           .compareSync(body.password.trim(), response.rows[0].password);
         if (!checkPassword) {
           return res.status(422).json({
-            status: 'fail',
-            message: 'Wrong password entered',
+            message: 'invalid credentials entered',
           });
         }
+
+        const { id, role, email } = response.rows[0];
+
+        const userToken = generateToken.token({
+          id,
+          role,
+          email,
+        }, process.env.JWT_SECRET);
+
         return res.status(200).json({
-          status: 'success',
-          message: 'Sign in successfully',
+          message: 'Signed in successfully',
           data: {
             role: response.rows[0].role,
             email: response.rows[0].email,
-            name: response.rows[0].name
+            name: response.rows[0].name,
+            token: userToken
           },
         });
       })

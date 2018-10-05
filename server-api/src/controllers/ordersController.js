@@ -8,7 +8,7 @@ class OrdersControllers {
     const { body } = req;
     const name = body.meal.trim();
     const userId = body.userId.trim();
-    const status = body.status.trim();
+    const status = 'new';
     const quantity = body.quantity.trim();
     const price = body.price.trim();
 
@@ -47,12 +47,7 @@ class OrdersControllers {
 
         return res.status(200).json({
           message: `Order for user with id ${userId}`,
-          data: {
-            name: order.rows[0].meal,
-            status: order.rows[0].status,
-            quantity: order.rows[0].quantity,
-            price: order.rows[0].price
-          }
+          data: order.rows
         });
       });
   }
@@ -68,12 +63,7 @@ class OrdersControllers {
         }
 
         return res.status(200).json({
-          data: {
-            name: order.rows[0].meal,
-            status: order.rows[0].status,
-            quantity: order.rows[0].quantity,
-            price: order.rows[0].price
-          }
+          data: order.rows
         });
       });
   }

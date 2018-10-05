@@ -40,12 +40,7 @@ class MealsControllers {
         }
 
         return res.status(200).json({
-          data: {
-            name: menu.rows[0].name,
-            decription: menu.rows[0].desc,
-            image: menu.rows[0].image,
-            price: menu.rows[0].price
-          }
+          data: menu.rows
         });
       });
   }
