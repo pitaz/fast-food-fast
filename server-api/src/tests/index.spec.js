@@ -1,3 +1,3 @@
-// import './orders.spec';
-// import './meals.spec';
-// import './users.spec';
+import './users.spec';
+import './orders.spec';
+import './menu.spec';

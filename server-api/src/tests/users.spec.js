@@ -15,15 +15,14 @@ describe('Tests for User Signin/signup', () => {
       .send({})
       .end((err, res) => {
         expect(res.body.error.name).to.equal('name is required');
-        expect(res.body.error.email).to.equal('email is required');
-        expect(res.body.error.role).to.equal('role is required');
+        expect(res.body.error.email).to.equal('email is invalid');
         expect(res.body.error.password).to.equal('password is required');
         expect(res).to.have.status(400);
         done();
       });
   });
 
-  it('should return validation errors if invalid email or password is entered', (done) => {
+  it('should return validation errors if invalid email is entered', (done) => {
     chai.request(app)
       .post('/api/v1/auth/signup')
       .set('Content-Type', 'application/json')
@@ -34,8 +33,7 @@ describe('Tests for User Signin/signup', () => {
         password: 'pas'
       })
       .end((err, res) => {
-        expect(res.body.error.email).to.equal('Email is invalid');
-        expect(res.body.error.password).to.equal('Password must be greater than 6 characters');
+        expect(res.body.error.email).to.equal('email is invalid');
         expect(res).to.have.status(400);
         done();
       });
@@ -75,23 +73,6 @@ describe('Tests for User Signin/signup', () => {
       });
   });
 
-  it('should return error if email already exist', (done) => {
-    chai.request(app)
-      .post('/api/v1/auth/signup')
-      .set('Content-Type', 'application/json')
-      .send({
-        role: 'user',
-        name: 'piro',
-        email: 'peter@mail.com',
-        password: 'password'
-      })
-      .end((err, res) => {
-        expect(res.body.message).to.equal('Email already exist!');
-        expect(res).to.have.status(409);
-        done();
-      });
-  });
-
   it('should return success message if user signin successfully', (done) => {
     chai.request(app)
       .post('/api/v1/auth/login')
@@ -103,7 +84,7 @@ describe('Tests for User Signin/signup', () => {
         password: 'password'
       })
       .end((err, res) => {
-        expect(res.body.message).to.equal('Sign in successfully');
+        expect(res.body.message).to.equal('Signed in successfully');
         expect(res).to.have.status(200);
         done();
       });
@@ -120,7 +101,7 @@ describe('Tests for User Signin/signup', () => {
         password: 'password'
       })
       .end((err, res) => {
-        expect(res.body.message).to.equal('Wrong password entered');
+        expect(res.body.message).to.equal('invalid credentials entered');
         expect(res).to.have.status(422);
         done();
       });
@@ -132,7 +113,7 @@ describe('Tests for User Signin/signup', () => {
       .set('Content-Type', 'application/json')
       .send(mock.invalidUserLogin)
       .end((err, res) => {
-        expect(res.body.error.email).to.equal('Email is invalid');
+        expect(res.body.error.email).to.equal('email is invalid');
         expect(res).to.have.status(400);
         done();
       });
@@ -144,7 +125,7 @@ describe('Tests for User Signin/signup', () => {
       .set('Content-Type', 'application/json')
       .send()
       .end((err, res) => {
-        expect(res.body.error.email).to.equal('Email is required');
+        expect(res.body.error.email).to.equal('email is invalid');
         expect(res.body.error.password).to.equal('Password is required');
         expect(res).to.have.status(400);
         done();

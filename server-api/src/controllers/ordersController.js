@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import orders from '../sampleData/ordersStorage';
+
 import db from '../db/dbConnection';
 
 
@@ -37,18 +37,35 @@ class OrdersControllers {
     const query = 'SELECT * FROM orders WHERE "userId" = $1';
     const value = [userId];
 
+    const query2 = `SELECT name FROM users WHERE id = '${userId}'`;
+
     db.query(query, value)
       .then((order) => {
         if (!order.rows[0]) {
           return res.status(404).json({
-            message: 'order not found'
+            message: 'You have no order history!'
           });
         }
 
-        return res.status(200).json({
-          message: `Order for user with id ${userId}`,
-          data: order.rows
-        });
+        db.query(query2)
+          .then((user) => {
+            if (user.rows[0]) {
+              const { name } = user.rows[0];
+              const {
+                meal, quantity, price, status
+              } = order.rows[0];
+              return res.status(200).json({
+                data: {
+                  user: name,
+                  food: meal,
+                  quant: quantity,
+                  orderPrice: price,
+                  orderStatus: status
+                }
+              });
+            }
+          })
+          .catch();
       });
   }
 
@@ -57,8 +74,8 @@ class OrdersControllers {
     db.query(query)
       .then((order) => {
         if (!order.rows[0]) {
-          return res.status(404).json({
-            message: 'order not found'
+          return res.status(400).json({
+            message: 'No orders found'
           });
         }
 
@@ -77,7 +94,7 @@ class OrdersControllers {
       .then((order) => {
         if (!order.rows[0]) {
           return res.status(404).json({
-            message: 'order not found'
+            message: 'Order not found'
           });
         }
 
@@ -107,7 +124,7 @@ class OrdersControllers {
       .then((checkOrder) => {
         if (!checkOrder.rows[0]) {
           return res.status(404).json({
-            message: 'order not found'
+            message: 'Order not found'
           });
         }
         db.query(queryUpdateRequest)
@@ -121,15 +138,12 @@ class OrdersControllers {
             }
           }))
           .catch(() => res.status(500).json({
-            message: 'server error'
+            message: 'Server error'
           }));
-      });
-  }
-
-  deleteOrder(req, res) {
-    const index = orders.indexOf();
-    orders.splice(index, 1);
-    return res.status(201).json({ message: 'order deleted successfully!' });
+      })
+      .catch(() => res.status(500).json({
+        message: 'Server error'
+      }));
   }
 }
 
