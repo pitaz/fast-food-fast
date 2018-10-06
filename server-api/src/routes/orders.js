@@ -1,22 +1,21 @@
 /* eslint-disable class-methods-use-this */
 import ordersController from '../controllers/ordersController';
 import validateReq from '../validations/validateRequests';
+import authorize from '../authorization/authorization';
 
 class Orders {
   Orders(router) {
     router.route('/api/v1/orders')
-      .get(ordersController.getOrders)
-      .post(validateReq.validateOrders, ordersController.placeOrder);
+      .get(authorize.user, authorize.admin, ordersController.getOrders)
+      .post(authorize.user, validateReq.validateOrders, ordersController.placeOrder);
 
     router.route('/api/v1/orders/:id')
-      .get(validateReq.validateId, ordersController.getOrder)
-      .put(validateReq.validateId, validateReq.checkOrderId,
-        validateReq.validateModifyOrders, ordersController.updateOrderStatus)
-      .delete(validateReq.checkOrderId,
-        validateReq.validateId, ordersController.deleteOrder);
+      .get(validateReq.validateId, authorize.user, authorize.admin, ordersController.getOrder)
+      .put(validateReq.validateId, authorize.user, authorize.admin, validateReq.checkOrderId,
+        validateReq.validateModifyOrders, ordersController.updateOrderStatus);
 
     router.route('/api/v1/users/:id/orders')
-      .get(ordersController.getUserOrders);
+      .get(validateReq.validateId, authorize.user, ordersController.getUserOrders);
   }
 }
 

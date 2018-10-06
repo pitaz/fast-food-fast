@@ -1,5 +1,5 @@
 /* eslint-disable class-methods-use-this */
-import orders from '../sampleData/ordersStorage';
+
 import db from '../db/dbConnection';
 
 
@@ -8,7 +8,7 @@ class OrdersControllers {
     const { body } = req;
     const name = body.meal.trim();
     const userId = body.userId.trim();
-    const status = body.status.trim();
+    const status = 'new';
     const quantity = body.quantity.trim();
     const price = body.price.trim();
 
@@ -37,23 +37,35 @@ class OrdersControllers {
     const query = 'SELECT * FROM orders WHERE "userId" = $1';
     const value = [userId];
 
+    const query2 = `SELECT name FROM users WHERE id = '${userId}'`;
+
     db.query(query, value)
       .then((order) => {
         if (!order.rows[0]) {
           return res.status(404).json({
-            message: 'order not found'
+            message: 'You have no order history!'
           });
         }
 
-        return res.status(200).json({
-          message: `Order for user with id ${userId}`,
-          data: {
-            name: order.rows[0].meal,
-            status: order.rows[0].status,
-            quantity: order.rows[0].quantity,
-            price: order.rows[0].price
-          }
-        });
+        db.query(query2)
+          .then((user) => {
+            if (user.rows[0]) {
+              const { name } = user.rows[0];
+              const {
+                meal, quantity, price, status
+              } = order.rows[0];
+              return res.status(200).json({
+                data: {
+                  user: name,
+                  food: meal,
+                  quant: quantity,
+                  orderPrice: price,
+                  orderStatus: status
+                }
+              });
+            }
+          })
+          .catch();
       });
   }
 
@@ -62,18 +74,13 @@ class OrdersControllers {
     db.query(query)
       .then((order) => {
         if (!order.rows[0]) {
-          return res.status(404).json({
-            message: 'order not found'
+          return res.status(400).json({
+            message: 'No orders found'
           });
         }
 
         return res.status(200).json({
-          data: {
-            name: order.rows[0].meal,
-            status: order.rows[0].status,
-            quantity: order.rows[0].quantity,
-            price: order.rows[0].price
-          }
+          data: order.rows
         });
       });
   }
@@ -87,7 +94,7 @@ class OrdersControllers {
       .then((order) => {
         if (!order.rows[0]) {
           return res.status(404).json({
-            message: 'order not found'
+            message: 'Order not found'
           });
         }
 
@@ -117,7 +124,7 @@ class OrdersControllers {
       .then((checkOrder) => {
         if (!checkOrder.rows[0]) {
           return res.status(404).json({
-            message: 'order not found'
+            message: 'Order not found'
           });
         }
         db.query(queryUpdateRequest)
@@ -131,15 +138,12 @@ class OrdersControllers {
             }
           }))
           .catch(() => res.status(500).json({
-            message: 'server error'
+            message: 'Server error'
           }));
-      });
-  }
-
-  deleteOrder(req, res) {
-    const index = orders.indexOf();
-    orders.splice(index, 1);
-    return res.status(201).json({ message: 'order deleted successfully!' });
+      })
+      .catch(() => res.status(500).json({
+        message: 'Server error'
+      }));
   }
 }
 

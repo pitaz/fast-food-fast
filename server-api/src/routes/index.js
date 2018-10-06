@@ -1,7 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import od from './orders';
-import ml from './meals';
+import ml from './menu';
 import usr from './users';
 import nf from './routeNotFound';
 

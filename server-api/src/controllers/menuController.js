@@ -3,7 +3,7 @@ import meals from '../sampleData/mealsStorage';
 import db from '../db/dbConnection';
 
 
-class MealsControllers {
+class MenuControllers {
   createMenu(req, res) {
     const { body } = req;
     const menuName = body.name.trim();
@@ -34,26 +34,34 @@ class MealsControllers {
     db.query(query)
       .then((menu) => {
         if (!menu.rows[0]) {
-          return res.status(404).json({
+          return res.status(400).json({
             message: 'menu unavailable'
           });
         }
 
         return res.status(200).json({
-          data: {
-            name: menu.rows[0].name,
-            decription: menu.rows[0].desc,
-            image: menu.rows[0].image,
-            price: menu.rows[0].price
-          }
+          data: menu.rows
         });
       });
   }
 
   getMealById(req, res) {
-    const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
-    if (!meal) res.status(404).json({ message: 'Meal not found' });
-    return res.status(200).send(meal);
+    const { params } = req;
+    const menuId = params.id;
+    const query = 'SELECT * FROM menu WHERE id = $1';
+    const values = [menuId];
+    db.query(query, values)
+      .then((menu) => {
+        if (!menu.rows[0]) {
+          return res.status(404).json({
+            message: 'Menu not found'
+          });
+        }
+
+        return res.status(200).json({
+          data: menu.rows
+        });
+      });
   }
 
   updateMeal(req, res) {
@@ -73,5 +81,5 @@ class MealsControllers {
   }
 }
 
-const mealsControllers = new MealsControllers();
-export default mealsControllers;
+const menuControllers = new MenuControllers();
+export default menuControllers;

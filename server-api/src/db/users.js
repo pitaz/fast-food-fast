@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs';
 import pgclient from './dbConnection';
 
-
-const passwordHash = bcrypt.hash(process.env.ADMIN_PASS, 10);
+const password = 'fastadmin';
+const hash = bcrypt.hashSync(password, 10);
 const email = process.env.ADMIN_EMAIL;
 const name = process.env.ADMIN_NAME;
 
@@ -18,11 +18,11 @@ const createUsersTB = (client) => {
         "dateCreated" TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
     );
     INSERT INTO "users" (role, name, email, password)
-    VALUES ('admin','${name}', '${email}','${passwordHash}')`;
+    VALUES ('admin','${name}', '${email}','${hash}')`;
 
   client.query(query)
     .then(res => res)
-    .catch(e => e.message);
+    .catch(e => e);
 };
 
 createUsersTB(pgclient);
