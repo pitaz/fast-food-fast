@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fast food fast</title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/admin.css">
 
 </head>
 <body>
@@ -12,7 +12,7 @@
     <div class="nav">
         <div class="nav-brand">
             <i class="fa fa-bars menu-icon" ></i>
-            <a href="../index.html">Fast food</a>
+            <a href="../index.html"><img src="../images/logo-1.png" /></a>
         </div>
         <div class="right">
             <div class="nav-items dropdown">
@@ -38,62 +38,91 @@
 <!--sidebar ends-->
 <!--Main content-->
  <p class="menu-text">Orders</p>
-<select name="filter" id="filter">
+<!-- <select name="filter" id="filter">
     <option value="0">All</option>
     <option value="1">Pending</option>
     <option value="2">Complete</option>
     <option value="3">Accepted</option>
     <option value="4">Rejected</option>
-</select>
- <div class="table-w">
-        <table>
-                <tr>
-                    <th>S/N</th>
-                    <th>Order name</th>
-                    <th>Order number</th>
-                    <th>Purchased by</th>
-                    <th>Amount</th>
-                    <th>Status</th>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Jollof rice + Fried chicken</td>
-                    <td>14587220</td>
-                    <td>Peter</td>
-                    <td>NGN2,000</td>
-                    <td>Pending</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Fried Rice & Assorted meat</td>
-                    <td>12546822</td>
-                    <td>Lois</td>
-                    <td>NGN1,500</td>
-                    <td>Completed</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Egusi & Semovita</td>
-                    <td>1542245</td>
-                    <td>Joe</td>
-                    <td>NGN1,000</td>
-              <td>Pending</td>
-                </tr>
-            </table>
+</select> -->
+<div class="table-wrapper">
+        <div class="table">
+            <div class="table-header">
+                <div class="table-cell">
+                S/N
+                </div>
+                <div class="table-cell">
+                        Name
+                </div>
+                <div class="table-cell">
+                        Purchased by
+                </div>
+                <div class="table-cell">
+                    Amount
+            </div>
+            <div class="table-cell">
+                    Status
+            </div>
+            <div class="table-cell">
+                    Action
+            </div>
+            <div class="table-cell">
+                    Complete
+            </div>
+        </div>
+        <div class="table-row">
+                <div class="table-cell">
+                    1
+                </div>
+                <div class="table-cell">
+                        Jollof rice
+                </div>
+                <div class="table-cell">
+                        Peter
+                </div>
+                <div class="table-cell">
+                        NGN 1,500
+                </div>
+                <div class="table-cell">
+                        New
+                    </div>
+                    <div class="table-cell">
+                        <a class="tb-btn success" href="#">Accept</a> <a
+                        class="tb-btn danger" href="#">Reject</a>
+                    </div>
+                    <div class="table-cell">
+                        <Input type="checkbox"/>
+                    </div>
+            </div>
 
-    </div>
-    <!--pagination-->
-    <div class="pagination">
-        <a href="#">&laquo;</a>
-        <a href="#">1</a>
-        <a class="active" href="#">2</a>
-        <a href="#">3</a>
-        <a href="#">4</a>
-        <a href="#">5</a>
-        <a href="#">6</a>
-        <a href="#">&raquo;</a>
-    </div>
-    <footer><p>Designed by Peter Odekwo</p></footer>
+            <div class="table-row">
+                <div class="table-cell">
+                    2
+                </div>
+                <div class="table-cell">
+                        Jollof rice
+                </div>
+                <div class="table-cell">
+                        Peter
+                </div>
+                <div class="table-cell">
+                        NGN 1,500
+                </div>
+                <div class="table-cell">
+                        New
+                </div>
+                <div class="table-cell">
+                        <a class="tb-btn success" href="#">Accept</a> <a
+                        class="tb-btn danger" href="#">Reject</a>
+                </div>
+                <div class="table-cell">
+                        <Input type="checkbox"/>
+                    </div>
+            </div>
+        </div>
+</div>
+</div>
+<footer><p>Designed by Peter Odekwo</p></footer>
     <script src="../js/main.js"></script>
 </body>
 </html>

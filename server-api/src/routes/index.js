@@ -15,7 +15,5 @@ od.Orders(router);
 usr.users(router);
 nf.notFound(router);
 
-// router.use('/api/v1/', users);
-
 
 export default router;

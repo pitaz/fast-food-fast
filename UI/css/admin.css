@@ -1,12 +1,16 @@
- *{
+*{
     box-sizing: border-box;
     margin: 0;
+}
+
+body{
+    width: 100%;
 }
 
 .nav{
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     background-color: #333;
     position: fixed;
     top: 0;
@@ -138,7 +142,7 @@
     padding: 20px;
     font-size: 32px;
     font-style: normal;
-    margin-top: 100px
+    margin-top: 120px
 }
 .menu-services-txt{
     text-align: justify;
@@ -158,10 +162,19 @@
 
 .table-wrapper{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     margin: 10px;
     align-items: center;
+    width: 80
+}
+
+.filter-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin: 10px;
+    align-items: flex-start;
     width: 80
 }
 
@@ -184,22 +197,6 @@
     border: none;
     outline: 0;
     display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: rgb(175, 22, 22);
-    text-align: center;
-    cursor: pointer;
-    width: 40%;
-    font-size: 18px;
-    margin: 20px; 
-    font-family: 'Caviar Dreams', sans-serif;
-}
-
-.button{
-    border: none;
-    outline: 0;
-    display: inline-block;
-    text-decoration: none;
     padding: 8px;
     color: white;
     background-color: rgb(175, 22, 22);
@@ -268,15 +265,12 @@
 .content-01 p span {
   background-color: #333
 }
-.table-w {
-    overflow-x:auto;
-}
 
-table {
-    display: table;
-    /* width: 80%; */
-    border: 1px solid black;
-}
+/* .table {
+    border-collapse: collapse;
+    width: 90%;
+    margin:auto;
+} */
 
 th, td {
     text-align: left;
@@ -405,7 +399,10 @@ button:hover, a:hover {
 footer{
     background-color: rgb(209, 209, 209);
     width: 100%;
+    position: absolute;
+    margin-top:auto;
     bottom: 0;
+    /* position: fixed */
 }
 footer p{
     color: #000;
@@ -422,7 +419,6 @@ select[name=filter] {
     font-size: 1.0rem;
     border-radius: 3px;
     padding: 5px;
-    margin-left: 155px;
     font-family: "Caviar Dreams", sans-serif;
   }
 .dropdown {
@@ -465,9 +461,10 @@ select[name=filter] {
 }
 
 .table{
-    display: table;
-    /* width: 80%; */
-    border: 1px solid black;
+display: table;
+width: 70%;
+transform: 0.7s ease;
+border: 1px solid black;
 }
 .table-header{
     display: table-row;
@@ -481,6 +478,8 @@ select[name=filter] {
 }
 .table-cell{
     display: table-cell;
+    padding: 5px;
+      border-bottom: 1px solid black; 
 }
 .nav .nav-brand img{
     width: 120px;
@@ -491,6 +490,7 @@ select[name=filter] {
       visibility: hidden;
       display: none;
       }
+      
       .nav .nav-brand img{
           width: 80px;
           transition: 0.7s
@@ -527,6 +527,10 @@ select[name=filter] {
   
   @media only screen and (max-width: 870px) {
   
+    .table{
+        width: 100%;
+        transform: 0.7s ease;
+    }
       .nav .nav-items a{
           visibility: hidden;
           display: none;
