@@ -1,4 +1,4 @@
- *{
+*{
     box-sizing: border-box;
     margin: 0;
 }
@@ -6,7 +6,7 @@
 .nav{
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
+    justify-content: space-between;
     background-color: #333;
     position: fixed;
     top: 0;
@@ -184,22 +184,6 @@
     border: none;
     outline: 0;
     display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: rgb(175, 22, 22);
-    text-align: center;
-    cursor: pointer;
-    width: 40%;
-    font-size: 18px;
-    margin: 20px; 
-    font-family: 'Caviar Dreams', sans-serif;
-}
-
-.button{
-    border: none;
-    outline: 0;
-    display: inline-block;
-    text-decoration: none;
     padding: 8px;
     color: white;
     background-color: rgb(175, 22, 22);
