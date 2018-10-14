@@ -101,7 +101,7 @@ describe('Tests for User Signin/signup', () => {
         password: 'password'
       })
       .end((err, res) => {
-        expect(res.body.message).to.equal('invalid credentials entered');
+        expect(res.body.message).to.equal('Unable to login');
         expect(res).to.have.status(422);
         done();
       });

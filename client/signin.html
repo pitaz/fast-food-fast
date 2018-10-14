@@ -22,26 +22,29 @@
     </div>
     <!--Content wrapper-->
     <div class="wrapper card">
-            <form>
-                <div class="card-header">
-                    <p>User Login</p>
-                </div>
-                <div class="card-content">
-                    <label><b>Email</b></label>
-                    <input type="email" placeholder="Enter Email" name="email" required>
-    
-                    <label><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
-    
-                    <button type="submit">Login</button>
-    
-                    <h5>Not yet Registered? <a href="signup.html">Register</a> </h5>
-                </div>
-    
-    
-            </form>
+        <div class="error-cont" id="error">
+                <span id="closebtn">&times;</span> 
+            <p id="error-message"></p>
+        </div>
+        <form name="form" method="POST">
+            <div class="card-header">
+                <p>User Login</p>
+            </div>
+            <div class="card-content">
+                <label><b>Email</b></label>
+                <input type="email" placeholder="Enter Email" name="email" required>
+                <p class="error"></p>
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+                <p class="error"></p>
+                <button type="submit">Login</button>
+
+                <h5>Not yet Registered? <a href="signup.html">Register</a> </h5>
+            </div>
+        </form>
         </div>
 </div>
 <script src="js/main.js"></script>
+<script src="js/signin.js"></script>
 </body>
 </html>
