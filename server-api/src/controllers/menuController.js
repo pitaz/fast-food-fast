@@ -16,6 +16,7 @@ class MenuControllers {
 
     db.query(query, values)
       .then(menu => res.status(201).json({
+        status: 'success',
         message: 'menu created successfully!',
         data: {
           name: menu.rows[0].name,
@@ -25,6 +26,7 @@ class MenuControllers {
         }
       }))
       .catch(() => res.status(500).json({
+        status: 'fail',
         message: 'server error'
       }));
   }
