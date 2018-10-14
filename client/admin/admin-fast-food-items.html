@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast food fast</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/admin.css">
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <div class="nav-brand">
+            <i class="fa fa-bars menu-icon" ></i>
+            <a href="../index.html"><img src="../images/logo-1.png" /></a>
+        </div>
+        <div class="right">
+            <div class="nav-items dropdown">
+                <a href="#" class="dropdown-btn"><i class="fa fa-user" > </i> Admin  <i class="fa fa-caret-down" > </i></a>
+                <div class="dropdown-content">
+                    <a href="../food-menu.html">Menu</a>
+                    <a href="./admin-all-orders.html">Orders</a>
+                    <a href="./admin-fast-food-items.html">Food Items</a>
+                    <a href="./admin-add-food.html">Add Food Item</a>
+                    <a href="../signin.html"> Logout</a>
+                </div>
+            </div>
+        </div> 
+    </div>
+<!--sidebar -->
+<div id="mySidebar" class="sidebar ">
+    <a href="../food-menu.html">Menu</a>
+    <a href="./admin-all-orders.html">Orders</a>
+    <a href="./admin-fast-food-items.html">Food Items</a>
+    <a href="./admin-add-food.html">Add Food Item</a>
+    <a href="../signin.html"> Logout</a>
+</div>
+<!--sidebar ends-->
+<!--Main content-->
+ <p class="menu-text">Fast Food Items</p>
+ <!-- <a
+ class="tb-btn danger" href="#" style="margin-left:205px">Delete</a> -->
+ <div class="table-wrapper">
+        <div class="table">
+            <div class="table-header">
+                <div class="table-cell">
+                S/N
+                </div>
+                <div class="table-cell">
+                        Name
+                </div>
+                <div class="table-cell">
+                    Description
+            </div>
+            <div class="table-cell">
+                    Amount
+            </div>
+            <div class="table-cell">
+                    Action
+            </div>
+        </div>
+        <div class="table-row">
+                <div class="table-cell">
+                    1
+                </div>
+                <div class="table-cell">
+                        Jollof rice
+                </div>
+                <div class="table-cell">
+                        Lorem ipsum
+                </div>
+                <div class="table-cell">
+                        NGN 1,500
+                </div>
+                <div class="table-cell">
+                    <a class="tb-btn success" href="admin-edit-food.html">Edit</a> <a
+                    class="tb-btn danger" href="#">Delete</a>
+                </div>
+        </div>
+
+        <div class="table-row">
+                <div class="table-cell">
+                    2
+                </div>
+                <div class="table-cell">
+                        Jollof rice
+                </div>
+                <div class="table-cell">
+                        Lorem ipsum
+                </div>
+                <div class="table-cell">
+                        NGN 1,500
+                </div>
+                <div class="table-cell">
+                    <a class="tb-btn success" href="admin-edit-food.html">Edit</a> <a
+                    class="tb-btn danger" href="#">Delete</a>
+                </div>
+        </div>
+        </div>
+</div>
+    <footer><p>Designed by Peter Odekwo</p></footer>
+    <script src="../js/main.js"></script>
+</body>
+</html>

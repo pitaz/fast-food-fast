@@ -1,0 +1,191 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background: url(../images/chicken-dinner-dish-236781.jpg) no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+@font-face {
+    font-family: Calligraffiti;
+    src: url(../fonts/Calligraffiti.ttf);
+}
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+.nav-items{
+    flex-grow: 0;
+}
+.nav > .nav-brand{
+    text-align: center;
+    padding: 5px 15px;
+    transition: 0.5s;
+    font-size: 35px;
+    font-family: "Caviar Dreams", serif;
+}
+.nav > .nav-brand a{
+    color: white;
+    text-decoration: none;
+    transition: 0.5s;
+    font-size: 35px;
+    font-family: "Caviar Dreams", serif;
+}
+
+.nav .nav-brand img{
+    width: 120px;
+    transition: 0.7s
+}
+
+.nav > .right{
+    display: flex;
+    flex-direction: row;
+    padding: 35px 10px;
+}
+
+.nav > .right a{
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    margin-right: 15px;
+    transition: 0.5s;
+    font-size: 16px;
+    font-family: "Caviar Dreams", serif;
+}
+
+.wrapper {
+    width: 35%;
+    padding: 10px 5px;
+    margin: 150px auto;
+    transition: 0.7s ease;
+}
+
+input[type=text], input[type=password],input[type=email] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+label{
+    color: white;
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    background-color: rgba(54, 53, 53, 0.993);
+}
+
+.card-header {
+    font-family: Calligraffiti, sans-serif;
+    text-align: center;
+    margin: 5px 0 3px 0;
+}
+
+.card-header p {
+    color: #fff;
+    font-size: 35px;
+    margin-bottom: 10px;
+    font-family: "Caviar Dreams", sans-serif;
+}
+
+.card-content {
+    padding: 0 16px;
+}
+.card-content h5{
+    font-family: "Caviar Dreams", sans-serif;
+    color: white;
+}
+
+.card-content a{
+    color: red;
+}
+
+
+label{
+    font-family: "Caviar Dreams", sans-serif;
+}
+button {
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+button:hover, a:hover {
+    opacity: 0.7;
+}
+
+.error-cont {
+    display: none;
+    padding: 20px;
+    background-color: #f44336;
+    color: #ffffff;
+    font-family: "Caviar Dreams", sans-serif
+}
+
+#closebtn{
+float: right;
+color: white;
+transition: 0.3s ease
+}
+
+#closebtn:hover{
+    font-size: px;
+    cursor: pointer;
+}
+
+.error{
+    color:rgb(255, 0, 0);
+    font-size: 15px;
+    padding: 10px; 
+    font-family: sans-serif
+}
+@media screen and (max-width: 600px) {
+
+    .nav .nav-brand img{
+        width: 80px;
+        transition: 0.7s
+    }
+    
+    .nav .nav-items a{
+        visibility: hidden;
+        display: none;
+    }
+    .nav .brand a {
+
+        padding: 2px 5px;
+        margin: 5px 0 0 auto;
+        font-size: 25px;
+        font-family: Calligraffiti, serif;
+
+    }
+    
+    .wrapper {
+        width: 90%;
+        padding: 10px 5px;
+        transition: 0.7s ease;
+        margin: 120px auto;
+    }
+
+}
