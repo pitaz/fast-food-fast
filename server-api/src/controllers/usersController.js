@@ -32,6 +32,7 @@ class UsersControllers {
           .then((user) => {
             const authToken = generateToken.token(user.rows[0], process.env.JWT_SECRET);
             return res.status(201).json({
+              status: 'success',
               message: 'User created successfully!',
               data: {
                 id: user.rows[0].id,

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Fast food</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/login.css" />
+</head>
+<body> 
+<div class="container">
+    <div class="nav">
+        <div class="nav-brand">
+        <a href="./index.html"><img src="./images/logo-1.png" /></a>
+        </div>
+        <div class="right">
+            <div class="nav-items">
+                <a href="./signin.html">Signin</a>
+                <a href="./signup.html">Signup</a>
+            </div>
+        </div> 
+    </div>
+   
+    <div class="wrapper card">
+        <div class="error-cont" id="error">
+                <span id="closebtn">&times;</span> 
+            <p id="error-message"></p>
+        </div>
+        <form  name="form" method="GET">
+            <div class="card-header">
+                <p>User Sign up</p>
+            </div>
+            <div class="card-content">
+                <label><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="name" required>
+                <p class="error"></p>
+                <label><b>Email</b></label>
+                <input type="email" placeholder="Email" name="email" required>
+                <p class="error"></p>
+                <label><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="password" required>
+                <p class="error"></p>
+                <label><b>Confirm Password</b></label>
+                <input type="password" placeholder="Confirm Password" name="cpassword" required>
+                <p class="error"></p>
+                <button type="submit">Register</button>
+                <h5>Already Registered? <a href="signin.html">Sign In</a> </h5>
+            </div>
+        </form>
+        </div>
+</div>
+<script src="js/main.js"></script>
+</body>
+</html>
