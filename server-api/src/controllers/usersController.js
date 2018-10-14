@@ -43,7 +43,10 @@ class UsersControllers {
               }
             });
           })
-          .catch(err => console.log(err));
+          .catch(() => res.status(500).json({
+            status: 'fail',
+            message: 'Internal server error',
+          }));
       })
       .catch(() => res.status(500).json({
         message: 'Internal server error'
