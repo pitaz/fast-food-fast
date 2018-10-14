@@ -49,6 +49,7 @@ class UsersControllers {
           }));
       })
       .catch(() => res.status(500).json({
+        status: 'fail',
         message: 'Internal server error'
       }));
   }
@@ -72,7 +73,7 @@ class UsersControllers {
           .compareSync(body.password.trim(), response.rows[0].password);
         if (!checkPassword) {
           return res.status(422).json({
-            message: 'invalid credentials entered',
+            message: 'Unable to login',
           });
         }
 
@@ -85,6 +86,7 @@ class UsersControllers {
         }, process.env.JWT_SECRET);
 
         return res.status(200).json({
+          status: 'success',
           message: 'Signed in successfully',
           data: {
             role: response.rows[0].role,
@@ -95,6 +97,7 @@ class UsersControllers {
         });
       })
       .catch(() => res.status(500).json({
+        status: 'fail',
         message: 'Internal server error'
       }));
   }
