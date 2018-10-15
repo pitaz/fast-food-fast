@@ -36,68 +36,25 @@
 </div>
 <!--sidebar ends-->
 <!--Main content-->
- <p class="menu-text">Fast Food Items</p>
- <!-- <a
- class="tb-btn danger" href="#" style="margin-left:205px">Delete</a> -->
+ <p class="menu-text" id="menu">Fast Food Items</p>
+ 
  <div class="table-wrapper">
-        <div class="table">
-            <div class="table-header">
-                <div class="table-cell">
-                S/N
-                </div>
-                <div class="table-cell">
-                        Name
-                </div>
-                <div class="table-cell">
-                    Description
-            </div>
-            <div class="table-cell">
-                    Amount
-            </div>
-            <div class="table-cell">
-                    Action
-            </div>
-        </div>
-        <div class="table-row">
-                <div class="table-cell">
-                    1
-                </div>
-                <div class="table-cell">
-                        Jollof rice
-                </div>
-                <div class="table-cell">
-                        Lorem ipsum
-                </div>
-                <div class="table-cell">
-                        NGN 1,500
-                </div>
-                <div class="table-cell">
-                    <a class="tb-btn success" href="admin-edit-food.html">Edit</a> <a
-                    class="tb-btn danger" href="#">Delete</a>
-                </div>
-        </div>
+        <p id="error-text"></p>
+    <table class="table" id="tb">
+        <tr class="table-header">
+            <td class="table-cell">S/N</td>
+            <td class="table-cell">Name</td>
+            <td class="table-cell">Description</td>
+            <td class="table-cell">Amount</td>
+            <td class="table-cell">Action</td>
+        </tr>
+        <tr class="table-row" id="row">
 
-        <div class="table-row">
-                <div class="table-cell">
-                    2
-                </div>
-                <div class="table-cell">
-                        Jollof rice
-                </div>
-                <div class="table-cell">
-                        Lorem ipsum
-                </div>
-                <div class="table-cell">
-                        NGN 1,500
-                </div>
-                <div class="table-cell">
-                    <a class="tb-btn success" href="admin-edit-food.html">Edit</a> <a
-                    class="tb-btn danger" href="#">Delete</a>
-                </div>
-        </div>
-        </div>
+        </tr>
+    </table>
 </div>
     <footer><p>Designed by Peter Odekwo</p></footer>
     <script src="../js/main.js"></script>
+    <script src="../js/viewMenu.js"></script>
 </body>
 </html>

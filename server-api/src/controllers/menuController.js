@@ -37,12 +37,16 @@ class MenuControllers {
       .then((menu) => {
         if (!menu.rows[0]) {
           return res.status(400).json({
+            status: 'fail',
             message: 'menu unavailable'
           });
         }
 
         return res.status(200).json({
-          data: menu.rows
+          status: 'success',
+          data: {
+            items: menu.rows
+          }
         });
       });
   }
