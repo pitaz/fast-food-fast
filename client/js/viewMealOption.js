@@ -6,7 +6,7 @@ const saveId = (e) => {
   const { id } = e.target;
 
   localStorage.setItem('id', `${parseInt(id, 10)}`);
-  window.location.href = '/order-checkout.html';
+  window.location.href = '/place-order.html';
 };
 
 const menuItems = (row) => {

@@ -17,6 +17,7 @@ class OrdersControllers {
 
     db.query(createOrder, values)
       .then(order => res.status(201).json({
+        status: 'success',
         message: 'Order created successfully!',
         data: {
           name: order.rows[0].meal,
@@ -55,6 +56,7 @@ class OrdersControllers {
                 meal, quantity, price, status
               } = order.rows[0];
               return res.status(200).json({
+                status: 'success',
                 data: {
                   user: name,
                   food: meal,

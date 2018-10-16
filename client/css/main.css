@@ -415,6 +415,32 @@ button:hover, a:hover {
     cursor: pointer;
     border-radius: 2px;
 }
+
+.card-wrapper {
+    width: 40%;
+    padding: 10px 5px;
+    transition: 0.7s ease;
+    margin:55px auto;
+}
+
+.card-wrapper img{
+    width: 100%;
+    padding: 10px;
+}
+.card-wrapper h3, p, label{
+    font-family: "Caviar Dreams";
+    padding: 10px;
+}
+input[type=number] {
+    padding: 12px 20px;
+    width: 60%;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-family:sans-serif;
+}
+
 .danger {
     background-color: rgb(173, 24, 24);
 }
