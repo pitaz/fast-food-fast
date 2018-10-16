@@ -68,6 +68,7 @@ describe('Tests for menu API endpoints', () => {
     chai.request(app)
       .get('/api/v1/menu/1')
       .set('Content-Type', 'application/json')
+      .set('x-access-token', adminToken)
       .end((err, res) => {
         expect(res).to.have.status(200);
         done();

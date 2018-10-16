@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast food fast</title>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+</head>
+<body>
+<div class="container">
+    <div class="nav">
+        <div class="nav-brand">
+            <i class="fa fa-bars menu-icon" ></i>
+            <a href="./index.html"><img src="./images/logo-1.png" /></a>
+        </div>
+        <div class="left">
+                <div class="nav-items">
+                    <a href="./index.html">Home</a>
+                    <a href="./food-menu.html">Menu</a>
+                    <a href="#">Contact</a>
+                    <a href=".#">About</a>
+                </div>
+            </div> 
+        <div class="right">
+            <div class="nav-items">
+                <a href="./signin.html">Signin</a>
+                <a href="./signup.html">Signup</a>
+            </div>
+        </div> 
+    </div>
+<!--sidebar -->
+<div id="mySidebar" class="sidebar ">
+  <a href="./food-menu.html">Menu</a>
+  <a href="./ordered-food-user.html" >Order history</a>
+  <a href="./signin.html"> Logout</a>
+</div>
+<!--sidebar ends-->
+<!--Main content-->
+<div class="container">
+    <p class="menu-text">Order checkout</p>
+    <div class="card-wrapper card" id="checkout-section">
+            <div class="card-content">
+                <img id="image">
+                <h3 id="price"></h3>
+                <p id="meal"></p>
+                <label>Quantity</label>
+                <input type="number" min="1" id="qty">
+                <button id="btn">Place order</button>
+            </div>
+    </div>
+        
+</div>
+ 
+<footer><p>Designed by Peter Odekwo</p></footer>
+<script src="js/main.js"></script>
+<script src="js/placeOrder.js"></script>
+</body>
+</html>

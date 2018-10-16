@@ -89,6 +89,7 @@ class UsersControllers {
           status: 'success',
           message: 'Signed in successfully',
           data: {
+            id: response.rows[0].id,
             role: response.rows[0].role,
             email: response.rows[0].email,
             name: response.rows[0].name,

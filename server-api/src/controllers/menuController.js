@@ -60,12 +60,16 @@ class MenuControllers {
       .then((menu) => {
         if (!menu.rows[0]) {
           return res.status(404).json({
+            status: 'fail',
             message: 'Menu not found'
           });
         }
 
         return res.status(200).json({
-          data: menu.rows
+          status: 'success',
+          data: {
+            item: menu.rows[0]
+          }
         });
       });
   }
