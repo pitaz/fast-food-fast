@@ -38,91 +38,25 @@
 <!--sidebar ends-->
 <!--Main content-->
  <p class="menu-text">Orders</p>
-<!-- <select name="filter" id="filter">
-    <option value="0">All</option>
-    <option value="1">Pending</option>
-    <option value="2">Complete</option>
-    <option value="3">Accepted</option>
-    <option value="4">Rejected</option>
-</select> -->
 <div class="table-wrapper">
-        <div class="table">
-            <div class="table-header">
-                <div class="table-cell">
-                S/N
-                </div>
-                <div class="table-cell">
-                        Name
-                </div>
-                <div class="table-cell">
-                        Purchased by
-                </div>
-                <div class="table-cell">
-                    Amount
-            </div>
-            <div class="table-cell">
-                    Status
-            </div>
-            <div class="table-cell">
-                    Action
-            </div>
-            <div class="table-cell">
-                    Complete
-            </div>
-        </div>
-        <div class="table-row">
-                <div class="table-cell">
-                    1
-                </div>
-                <div class="table-cell">
-                        Jollof rice
-                </div>
-                <div class="table-cell">
-                        Peter
-                </div>
-                <div class="table-cell">
-                        NGN 1,500
-                </div>
-                <div class="table-cell">
-                        New
-                    </div>
-                    <div class="table-cell">
-                        <a class="tb-btn success" href="#">Accept</a> <a
-                        class="tb-btn danger" href="#">Reject</a>
-                    </div>
-                    <div class="table-cell">
-                        <Input type="checkbox"/>
-                    </div>
-            </div>
-
-            <div class="table-row">
-                <div class="table-cell">
-                    2
-                </div>
-                <div class="table-cell">
-                        Jollof rice
-                </div>
-                <div class="table-cell">
-                        Peter
-                </div>
-                <div class="table-cell">
-                        NGN 1,500
-                </div>
-                <div class="table-cell">
-                        New
-                </div>
-                <div class="table-cell">
-                        <a class="tb-btn success" href="#">Accept</a> <a
-                        class="tb-btn danger" href="#">Reject</a>
-                </div>
-                <div class="table-cell">
-                        <Input type="checkbox"/>
-                    </div>
-            </div>
-        </div>
+        <p id="error-text"></p>
+        <table class="table" id="tb">
+            <tr class="table-header">
+                <td class="table-cell">S/N</td>
+                <td class="table-cell">Order</td>
+                <td class="table-cell">Amount</td>
+                <td class="table-cell">Qty</td>
+                <td class="table-cell">Status</td>
+                <td class="table-cell">Action</td>
+            </tr>
+            <tr class="table-row" id="row">
+    
+            </tr>
+        </table>
 </div>
 </div>
 <footer><p>Designed by Peter Odekwo</p></footer>
     <script src="../js/main.js"></script>
+    <script src="../js/adminViewOrders.js"></script>
 </body>
 </html>

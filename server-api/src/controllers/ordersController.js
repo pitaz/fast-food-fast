@@ -62,13 +62,18 @@ class OrdersControllers {
     db.query(query)
       .then((order) => {
         if (!order.rows[0]) {
-          return res.status(400).json({
+          return res.status(404).json({
+            status: 'fail',
             message: 'No orders found'
           });
         }
 
         return res.status(200).json({
-          data: order.rows
+          status: 'success',
+          data:
+          {
+            items: order.rows
+          }
         });
       });
   }
