@@ -38,36 +38,22 @@ class OrdersControllers {
     const query = 'SELECT * FROM orders WHERE "userId" = $1';
     const value = [userId];
 
-    const query2 = `SELECT name FROM users WHERE id = '${userId}'`;
-
     db.query(query, value)
       .then((order) => {
         if (!order.rows[0]) {
           return res.status(404).json({
+            status: 'fail',
             message: 'You have no order history!'
           });
         }
 
-        db.query(query2)
-          .then((user) => {
-            if (user.rows[0]) {
-              const { name } = user.rows[0];
-              const {
-                meal, quantity, price, status
-              } = order.rows[0];
-              return res.status(200).json({
-                status: 'success',
-                data: {
-                  user: name,
-                  food: meal,
-                  quant: quantity,
-                  orderPrice: price,
-                  orderStatus: status
-                }
-              });
-            }
-          })
-          .catch();
+
+        return res.status(200).json({
+          status: 'success',
+          data: {
+            items: order.rows
+          }
+        });
       });
   }
 

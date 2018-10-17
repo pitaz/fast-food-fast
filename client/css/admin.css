@@ -70,31 +70,6 @@ body{
     font-family: "Caviar Dreams", serif;
 }
 
-.jumbo-section {
-    position: relative;
-    margin: auto;
-    transition: 0.7s ease;
-}
-
-.jb-content-wrapper {
-    transition: 0.7s ease;
-}
-
-.jb-content-wrapper img{
-    width: 100%;
-}
-
-.jb-content-wrapper p {
-    color: #f2f2f2;
-    font-size: 3.438em;
-    padding: 8px 12px;
-    position: absolute;
-    top: 300px;
-    width: 100%;
-    text-align: center;
-    transition: 0.7s;
-    font-family: "Caviar Dreams", sans-serif;
-}
 .sidebar{
     width: 250px;
     height: 100%;
@@ -144,14 +119,7 @@ body{
     font-style: normal;
     margin-top: 120px
 }
-.menu-services-txt{
-    text-align: justify;
-    font-family: 'Caviar Dreams', sans-serif;
-    padding: 20px;
-    font-size: 18px;
-    font-style: normal;
-    margin-top: 10px
-}
+
 
 .grid-wrapper{
     display: flex;
@@ -164,117 +132,20 @@ body{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 10px;
     align-items: center;
-    width: 80
 }
 
-.filter-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    margin: 10px;
-    align-items: flex-start;
-    width: 80
-}
-
-.order-details img{
-    width: 90%;
-    height: 250px;
-    border-radius: 20px;
-    padding: 10px 5px;
-    margin: 0 10px auto;
-}
-.order-details h3{
-    font-family: 'Caviar Dreams', sans-serif;
-    padding: 10px 20px 0;
-}
-.order-details p{
-    font-family: 'Caviar Dreams', sans-serif;
-    padding: 20px 20px 0;
-}
-.order-details button{
-    border: none;
-    outline: 0;
-    display: inline-block;
-    padding: 8px;
-    color: white;
-    background-color: rgb(175, 22, 22);
-    text-align: center;
-    cursor: pointer;
-    width: 40%;
-    font-size: 18px;
-    margin: 20px; 
-    font-family: 'Caviar Dreams', sans-serif;
-}
-
-.welcome-cnt{
-    margin:50px 20px 50px 20px
-}
-.msg{
+.table{
+    display: table;
     width: 80%;
-    display: flex;
-    flex-direction: column;
+    transform: 0.7s ease;
     margin: auto;
-}
-.welcome-msg  img{
-    width: 30%;
-    height: 250px;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: row;
-    padding: 15px 10px;
-}
-
-.welcome-msg #header {
-    font-size: 38px;
-    text-align: center;
-    font-family: 'Lucida Calligraphy', serif;
-    color: red
-}
-
-.welcome-msg #msg-body {
-    text-align: center;
-    font-family: 'Caviar Dreams', sans-serif;
-    padding: 20px
-}
-
-.welcome-msg #sub-header {
-    font-size: 28px;
-    text-align: center;
-    font-family: 'Caviar Dreams', sans-serif
-}
-.parallax {
-    min-height: 300px;
-    width: 100%;
-    background: url("../images/beef-bread-burger-156114.jpg") no-repeat fixed center;
-    background-size: cover;
-}
-.parallax2 {
-    min-height: 300px;
-    width: 100%;
-    background: url("../images/blur-breakfast-chef-262978.jpg") no-repeat fixed center;
-    background-size: cover;
-}
-.content-01 p {
-    text-align: center;
-    font-size: 35px;
-    padding: 50px;
-    color: #fff;
-}
-.content-01 p span {
-  background-color: #333
-}
-
-/* .table {
-    border-collapse: collapse;
-    width: 90%;
-    margin:auto;
-} */
+    border: #000 solid 1px
+    }
 
 th, td {
     text-align: left;
-    padding: 18px;
+    padding: 10px;
 }
 tr:nth-child(even){
     background-color: #f2f2f2
@@ -284,26 +155,7 @@ th {
     background-color: #af1e17;
     color: white;
 }
-.pagination{
-    border-collapse: collapse;
-    width: 80%;
-    margin: 20px auto;
-}
 
-.pagination a {
-    color: black;
-    float: left;
-    padding: 8px 18px;
-    text-decoration: none;
-    transition: background-color .3s;
-}
-
-.pagination a.active {
-    background-color: #af1e17;
-    color: white;
-}
-
-.pagination a:hover:not(.active) {background-color: #ddd;}
 input[type=text], input[type=password],input[type=email],input[type=file] {
     width: 100%;
     padding: 12px 20px;
@@ -400,9 +252,7 @@ footer{
     background-color: rgb(209, 209, 209);
     width: 100%;
     position: absolute;
-    margin-top:auto;
     bottom: 0;
-    /* position: fixed */
 }
 footer p{
     color: #000;
@@ -410,7 +260,6 @@ footer p{
     font-weight: 600;
     padding: 1.6rem;
     text-align: center;
-    bottom: 0;
     font-family: "Caviar Dreams", sans-serif;
 }
   
@@ -461,12 +310,7 @@ select[name=filter] {
     display: block;
 }
 
-.table{
-display: table;
-width: 70%;
-transform: 0.7s ease;
-border: 1px solid black;
-}
+
 .table-header{
     display: table-row;
     background-color: #af1e17;
@@ -479,8 +323,6 @@ border: 1px solid black;
 }
 .table-cell{
     display: table-cell;
-    padding: 5px;
-      border-bottom: 1px solid black; 
 }
 .nav .nav-brand img{
     width: 120px;
@@ -496,18 +338,6 @@ border: 1px solid black;
           width: 80px;
           transition: 0.7s
       }
-    
-      .jb-content-wrapper p {
-        color: #f2f2f2;
-        font-size: 3.0em;
-        padding: 8px 12px;
-        position: absolute;
-        top: 100px;
-        width: 100%;
-        text-align: center;
-        transition: 0.7s;
-        font-family: "Caviar Dreams", sans-serif;
-    }
   
   .sidebar {
       left: -250px;
@@ -528,17 +358,21 @@ border: 1px solid black;
   
   @media only screen and (max-width: 870px) {
   
+    .table-wrapper{
+        padding: 5px;
+    }
     .table{
         width: 100%;
         transform: 0.7s ease;
+        margin: auto;
+    }
+    th, td {
+        text-align: left;
+        padding: 2px;
     }
       .nav .nav-items a{
           visibility: hidden;
           display: none;
-      }
-      .welcome-img {
-          width: 100px;
-          margin:5px 0 auto;
       }
       .grid-wrapper{
         display: flex;
@@ -553,12 +387,4 @@ border: 1px solid black;
         margin: 70px auto;
     }
       
-  }
-  
-  @media only screen and (max-width: 525px) {
-  
-     .jumbo-section .jb-content-wrapper p{
-         font-size: large;
-     }
-  
   }
