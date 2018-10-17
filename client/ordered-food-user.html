@@ -29,64 +29,25 @@
 </div>
 <!--sidebar ends-->
 <!--Main content-->
- <p class="menu-text">Ordered Food</p>
+ <p class="menu-text">Order history</p>
  <div class="table-wrapper">
-        <div class="table">
-            <div class="table-header">
-                <div class="table-cell">
-                S/N
-                </div>
-                <div class="table-cell">
-                        Name
-                </div>
-                <div class="table-cell">
-                        Order Id
-                </div>
-                <div class="table-cell">
-                    Amount
-            </div>
-            <div class="table-cell">
-                    Status
-            </div>
-        </div>
-        <div class="table-row">
-                <div class="table-cell">
-                    1
-                </div>
-                <div class="table-cell">
-                        Jollof rice
-                </div>
-                <div class="table-cell">
-                       010
-                </div>
-                <div class="table-cell">
-                        NGN 1,500
-                </div>
-                <div class="table-cell">
-                        New
-                </div>
-            </div>
-
-            <div class="table-row">
-                <div class="table-cell">
-                    2
-                </div>
-                <div class="table-cell">
-                        Jollof rice
-                </div>
-                <div class="table-cell">
-                        023
-                </div>
-                <div class="table-cell">
-                        NGN 1,500
-                </div>
-                <div class="table-cell">
-                        Completed
-                </div>
-            </div>
-        </div>
+        <p id="error-text"></p>
+        <table class="table" id="tb">
+            <tr class="table-header">
+                <td class="table-cell">S/N</td>
+                <td class="table-cell">Order</td>
+                <td class="table-cell">OrderID</td>
+                <td class="table-cell">Amount</td>
+                <td class="table-cell">Quantity</td>
+                <td class="table-cell">Status</td>
+            </tr>
+            <tr class="table-row" id="row">
+    
+            </tr>
+        </table>
 </div>
 <footer><p>Designed by Peter Odekwo</p></footer>
 <script src="js/main.js"></script>
+<script src="js/orderHistory.js"></script>
 </body>
 </html>
