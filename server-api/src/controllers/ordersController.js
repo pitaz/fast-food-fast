@@ -117,11 +117,13 @@ class OrdersControllers {
       .then((checkOrder) => {
         if (!checkOrder.rows[0]) {
           return res.status(404).json({
+            status: 'fail',
             message: 'Order not found'
           });
         }
         db.query(queryUpdateRequest)
           .then(order => res.status(201).json({
+            status: 'success',
             message: 'Order updated successfully!',
             data: {
               name: order.rows[0].meal,

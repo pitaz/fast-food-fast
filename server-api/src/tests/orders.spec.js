@@ -129,10 +129,12 @@ describe('Tests for Orders API endpoints', () => {
       .put('/api/v1/orders/50')
       .set('Content-Type', 'application/json')
       .set('x-access-token', adminToken)
-      .send()
+      .send({
+        status: 'new'
+      })
       .end((err, res) => {
         expect(res).to.have.status(404);
-        expect(res.body.message).to.equal('order not found');
+        expect(res.body.message).to.equal('Order not found');
         done();
       });
   });

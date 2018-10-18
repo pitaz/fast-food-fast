@@ -2,6 +2,110 @@
 const errorMsg = document.getElementById('error-text');
 const tableRow = document.getElementById('tb');
 
+const acceptOrder = (e) => {
+  const token = localStorage.getItem('token');
+  const { id } = e.target;
+
+  const data = {
+    status: 'processing'
+  };
+
+  const options = {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json',
+      'x-access-token': token
+    }
+  };
+
+  const url = `/api/v1/orders/${id}`;
+
+  fetch(url, options)
+    .then((res) => {
+      if (res.status === 404) {
+        closeBtn.parentElement.style.display = 'block';
+        errorMsg.innerText = res.message;
+      }
+      return res.json();
+    })
+    .then((res) => {
+      if (res.status === 'success') {
+        window.location.href = '/admin/admin-all-orders.html';
+      }
+    })
+    .catch(err => err.message);
+};
+
+const declineOrder = (e) => {
+  const token = localStorage.getItem('token');
+  const { id } = e.target;
+
+  const data = {
+    status: 'cancelled'
+  };
+
+  const options = {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json',
+      'x-access-token': token
+    }
+  };
+
+  const url = `/api/v1/orders/${id}`;
+
+  fetch(url, options)
+    .then((res) => {
+      if (res.status === 404) {
+        closeBtn.parentElement.style.display = 'block';
+        errorMsg.innerText = res.message;
+      }
+      return res.json();
+    })
+    .then((res) => {
+      if (res.status === 'success') {
+        window.location.href = '/admin/admin-all-orders.html';
+      }
+    })
+    .catch(err => err.message);
+};
+
+const completeOrder = (e) => {
+  const token = localStorage.getItem('token');
+  const { id } = e.target;
+
+  const data = {
+    status: 'completed'
+  };
+
+  const options = {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-type': 'application/json',
+      'x-access-token': token
+    }
+  };
+
+  const url = `/api/v1/orders/${id}`;
+
+  fetch(url, options)
+    .then((res) => {
+      if (res.status === 404) {
+        closeBtn.parentElement.style.display = 'block';
+        errorMsg.innerText = res.message;
+      }
+      return res.json();
+    })
+    .then((res) => {
+      if (res.status === 'success') {
+        window.location.href = '/admin/admin-all-orders.html';
+      }
+    })
+    .catch(err => err.message);
+};
 
 const tableItems = (row) => {
   const tr = document.createElement('tr');
@@ -12,7 +116,7 @@ const tableItems = (row) => {
   const status = document.createElement('td');
   const action = document.createElement('td');
   const accept = document.createElement('a');
-  const reject = document.createElement('a');
+  const decline = document.createElement('a');
   const complete = document.createElement('a');
 
   tr.classList.add('table-row');
@@ -23,7 +127,7 @@ const tableItems = (row) => {
   status.classList.add('table-cell');
   action.classList.add('table-cell');
   accept.classList.add('tb-btn', 'success');
-  reject.classList.add('tb-btn', 'danger');
+  decline.classList.add('tb-btn', 'danger');
   complete.classList.add('tb-btn');
 
 
@@ -33,13 +137,19 @@ const tableItems = (row) => {
   qty.innerHTML = row.quantity;
   status.innerHTML = row.status;
   accept.innerHTML = 'Accept';
-  reject.innerHTML = 'Decline';
+  decline.innerHTML = 'Decline';
   complete.innerHTML = 'Complete';
 
   accept.setAttribute('id', `${row.id}`);
-  reject.setAttribute('id', `${row.id}`);
+  decline.setAttribute('id', `${row.id}`);
+  complete.setAttribute('id', `${row.id}`);
+
+  accept.addEventListener('click', acceptOrder);
+  decline.addEventListener('click', declineOrder);
+  complete.addEventListener('click', completeOrder);
+
   action.appendChild(accept);
-  action.appendChild(reject);
+  action.appendChild(decline);
   action.appendChild(complete);
 
   tr.appendChild(sn);
