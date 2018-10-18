@@ -125,25 +125,27 @@ describe('Tests for menu API endpoints', () => {
       });
   });
 
-  // it('should delete a meal option', (done) => {
-  //   chai.request(app)
-  //     .delete('/api/v1/menu/1')
-  //     .set('Content-Type', 'application/json')
-  //     .end((err, res) => {
-  //       expect(res).to.have.status(201);
-  //       expect(res.body.message).to.equal('meal deleted successfully!');
-  //       done();
-  //     });
-  // });
+  it('should delete a meal option', (done) => {
+    chai.request(app)
+      .delete('/api/v1/menu/1')
+      .set('Content-Type', 'application/json')
+      .set('x-access-token', adminToken)
+      .end((err, res) => {
+        expect(res).to.have.status(201);
+        expect(res.body.message).to.equal('Menu deleted successfully!');
+        done();
+      });
+  });
 
-  // it('should return error if meal to be deleted is not found', (done) => {
-  //   chai.request(app)
-  //     .delete('/api/v1/menu/50')
-  //     .set('Content-Type', 'application/json')
-  //     .end((err, res) => {
-  //       expect(res).to.have.status(404);
-  //       expect(res.body.message).to.equal('Meal not found');
-  //       done();
-  //     });
-  // });
+  it('should return error if meal to be deleted is not found', (done) => {
+    chai.request(app)
+      .delete('/api/v1/menu/50')
+      .set('Content-Type', 'application/json')
+      .set('x-access-token', adminToken)
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        expect(res.body.message).to.equal('Menu not found');
+        done();
+      });
+  });
 });
