@@ -25,13 +25,6 @@ class ValidateRequest {
   }
 
 
-  checkOrderId(req, res, next) {
-    const order = orders.find(f => f.id === parseInt(req.params.id, 10));
-    if (!order) return res.status(404).json({ message: 'order not found' });
-
-    next();
-  }
-
   validateOrders(req, res, next) {
     const errors = {};
 

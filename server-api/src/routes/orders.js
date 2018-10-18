@@ -11,7 +11,7 @@ class Orders {
 
     router.route('/api/v1/orders/:id')
       .get(validateReq.validateId, authorize.user, authorize.admin, ordersController.getOrder)
-      .put(validateReq.validateId, authorize.user, authorize.admin, validateReq.checkOrderId,
+      .put(validateReq.validateId, authorize.user, authorize.admin,
         validateReq.validateModifyOrders, ordersController.updateOrderStatus);
 
     router.route('/api/v1/users/:id/orders')
