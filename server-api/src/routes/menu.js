@@ -12,7 +12,9 @@ class Meals {
     router.route('/api/v1/menu/:id')
       .get(authorize.user, validateReq.validateId, mealsController.getMealById)
       .put(authorize.user, authorize.admin, validateReq.validateId,
-        validateReq.validateUpdateMeal, mealsController.updateMenu);
+        validateReq.validateUpdateMeal, mealsController.updateMenu)
+      .delete(authorize.user, authorize.admin, validateReq.validateId,
+        mealsController.deleteMenu);
   }
 }
 

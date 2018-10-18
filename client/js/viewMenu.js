@@ -1,6 +1,10 @@
-/* eslint-disable no-undef */
+/* eslint-disable no-restricted-globals, no-undef, no-alert */
 const errorMsg = document.getElementById('error-text');
 const tableRow = document.getElementById('tb');
+
+const redirect = () => {
+  window.location.href = '/admin/admin-fast-food-items.html';
+};
 
 const saveId = (e) => {
   const { id } = e.target;
@@ -9,9 +13,39 @@ const saveId = (e) => {
   window.location.href = '/admin/admin-edit-food.html';
 };
 
-const delt = (e) => {
+const deleteMenu = (e) => {
   const { id } = e.target;
-  confirm('Want to delete food menu option?');
+  const token = localStorage.getItem('token');
+
+  if (confirm('Want to delete food menu option?')) {
+    const options = {
+      method: 'DELETE',
+      headers: {
+        'Content-type': 'application/json',
+        'x-access-token': token
+      }
+    };
+
+    const url = `/api/v1/menu/${id}`;
+    fetch(url, options)
+      .then((res) => {
+        if (res.status === 404) {
+          errorMsg.innerText = res.message;
+        }
+        return res.json();
+      })
+      .then((res) => {
+        if (res.status === 'success') {
+          errorMsg.innerText = res.message;
+          redirect();
+        }
+
+        if (res.status === 'fail') {
+          errorMsg.innerText = res.message;
+        }
+      })
+      .catch(err => err.message);
+  }
 };
 
 const tableItems = (row) => {
@@ -44,7 +78,7 @@ const tableItems = (row) => {
   del.setAttribute('id', `${row.id}`);
 
   edit.addEventListener('click', saveId);
-  del.addEventListener('click', delt);
+  del.addEventListener('click', deleteMenu);
   action.appendChild(edit);
   action.appendChild(del);
 

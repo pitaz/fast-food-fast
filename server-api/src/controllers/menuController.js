@@ -114,10 +114,34 @@ class MenuControllers {
       }));
   }
 
-  deleteMeal(req, res) {
-    const index = meals.indexOf();
-    meals.splice(index, 1);
-    return res.status(201).json({ message: 'meal deleted successfully!' });
+  deleteMenu(req, res) {
+    const menuId = req.params.id;
+    const query = 'SELECT * FROM menu WHERE id = $1';
+    const value = [menuId];
+    const queryUpdateRequest = `DELETE FROM menu
+     WHERE id = '${menuId}'`;
+
+
+    db.query(query, value)
+      .then((checkOrder) => {
+        if (!checkOrder.rows[0]) {
+          return res.status(404).json({
+            status: 'fail',
+            message: 'Menu not found'
+          });
+        }
+        db.query(queryUpdateRequest)
+          .then(() => res.status(201).json({
+            status: 'success',
+            message: 'Menu deleted successfully!',
+          }))
+          .catch(() => res.status(500).json({
+            message: 'Server error'
+          }));
+      })
+      .catch(() => res.status(500).json({
+        message: 'Server error'
+      }));
   }
 }
 
