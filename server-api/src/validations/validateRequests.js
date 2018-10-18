@@ -1,7 +1,4 @@
 /* eslint-disable class-methods-use-this */
-import orders from '../sampleData/ordersStorage';
-import meals from '../sampleData/mealsStorage';
-import users from '../sampleData/usersStorage';
 import obj from '../helpers/isEmpty';
 import checkEmail from '../helpers/isEmail';
 
@@ -13,13 +10,6 @@ class ValidateRequest {
         message: 'Invalid Id'
       });
     }
-
-    next();
-  }
-
-  checkMealId(req, res, next) {
-    const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
-    if (!meal) return res.status(404).json({ message: 'Meal not found' });
 
     next();
   }

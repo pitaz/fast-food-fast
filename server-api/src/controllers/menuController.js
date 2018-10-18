@@ -74,14 +74,44 @@ class MenuControllers {
       });
   }
 
-  updateMeal(req, res) {
-    const meal = meals.find(f => f.id === parseInt(req.params.id, 10));
-    if (!meal) res.status(404).json({ message: 'Meal not found' });
-    meal.name = req.body.name;
-    meal.desc = req.body.desc;
-    meal.price = req.body.price;
-    meal.image = req.body.image;
-    return res.status(200).json(meal);
+  updateMenu(req, res) {
+    const mname = req.body.name;
+    const mprice = req.body.price;
+    const mdesc = req.body.description;
+    const mimage = req.body.image;
+    const menuId = req.params.id;
+    const query = 'SELECT * FROM menu WHERE id = $1';
+    const value = [menuId];
+    const queryUpdateRequest = `UPDATE menu
+     SET name = '${mname}', price = '${mprice}',
+     description = '${mdesc}', image = '${mimage}' 
+     WHERE id = '${menuId}'
+     RETURNING *`;
+
+
+    db.query(query, value)
+      .then((checkOrder) => {
+        if (!checkOrder.rows[0]) {
+          return res.status(404).json({
+            status: 'fail',
+            message: 'Menu not found'
+          });
+        }
+        db.query(queryUpdateRequest)
+          .then(order => res.status(201).json({
+            status: 'success',
+            message: 'Menu updated successfully!',
+            data: {
+              items: order.rows
+            }
+          }))
+          .catch(() => res.status(500).json({
+            message: 'Server error'
+          }));
+      })
+      .catch(() => res.status(500).json({
+        message: 'Server error'
+      }));
   }
 
   deleteMeal(req, res) {
