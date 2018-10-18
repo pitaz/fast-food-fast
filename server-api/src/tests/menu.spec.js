@@ -75,21 +75,18 @@ describe('Tests for menu API endpoints', () => {
       });
   });
 
-  // it('should return errors if fields to be updated are not filled ', (done) => {
-  //   chai.request(app)
-  //     .put('/api/v1/menu/1')
-  //     .set('Content-Type', 'application/json')
-  //     .send({
-  //       name: '',
-  //       desc: '',
-  //       price: ''
-  //     })
-  //     .end((err, res) => {
-  //       expect(res).to.have.status(400);
-  //       // expect(res.body.error.name).to.equal('name is required');
-  //       done();
-  //     });
-  // });
+  it('should return errors if fields to be updated are not filled ', (done) => {
+    chai.request(app)
+      .put('/api/v1/menu/1')
+      .set('Content-Type', 'application/json')
+      .set('x-access-token', adminToken)
+      .send({})
+      .end((err, res) => {
+        expect(res).to.have.status(400);
+        expect(res.body.error.name).to.equal('name is required');
+        done();
+      });
+  });
 
   it('should return error if price is not a number', (done) => {
     chai.request(app)
@@ -113,6 +110,7 @@ describe('Tests for menu API endpoints', () => {
     chai.request(app)
       .put('/api/v1/menu/50')
       .set('Content-Type', 'application/json')
+      .set('x-access-token', adminToken)
       .send({
         name: 'Oha soup and pounded yam',
         description: 'Soup',
@@ -122,7 +120,7 @@ describe('Tests for menu API endpoints', () => {
       })
       .end((err, res) => {
         expect(res).to.have.status(404);
-        expect(res.body.message).to.equal('Meal not found');
+        expect(res.body.message).to.equal('Menu not found');
         done();
       });
   });

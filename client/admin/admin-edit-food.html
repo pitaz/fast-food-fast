@@ -5,7 +5,6 @@
     <title>Fast food fast</title>
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="../css/add-edit-page.css">
-
 </head>
 <body> 
 <div class="container">
@@ -27,39 +26,45 @@
             </div>
         </div> 
     </div>
- <!--sidebar -->
+    <!--sidebar -->
 <div id="mySidebar" class="sidebar ">
-    <a href="../food-menu.html">Menu</a>
-    <a href="./admin-all-orders.html">Orders</a>
-    <a href="./admin-fast-food-items.html">Food Items</a>
-    <a href="./admin-add-food.html">Add Food Item</a>
-    <a href="../signin.html"> Logout</a>
+        <a href="../food-menu.html">Menu</a>
+        <a href="./admin-all-orders.html">Orders</a>
+        <a href="./admin-fast-food-items.html">Food Items</a>
+        <a href="./admin-add-food.html">Add Food Item</a>
+        <a href="../signin.html"> Logout</a>
 </div>
-    <!--sidebar ends-->
+<!--sidebar ends-->
     <!--Content wrapper-->
 <div class="wrapper-add-food card">
-    <form>
+    <div class="error-cont" id="error">
+            <span id="closebtn">&times;</span> 
+        <p id="error-message"></p>
+    </div>
+    <form method="POST" name="form" enctype="multipart/form-data">
         <div class="card-header">
             <p>Edit food</p>
         </div>
         <div class="card-content">
-            <label><b>Item Name</b></label>
-            <input type="text" placeholder="Enter Name e.g Egusi " name="fname" value="Egusi & Fresh fish" required>
+            <label><b>Food</b></label>
+            <input type="text" placeholder="Enter Food name" name="name" id="name" required>
+            <p class="error"></p>
             <label><b>Price</b></label>
-            <input type="text" placeholder="Price e.g NGN 2,000" value="NGN 2,000" name="price" required>
+            <input type="text" placeholder="Enter Food price" name="price" id="price" required>
+            <p class="error"></p>
             <label><b>Image</b></label>
-            <input type="file" name="image" required>
-            <label><b>Description</b></label>
-            <textarea type="text" placeholder="Description" name="description" required>Egusi soup with assorted fish</textarea>
-                
-            <button type="submit">Edit</button>
+            <input type="text" name="image" id="image" required>
+            <label><b>Food description</b></label>
+            <textarea placeholder="Description" name="desc" id="description" required></textarea>
+            <p class="error"></p>
+
+            <button type="submit">Add</button>
         </div>
-
-
     </form>
 </div>
 </div>
 <footer><p>Designed by Peter Odekwo</p></footer>
 <script src="../js/main.js"></script>
+<script src="../js/editMenu.js"></script>
 </body>
 </html>
