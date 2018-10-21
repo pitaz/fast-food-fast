@@ -12,8 +12,12 @@ const close = () => {
 };
 
 
-const redirectUser = () => {
-  window.location.href = '/food-menu.html';
+const redirectUser = (role) => {
+  if (role === 'admin') {
+    window.location.href = '/admin/admin-fast-food-items.html';
+  } else {
+    window.location.href = '/food-menu.html';
+  }
 };
 
 const loginUser = (e) => {
@@ -47,7 +51,8 @@ const loginUser = (e) => {
         localStorage.setItem('token', res.data.token);
         localStorage.setItem('username', res.data.name);
         localStorage.setItem('userId', res.data.id);
-        redirectUser();
+        localStorage.setItem('role', res.data.role);
+        redirectUser(res.data.role);
       }
 
       if (res.status === 'fail') {

@@ -43,7 +43,9 @@ body{
     transition: 0.5s;
     font-family: "Caviar Dreams", serif;
 }
-
+.cursor {
+    cursor: pointer;
+}
 .nav > .left a{
     color: #fff;
     text-align: center;
