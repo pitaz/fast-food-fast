@@ -11,9 +11,10 @@ class OrdersControllers {
     const status = 'new';
     const quantity = body.quantity.trim();
     const price = body.price.trim();
+    const totalPrice = quantity * price;
 
     const createOrder = 'INSERT INTO orders(meal, "userId", status, quantity, price) VALUES($1, $2, $3, $4, $5) RETURNING *';
-    const values = [name, userId, status, quantity, price];
+    const values = [name, userId, status, quantity, totalPrice];
 
     db.query(createOrder, values)
       .then(order => res.status(201).json({
@@ -105,7 +106,7 @@ class OrdersControllers {
   updateOrderStatus(req, res) {
     const orderStatus = req.body.status;
     const orderId = req.params.id;
-    const query = 'SELECT * FROM orders WHERE "userId" = $1';
+    const query = 'SELECT * FROM orders WHERE id = $1';
     const value = [orderId];
     const queryUpdateRequest = `UPDATE orders
      SET status = '${orderStatus}'

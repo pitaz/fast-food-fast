@@ -3,10 +3,13 @@
     margin: 0;
 }
 
+body{
+    width: 100%;
+}
+
 .nav{
     display: flex;
     flex-direction: row;
-    /* justify-content: space-between; */
     background-color: #333;
     position: fixed;
     top: 0;
@@ -481,6 +484,7 @@ select[name=filter] {
     color: white;
     font-family: "Caviar Dreams", sans-serif;
     transition: 0.7s ease;
+    margin-right: 20px;
 }
 .dropdown a {
     text-decoration: none;
@@ -512,7 +516,9 @@ select[name=filter] {
 .dropdown:hover .dropdown-content {
     display: block;
 }
-
+.cursor {
+    cursor: pointer;
+}
 .table{
     display: table;
     /* width: 80%; */
