@@ -15,6 +15,20 @@ const close = () => {
   closeBtn.parentElement.style.display = 'none';
 };
 
+const errorsList = (error) => {
+  if (error.name) {
+    errorMsgs[0].innerHTML = error.name;
+  }
+  if (error.price) {
+    errorMsgs[1].innerHTML = error.price;
+  }
+  if (error.image) {
+    errorMsgs[2].innerHTML = error.image;
+  }
+  if (error.description) {
+    errorMsgs[3].innerHTML = error.description;
+  }
+};
 
 const redirect = () => {
   window.location.href = '/admin/admin-fast-food-items.html';
@@ -58,8 +72,7 @@ const editMenu = (e) => {
       }
 
       if (res.status === 'fail') {
-        closeBtn.parentElement.style.display = 'block';
-        errorMsg.innerText = res.message;
+        errorsList(res.error);
       }
     })
     .catch(err => err.message);
@@ -112,4 +125,8 @@ window.onload = () => {
 
 
 form.addEventListener('submit', editMenu);
+name.addEventListener('focus', removeErrorMessages);
+price.addEventListener('focus', removeErrorMessages);
+image.addEventListener('focus', removeErrorMessages);
+desc.addEventListener('focus', removeErrorMessages);
 closeBtn.addEventListener('click', close);
