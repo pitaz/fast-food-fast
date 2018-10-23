@@ -1,10 +1,18 @@
- *{
+html {
+    height: 100%;
     box-sizing: border-box;
-    margin: 0;
+  }
+  
+*{
+    box-sizing: inherit;
+    
 }
 
 body{
-    width: 100%;
+    position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
 }
 
 .nav{
@@ -456,8 +464,11 @@ input[type=number] {
 }
 footer{
     background-color: rgb(209, 209, 209);
-    width: 100%;
+    position: absolute;
+    right: 0;
     bottom: 0;
+    left: 0;
+    padding: 0.7rem;
 }
 footer p{
     color: #000;
@@ -541,6 +552,9 @@ select[name=filter] {
     width: 120px;
     transition: 0.7s
 }
+.container {
+    margin-bottom: 5rem;
+}
 @media only screen and (max-width: 970px) {
   .nav .nav-items a {
       visibility: hidden;
@@ -583,6 +597,9 @@ select[name=filter] {
   @media only screen and (max-width: 870px) {
     [class*="col-"] {
         width: 100%
+    }
+    .card-wrapper {
+        width: 90%
     }
       .nav .nav-items a{
           visibility: hidden;
