@@ -62,7 +62,7 @@ window.onload = () => {
       }
 
       if (res.status === 'fail') {
-        errorMsg.innerText = res.message;
+        errorMsg.innerText = 'No meal option available';
       }
     })
     .catch(err => err.message);

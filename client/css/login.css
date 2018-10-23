@@ -139,8 +139,8 @@ button:hover, a:hover {
 .error-cont {
     display: none;
     padding: 20px;
-    background-color: #f44336;
     color: #ffffff;
+    transition: 0.3s ease;
     font-family: "Caviar Dreams", sans-serif
 }
 
@@ -151,7 +151,6 @@ transition: 0.3s ease
 }
 
 #closebtn:hover{
-    font-size: px;
     cursor: pointer;
 }
 
@@ -159,7 +158,12 @@ transition: 0.3s ease
     color:rgb(255, 0, 0);
     font-size: 15px;
     padding: 10px; 
-    font-family: sans-serif
+    font-family: sans-serif;
+    transition: 0.8s ease
+}
+
+.fail {
+    background-color: #f44336;
 }
 @media screen and (max-width: 600px) {
 

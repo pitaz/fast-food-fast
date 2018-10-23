@@ -11,7 +11,18 @@ const close = () => {
   closeBtn.parentElement.style.display = 'none';
 };
 
+const errorsList = (error) => {
+  if (error.email) {
+    errorMsgs[0].innerHTML = 'Email is required';
+  }
+  if (error.password) {
+    errorMsgs[1].innerHTML = 'Password is required';
+  }
+};
 
+const removeErrorMessages = (e) => {
+  e.target.nextElementSibling.innerHTML = '';
+};
 const redirectUser = (role) => {
   if (role === 'admin') {
     window.location.href = '/admin/admin-fast-food-items.html';
@@ -42,7 +53,9 @@ const loginUser = (e) => {
     .then((res) => {
       if (res.status === 409) {
         closeBtn.parentElement.style.display = 'block';
-        errorMsg.innerText = res.message;
+        closeBtn.parentElement.classList.add('fail');
+        errorMsg.innerText = 'User does not exist!';
+        removeMessages();
       }
       return res.json();
     })
@@ -54,14 +67,14 @@ const loginUser = (e) => {
         localStorage.setItem('role', res.data.role);
         redirectUser(res.data.role);
       }
-
       if (res.status === 'fail') {
-        closeBtn.parentElement.style.display = 'block';
-        errorMsg.innerText = res.message;
+        errorsList(res.error);
       }
     })
     .catch(err => err.message);
 };
 
 form.addEventListener('submit', loginUser);
+email.addEventListener('focus', removeErrorMessages);
+password.addEventListener('focus', removeErrorMessages);
 closeBtn.addEventListener('click', close);

@@ -11,8 +11,23 @@ const close = () => {
   closeBtn.parentElement.style.display = 'none';
 };
 
+const errorsList = (error) => {
+  if (error.name) {
+    errorMsgs[0].innerHTML = 'Name is required';
+  }
+  if (error.email) {
+    errorMsgs[1].innerHTML = 'Email is invalid';
+  }
+  if (error.email) {
+    errorMsgs[2].innerHTML = 'Password is required';
+  }
+};
+
+const removeErrorMessages = (e) => {
+  e.target.nextElementSibling.innerHTML = '';
+};
+
 const confirmPasswordError = () => {
-  errorMsgs[2].classList.add('display-error');
   errorMsgs[2].innerHTML = 'password does not match';
 };
 
@@ -50,6 +65,7 @@ const registerUser = (e) => {
         if (res.status === 409) {
           closeBtn.parentElement.style.display = 'block';
           errorMsg.innerText = 'Email already exist!';
+          removeMessages();
         }
         return res.json();
       })
@@ -63,8 +79,7 @@ const registerUser = (e) => {
         }
 
         if (res.status === 'fail') {
-          closeBtn.parentElement.style.display = 'block';
-          errorMsg.innerText = res.message;
+          errorsList(res.error);
         }
       })
       .catch(err => err.message);
@@ -74,4 +89,7 @@ const registerUser = (e) => {
 };
 
 form.addEventListener('submit', registerUser);
+name.addEventListener('focus', removeErrorMessages);
+email.addEventListener('focus', removeErrorMessages);
+password.addEventListener('focus', removeErrorMessages);
 closeBtn.addEventListener('click', close);

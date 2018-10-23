@@ -66,13 +66,15 @@ class UsersControllers {
       .then((response) => {
         if (!response.rows[0]) {
           return res.status(409).json({
+            status: 'fail',
             message: 'User does not exist!'
           });
         }
         const checkPassword = bcrypt
           .compareSync(body.password.trim(), response.rows[0].password);
         if (!checkPassword) {
-          return res.status(422).json({
+          return res.status(400).json({
+            status: 'fail',
             message: 'Unable to login',
           });
         }

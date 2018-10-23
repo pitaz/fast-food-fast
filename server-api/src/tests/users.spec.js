@@ -102,7 +102,7 @@ describe('Tests for User Signin/signup', () => {
       })
       .end((err, res) => {
         expect(res.body.message).to.equal('Unable to login');
-        expect(res).to.have.status(422);
+        expect(res).to.have.status(400);
         done();
       });
   });

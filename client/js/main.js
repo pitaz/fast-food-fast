@@ -1,9 +1,16 @@
 /* eslint-disable no-undef */
+const errorCont = document.getElementById('error');
 const sidebar = document.getElementsByClassName('sidebar')[0];
 const toggle = document.getElementsByClassName('menu-icon')[0];
 const navItems = document.getElementById('items-right');
 const loggedusername = localStorage.getItem('username');
 
+const removeMessages = () => {
+  window.setTimeout(() => {
+    errorCont.style.display = 'none';
+    errorCont.classList.remove('fail');
+  }, 3000);
+};
 
 const toggleSideNav = () => {
   sidebar.classList.toggle('active');
@@ -14,6 +21,7 @@ const logout = () => {
   localStorage.removeItem('id');
   localStorage.removeItem('userId');
   localStorage.removeItem('token');
+  localStorage.removeItem('role');
 
   window.location.href = '/signin.html';
 };

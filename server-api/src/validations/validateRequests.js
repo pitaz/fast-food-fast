@@ -41,7 +41,10 @@ class ValidateRequest {
     const error = obj.isEmpty(errors);
 
     if (error) {
-      return res.status(400).json({ error: errors });
+      return res.status(400).json({
+        status: 'fail',
+        error: errors
+      });
     }
 
     next();
@@ -55,7 +58,10 @@ class ValidateRequest {
     const error = obj.isEmpty(errors);
 
     if (error) {
-      return res.status(400).json({ error: errors });
+      return res.status(400).json({
+        status: 'fail',
+        error: errors
+      });
     }
 
     next();
@@ -77,7 +83,10 @@ class ValidateRequest {
     const error = obj.isEmpty(errors);
 
     if (error) {
-      return res.status(400).json({ error: errors });
+      return res.status(400).json({
+        status: 'fail',
+        error: errors
+      });
     }
 
     next();
@@ -99,7 +108,10 @@ class ValidateRequest {
     const error = obj.isEmpty(errors);
 
     if (error) {
-      return res.status(400).json({ error: errors });
+      return res.status(400).json({
+        status: 'fail',
+        error: errors
+      });
     }
 
     next();
@@ -121,7 +133,10 @@ class ValidateRequest {
     const error = obj.isEmpty(errors);
 
     if (error) {
-      return res.status(400).json({ error: errors });
+      return res.status(400).json({
+        status: 'fail',
+        error: errors
+      });
     }
 
     next();
@@ -139,7 +154,10 @@ class ValidateRequest {
     const error = obj.isEmpty(errors);
 
     if (error) {
-      return res.status(400).json({ error: errors });
+      return res.status(400).json({
+        status: 'fail',
+        error: errors
+      });
     }
 
     next();
