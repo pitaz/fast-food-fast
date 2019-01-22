@@ -16,7 +16,7 @@
     "pretest": "cross-env NODE_ENV=test npm run migrate-db",
     "build": "babel server-api/ --out-dir build --copy-files --source-maps",
     "coveralls": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "start-dev": "nodemon --exec npm run babel-node",
+    "start:dev": "nodemon --exec npm run babel-node",
     "migrate-db": "babel-node ./server-api/src/db/users.js && babel-node ./server-api/src/db/orders.js && babel-node ./server-api/src/db/menu.js",
     "heroku-postbuild": "npm run migrate-db"
   },

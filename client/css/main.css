@@ -7,7 +7,10 @@ html {
     box-sizing: inherit;
     
 }
-
+@font-face {
+    font-family: Caviar Dreams;
+    src: url(../fonts/CaviarDreams.ttf);
+}
 body{
     position: relative;
     margin: 0;

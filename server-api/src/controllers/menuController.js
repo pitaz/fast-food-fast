@@ -1,5 +1,4 @@
 /* eslint-disable class-methods-use-this */
-import meals from '../sampleData/mealsStorage';
 import db from '../db/dbConnection';
 
 
@@ -36,8 +35,8 @@ class MenuControllers {
     db.query(query)
       .then((menu) => {
         if (!menu.rows[0]) {
-          return res.status(400).json({
-            status: 'fail',
+          return res.status(200).json({
+            status: 'success',
             message: 'menu unavailable'
           });
         }
