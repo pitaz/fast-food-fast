@@ -10,7 +10,7 @@ class Meals {
       .get(mealsController.getMenu);
 
     router.route('/api/v1/menu/:id')
-      .get(authorize.user, validateReq.validateId, mealsController.getMealById)
+      .get(validateReq.validateId, mealsController.getMealById)
       .put(authorize.user, authorize.admin, validateReq.validateId,
         validateReq.validateUpdateMeal, mealsController.updateMenu)
       .delete(authorize.user, authorize.admin, validateReq.validateId,

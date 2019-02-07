@@ -12,10 +12,12 @@ class Orders {
     router.route('/api/v1/orders/:id')
       .get(validateReq.validateId, authorize.user, authorize.admin, ordersController.getOrder)
       .put(validateReq.validateId, authorize.user, authorize.admin,
-        validateReq.validateModifyOrders, ordersController.updateOrderStatus);
+        validateReq.validateModifyOrders, ordersController.updateOrderStatus)
+        .delete(authorize.user, validateReq.validateId,
+          ordersController.deleteOrder);
 
     router.route('/api/v1/users/:id/orders')
-      .get(validateReq.validateId, authorize.user, ordersController.getUserOrders);
+      .get(validateReq.validateId, authorize.user, ordersController.getUserOrders)
   }
 }
 

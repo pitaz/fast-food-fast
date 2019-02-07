@@ -141,6 +141,36 @@ class OrdersControllers {
         message: 'Server error'
       }));
   }
+
+  deleteOrder(req, res) {
+    const orderId = req.params.id;
+    const query = 'SELECT * FROM orders WHERE id = $1';
+    const value = [orderId];
+    const queryUpdateRequest = `DELETE FROM orders
+     WHERE id = '${orderId}'`;
+
+
+    db.query(query, value)
+      .then((checkOrder) => {
+        if (!checkOrder.rows[0]) {
+          return res.status(404).json({
+            status: 'fail',
+            message: 'Order not found'
+          });
+        }
+        db.query(queryUpdateRequest)
+          .then(() => res.status(201).json({
+            status: 'success',
+            message: 'Order has been cancelled!',
+          }))
+          .catch(() => res.status(500).json({
+            message: 'Server error'
+          }));
+      })
+      .catch(() => res.status(500).json({
+        message: 'Server error'
+      }));
+  }
 }
 
 const ordersControllers = new OrdersControllers();
